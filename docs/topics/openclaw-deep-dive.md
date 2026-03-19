@@ -230,7 +230,7 @@ The era of chatbots (ChatGPT, Claude.com) is maturing. The next wave is agents t
 
 1. **Operators become the critical role.** Infrastructure/ops engineers who can design agent workflows and security guardrails will be high-demand.
 2. **Skill development is now a product surface.** Just as companies build plugins for Salesforce or VS Code extensions for developers, skill development (for ClawHub, agent marketplaces) becomes a business opportunity.
-3. **Security is table stakes, not optional.** The 820+ malicious skills and CVE-2026-25253 mean organizations adopting agents must invest in vetting, sandboxing, and monitoring.
+3. **Security is table stakes, not optional.** The 1,184 confirmed malicious skills (Antiy CERT, March 2026; up from initial 820+ estimate) and CVE-2026-25253 mean organizations adopting agents must invest in vetting, sandboxing, and monitoring.
 4. **MCP becomes the universal integration standard.** OpenClaw's reliance on MCPs validates the protocol; expect similar adoption in competing agent platforms.
 5. **Open-source agent ecosystem explodes.** 13K skills in 2 months suggests a gold-rush phase. Expect 50K+ skills, hundreds of competing agent frameworks, and consolidation by 2027.
 6. **LLM costs matter differently.** An agent running continuously will make 1000s of API calls. Cost-per-token and LLM selection become infrastructure decisions, not user preferences.
@@ -374,3 +374,4 @@ OpenClaw represents a real shift: **agents moving from "answer my question" to "
 - [OpenClaw Skill Development](openclaw-skill-development.md) — Building secure OpenClaw skills from design to deployment
 - [Best Repos, Skills, Plugins, MCPs](best-repos-skills-plugins-mcps.md) — Evaluating third-party skills and MCPs
 - [Building Custom MCP Servers](building-custom-mcp-servers.md) — Alternative approach using MCP over OpenClaw for production
+- [CI/CD AI Integration Safety](cicd-ai-integration-safety.md) — Security scanning pipelines for AI-generated code and agent outputs

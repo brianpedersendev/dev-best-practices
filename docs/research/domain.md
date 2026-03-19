@@ -115,7 +115,7 @@ Paradox: 85% of developers use AI weekly, yet Stack Overflow 2025 survey shows 5
 #### Pattern 1: Specification-Driven Development with Incremental Tasking
 **Flow**: Specification Document → Technical Plan → Phase-Based Tasks → Incremental Prompting → Verification Against Spec
 
-**Why It Works**: Agents perform 30-50% better with clear specs than open-ended requests. Each task stays small enough for agent reasoning.
+**Why It Works**: Agents perform 30-50% better with clear specs than open-ended requests. Each task stays small enough for agent reasoning. See [Prompt Engineering Patterns](../topics/prompt-engineering-patterns.md) for detailed prompt templates and constraint techniques.
 
 **Evidence**: AWS Adaptive Workflows and GitHub's Spec-Driven Development toolkit show consistent 30-50% reduction in iteration cycles.
 

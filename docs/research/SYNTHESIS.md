@@ -15,7 +15,7 @@ A solo/small-team developer wants to ship top-of-the-line applications as fast a
 
 1. **Multi-tool strategy is the default.** No single tool wins. Productive devs combine Claude Code (complex multi-file work), Cursor (fast IDE iteration), and Copilot (autocomplete baseline). Pick by task type, not loyalty. — Sources: dev.to, faros.ai, tldl.io
 
-2. **TDD is the single highest-leverage practice with AI agents.** Writing tests before asking AI to implement code reduces defect density 40-90%. Agents thrive with clear test contracts. Skip TDD and AI quality drops dramatically. — Sources: Google Cloud DORA report, Codemanship, NopAccelerate
+2. **TDD is the single highest-leverage practice with AI agents.** Writing tests before asking AI to implement code reduces defect density 40-90%. The range depends on test specificity: ~40% for coarse integration tests, up to 90% for fine-grained unit tests with explicit edge cases; most teams land at 50-65% with standard TDD practices. Agents thrive with clear test contracts. Skip TDD and AI quality drops dramatically. — Sources: Google Cloud DORA report, Codemanship, NopAccelerate
 
 3. **MCP is now the standard for tool integration.** 97M+ SDK downloads, backed by Anthropic/OpenAI/Google/Microsoft, governed by Linux Foundation. Write one MCP server, connect to any AI platform. This is the HTTP of AI tooling. — Sources: modelcontextprotocol.io, Thoughtworks, CData
 
@@ -109,7 +109,7 @@ A solo/small-team developer wants to ship top-of-the-line applications as fast a
 **For Brian's workflow — immediate actions:**
 
 1. **Adopt the plan-execute-verify loop.** Use Plan Mode → approve → auto-execute → verify against tests. Never raw auto-execute.
-2. **Write tests before asking for code.** TDD + AI = 40-90% fewer defects. This is the single highest-leverage practice.
+2. **Write tests before asking for code.** TDD + AI = 40-90% fewer defects (typically 50-65% with standard practices; higher with fine-grained unit tests). This is the single highest-leverage practice.
 3. **Keep CLAUDE.md lean (30-150 lines).** Use positive rules. Enforce hard rules with hooks, not text.
 4. **Set up core MCP servers.** GitHub + Filesystem + Postgres (if applicable) as baseline. Eliminates context-copy overhead.
 5. **Split sessions by task type.** Planning → implementation → testing as separate sessions. Clear at 60% context capacity.
