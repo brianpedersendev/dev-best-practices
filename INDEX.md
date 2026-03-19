@@ -59,6 +59,12 @@
 | 2026-03-18 | [project-scaffold.skill](project-scaffold.skill) | **Project Scaffold Skill** — Generates complete AI tooling scaffold (CLAUDE.md, hooks, MCP configs, Cursor rules, agents.md, skills) from a plan doc or project description |
 | 2026-03-18 | [project-research.skill](project-research.skill) | **Project Research Skill** — End-to-end idea vetting → domain research → implementation plan. Orchestrates agent-research and agent-plan with interview phase and checkpoints |
 
+## Example Projects
+| Date | File | Description |
+|------|------|-------------|
+| 2026-03-19 | [examples/fishing-copilot/](examples/fishing-copilot/) | **Fishing Copilot** — AI-powered daily fishing briefing app. Complete project-research pipeline output: brief, research (5 state data sources, competitive landscape, cost modeling), implementation plan (Python pipeline, Claude Haiku Batch API, Twilio SMS, GitHub Actions cron), CLAUDE.md, agents.md |
+| 2026-03-19 | [examples/life-assistant/](examples/life-assistant/) | **Life Assistant (LifeOS)** — Modular AI life assistant with plug-and-play domain modules (career, finance, fitness, hobbies). Complete project-research pipeline output: brief (3-round interview), research (competitive landscape across 4 domains, MCP-per-domain architecture, 3-tier memory, hybrid privacy, cost modeling), implementation plan (Next.js + Vercel AI SDK, MCP servers per domain, Turborepo monorepo, domain-by-domain MVP rollout), CLAUDE.md, agents.md. GO recommendation — career coaching is the most underserved domain, ~$2.50/mo to run personally. |
+
 ## Other
 | Date | File | Description |
 |------|------|-------------|

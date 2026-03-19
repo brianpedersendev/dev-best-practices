@@ -115,6 +115,12 @@
 
 - **[Project Scaffold Skill](project-scaffold.skill)** — Generates a complete AI tooling scaffold from a plan doc or description. Creates CLAUDE.md, hooks, MCP configs, Cursor rules, agent team definitions, and dev workflow skills — all tailored to your stack. Use after the research skill produces a plan.
 
+### Example Projects (Built with the Research Skill)
+
+- **[Fishing Copilot](examples/fishing-copilot/)** — AI-powered daily fishing briefing app. Python pipeline that scrapes state fish & game reports, pulls weather/water data, synthesizes through Claude Haiku, and delivers via SMS. Full project-research pipeline output: brief, competitive research, implementation plan with data model and API details.
+
+- **[Life Assistant (LifeOS)](examples/life-assistant/)** — Modular AI life assistant with plug-and-play domain modules for career coaching, personal finance, fitness, and hobbies. MCP server per domain, Next.js + Vercel AI SDK, 3-tier memory, cross-domain intelligence. Full project-research pipeline output: 3-round interview brief, 4-domain competitive analysis, architecture research, GO recommendation, phased implementation plan.
+
 ### Full Research
 
 - **[Research Synthesis](docs/research/SYNTHESIS.md)** — The master document: 12 key insights, framework comparisons, opportunity rankings, risk analysis, and concrete recommendations. Start here for the full picture.
