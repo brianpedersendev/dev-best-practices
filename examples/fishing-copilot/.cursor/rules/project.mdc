@@ -1,0 +1,42 @@
+---
+description: Fishing Copilot coding standards
+globs: ["**/*.py"]
+alwaysApply: true
+---
+
+# Fishing Copilot — Cursor Rules
+
+## Stack
+Python 3.12+, Claude Haiku 4.5 Batch API, SQLite, Twilio, GitHub Actions, pytest, ruff
+
+## Conventions
+- Use `dataclass(frozen=True)` or `NamedTuple` for all data structures
+- Use parameterized SQL queries — never f-string SQL
+- Use `logging` with structured JSON output — no print statements
+- Use type hints on all function signatures
+- Keep functions under 50 lines, files under 400 lines
+- Use immutable patterns: return new objects, never mutate
+- Store all LLM prompt templates in `src/fishing_copilot/llm/prompts.py`
+- Use content hashing (SHA-256) for report dedup
+- Validate all external API responses before storing
+
+## File Patterns
+- Collectors (API clients): `src/fishing_copilot/collectors/`
+- Scrapers (HTML): `src/fishing_copilot/scrapers/`
+- LLM pipeline: `src/fishing_copilot/llm/`
+- Delivery: `src/fishing_copilot/delivery/`
+- Tests mirror source: `tests/test_collectors/`, `tests/test_scrapers/`, etc.
+
+## Testing
+- Framework: pytest + responses (HTTP mocking)
+- Write tests FIRST, then implementation
+- Mock all HTTP calls in unit tests
+- Use saved HTML fixtures for scraper tests
+- Tag real API tests with `@pytest.mark.integration`
+- Coverage target: 80%+
+
+## Key Patterns
+- Two-pass LLM: extract (HTML→JSON), then synthesize (data→briefing)
+- LLM-as-resilience-layer: Haiku extracts semantically even when HTML structure changes
+- Process once, deliver many: LLM cost is fixed regardless of user count
+- Graceful degradation: pipeline continues when individual sources fail

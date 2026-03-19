@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python -c \"import zipfile; z = zipfile.ZipFile\\(''''project-research.skill''''\\); print\\(z.namelist\\(\\)\\); print\\(z.read\\(''''project-research/SKILL.md''''\\).decode\\(''''utf-8''''\\)\\)\")",
+      "Bash(unzip -p project-research.skill project-research/SKILL.md)",
+      "Bash(curl:*)",
+      "Bash(gh search:*)",
+      "WebSearch"
+    ]
+  }
+}

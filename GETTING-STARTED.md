@@ -1,7 +1,7 @@
 # Getting Started: AI-Augmented Development
 
 > Ship top-of-the-line apps faster using AI tools, agents, and modern dev patterns.
-> Last updated: 2026-03-18
+> Last updated: 2026-03-19
 
 ---
 
@@ -43,6 +43,8 @@
 
 ### Building Custom Tools
 
+- **[AI-Assisted API Design Guide](docs/topics/ai-assisted-api-design.md)** — Complete guide to designing, building, testing, and documenting APIs faster with AI. Covers: contract-first development (spec → code → test), OpenAPI spec generation from natural language, server stub generation (FastAPI/Express/Go from specs), REST/GraphQL/gRPC design patterns with AI, contract testing (Specmatic/Pact), property-based and fuzz testing, security testing (OWASP API Top 10), auto-generating docs and SDKs, MCP server design (exposing APIs as tools for agents), end-to-end workflow with real examples, and anti-patterns to avoid. Start here to build APIs 3-4x faster using specification-driven development.
+
 - **[Building Custom MCP Servers](docs/topics/building-custom-mcp-servers.md)** — Complete guide to building your own MCP servers from scratch. Covers architecture, step-by-step tutorials for Python (FastMCP) and TypeScript, the three primitives (tools, resources, prompts), wrapping existing APIs, production security patterns, Docker deployment, testing, and real-world examples. Start here if you need custom integrations or internal tool access.
 
 - **[Building OpenClaw Skills](docs/topics/openclaw-skill-development.md)** — Complete practical guide to building, testing, and publishing OpenClaw skills from basics to production. Covers skill architecture, the Agent Communication Protocol (ACP), 5 skill types with examples, the critical "65% pattern" (wrapping MCP servers as skills), ClawHub publishing and security, testing workflows, 5 real-world examples with complete code (CI/CD monitor, email triage, competitor monitor, database queries, meeting→tasks), and production readiness. Start here if you're building automation agents or want to publish to ClawHub.
@@ -55,21 +57,55 @@
 
 - **[Context Management & Memory Systems Guide](docs/topics/context-memory-systems.md)** — Practical techniques to reduce token usage by 29-84% through context editing, persistent memory, hierarchical memory architecture, and observation masking. Includes tool-specific strategies for Claude Code, Cursor, and Gemini, with implementation checklist and production benchmarks. Start here to make your AI tools faster and cheaper.
 
+### Working Effectively on Large Codebases
+
+- **[Using AI Development Tools on Large Codebases](docs/topics/ai-on-large-codebases.md)** — Complete guide for 100K+ line projects. Covers: codebase onboarding (hierarchical CLAUDE.md, module-level instructions, indexing strategies), context strategies at scale (targeted loading, progressive disclosure), Gemini's 2M token advantage for whole-codebase analysis, multi-agent patterns for parallel work, monorepo strategies (tool separation, package-level config), large refactoring patterns (phased approach, test gates, feature flags), performance optimization (.cursorignore for 8min→2min indexing), team coordination (shared CLAUDE.md, file locking, code review standards), and 3 production case studies (Goldman Sachs, Salesforce, Stripe). Start here if you're working with a large enterprise codebase or leading a team on distributed AI development.
+
+### How to Cut AI Tool Costs 50-70%
+
+- **[Cost Optimization Playbook](docs/topics/cost-optimization-playbook.md)** — Comprehensive strategy guide to reduce AI spending dramatically while maintaining quality. Covers: where money goes (pricing breakdown, activity costs, monthly budgets by developer profile), context management savings (29-84%), model routing (60% reduction via intelligent distribution), caching strategies (90% off with prompt caching, 40-70% hit rate with semantic caching), tool selection optimization (when Cursor beats Claude, when Gemini wins), subscription strategies (Pro vs Max vs API), team cost management (2-5 person teams to 50+ developers), the hybrid multi-tool approach, token budgeting and monitoring, real team examples, and implementation checklist. Start here to make intelligent cost/quality trade-offs.
+
 ### How to Research Before Building
 
 - **[AI Research Strategies Guide](docs/topics/ai-research-strategies.md)** — How to use AI tools for accurate, up-to-date research. Covers hallucination detection, triangulation, tool-specific techniques, research workflows, and staying current.
+
+### Bringing AI to Legacy Codebases
+
+- **[AI in Legacy Codebases Guide](docs/topics/ai-in-legacy-codebases.md)** — Strategic guide to integrating AI tools into complex, underdocumented, or inconsistent codebases. Covers: AI-readiness assessment scorecard, 5-step onboarding with CLAUDE.md, test-first migration (characterization tests, approval testing, test harness), incremental modernization (strangler fig, extract-and-replace, adapter layers), handling common scenarios (no tests, outdated frameworks like jQuery/AngularJS/Python 2, monoliths, spaghetti code, mixed styles), tool-specific strategies (Claude Code, Cursor, Gemini), risk management (feature flags, canary testing, rollback), and a 3-month migration roadmap with success metrics. Start here if you're working with legacy systems that need modernization.
 
 ### AI-Native Application Architecture
 
 - **[AI-Native Architecture Guide](docs/topics/ai-native-architecture.md)** — How to design and build applications where AI is the core, not a feature. Covers the distinction between AI-native and AI-augmented apps, agent-backend patterns, data architecture (RAG, vector storage, memory hierarchy), the 2026 tech stack (LangGraph vs CrewAI vs Claude Agent SDK), production patterns (evaluation, observability, cost, security), 4 real-world architecture examples, and decision trees. Start here if you're building a system around agents, not just adding an agent to an existing system.
 
+### Deployment and DevOps for AI Apps
+
+- **[Deployment & DevOps Guide](docs/topics/ai-app-deployment-devops.md)** — How to ship, scale, and operate AI-powered applications in production. Covers: what's fundamentally different about AI deployments (non-deterministic outputs, cost scaling, production evaluation), CI/CD patterns (prompt regression testing, LLM-as-a-judge, eval gates, GitHub Actions examples), containerization (Docker multi-stage builds, MCP servers, agents, Docker Compose), infrastructure choices (serverless vs containers vs VMs, GPU scaling, cold start mitigation), observability (Langfuse/LangSmith, OpenTelemetry for agents, quality dashboards, cost tracking), cost controls (token budgets, rate limiting, semantic caching, model fallback), security (prompt injection defense, PII handling, API key rotation, audit logging), rollback strategies (model versioning, blue-green/canary deployments), platform-specific deployment (Vercel, AWS Bedrock, GCP Vertex AI, Railway, Fly.io), and production readiness checklist with 50+ copy-paste examples. Start here before shipping any AI feature to production.
+
 ### Multi-Agent & Swarm Patterns
 
 - **[Swarm Patterns by Development Stage](docs/topics/swarm-patterns-by-dev-stage.md)** — The right multi-agent pattern for each phase of development: research, planning, coding, testing, review, debugging, docs, deployment, and maintenance. Includes agent team compositions, implementation guides for LangGraph/CrewAI/Claude SDK, code snippets, and cost analysis.
 
+### Debugging Your Code Faster with AI
+
+- **[AI-Assisted Debugging Guide](docs/topics/ai-assisted-debugging.md)** — How to use Claude Code, Cursor, and Gemini to find and fix bugs 3-4x faster than traditional debugging. Covers: why AI changes debugging (hypothesis generation, codebase-wide analysis, parallel investigation), tool-specific workflows (Claude Plan Mode to understand before fixing, Cursor in-editor debugging, Gemini for 100K+ LOC analysis), the multi-agent hypothesis-generating swarm pattern (11 min vs 45+ min traditional), production incident debugging (log analysis, root cause reconstruction, Meta/DoorDash case studies), debugging AI-generated code (hallucinated APIs, missing edge cases, security vulnerabilities), rubber duck debugging with AI, what AI catches well (off-by-one, null handling, race conditions) vs misses (business logic, timing-dependent bugs), 15 copy-paste debugging prompts for common scenarios (crash analysis, memory leaks, race conditions, performance issues), complete 6-phase debugging workflow, MCP observability servers (Datadog, Splunk), and anti-patterns to avoid. Start here to debug faster and smarter.
+
+### Testing AI-Generated Code
+
+- **[Testing AI-Generated Code](docs/topics/testing-ai-generated-code.md)** — Comprehensive guide to testing strategies for AI code. Covers: the AI code quality problem (1.7x more issues, 45% security flaws, 87% of devs worried about accuracy), TDD as foundation (40-90% defect reduction), testing by type (unit, integration, E2E, property-based, mutation, contract testing), security testing (OWASP Top 10 for AI, SAST with Semgrep, security checklists), AI-assisted test generation (where AI excels and fails), the verification workflow (explain-it test, boundary testing, manual verification), code review for AI code (multi-model, adversarial pattern, what humans should focus on), tool-specific patterns (Claude Code, Cursor, CI/CD), hooks for automatic testing, metrics and monitoring, and production-ready checklists. Includes 25+ code examples and complete CI/CD pipeline examples.
+
 ### Hooks & Enforcement
 
 - **[Hooks & Enforcement Patterns](docs/topics/hooks-enforcement-patterns.md)** — The definitive guide to using hooks to enforce coding standards, security, testing, and workflow discipline. Covers why hooks (97-99% compliance) beat text rules (58-73%), hook architecture and exit codes, 18 production-ready patterns organized by purpose (testing, security, code quality, context, workflow), 5 complete recipes (TypeScript, FastAPI, Go, monorepo, security-first), advanced composition, testing and debugging, decision framework, and anti-patterns. Every pattern is copy-paste ready with complete settings.json examples.
+
+### Design & Frontend
+
+- **[AI-Assisted Design and Design-to-Code Workflows](docs/topics/ai-design-workflow.md)** — Comprehensive practical guide to AI-powered design, design-to-code pipelines, and component generation. Covers: the 2025-2026 design landscape (Figma Make, v0, Galileo/Stitch, Cursor, Claude), what designers actually use AI for vs hype; design-to-code pipelines with Figma MCP (reading design context, generating code with tokens), v0 screenshot-to-React, Cursor in-editor UI generation; AI component generation (shadcn/ui patterns, production quality matrix, when AI code is good enough); design systems with AI (AI-readable tokens, variant generation, design system enforcement); prototyping workflows (text→interactive in 1 hour); image/asset generation (DALL-E, Flux, Midjourney, MCP servers); responsive design with AI; designer-developer handoff with AI assistance; frontend code quality issues in AI-generated code (accessibility gaps, CSS problems, performance); tools comparison (v0 vs Cursor vs Claude vs Figma AI vs Stitch, pricing, when to use each); 4 end-to-end workflow templates (landing page 2-4 hours, admin dashboard 1 week, mobile screen, design system component). Includes real case studies, anti-patterns, and implementation checklists. 50+ sources, 2025-2026 research.
+
+- **[AI-First UX Design Patterns](docs/topics/ai-first-ux-patterns.md)** — Complete guide to designing user experiences where AI is the core interaction model. Covers: why standard UX patterns break with non-deterministic AI, the trust calibration problem (users develop inappropriate 2-3x trust without guidance), 8 core interaction patterns (chat, inline AI cmd+k, ambient suggestions, structured input→output, hybrid interfaces), streaming & progressive disclosure (skeleton loaders, token-by-token rendering, thinking indicators), confidence & uncertainty visualization (badges, colors, ranges, probabilistic language), human-in-the-loop workflows (approval gates, edit-before-send, smart undo), AI error handling (hallucination detection, graceful degradation, retry patterns), personalization UX (showing AI learning, onboarding, progressive disclosure), multimodal design (text+images+voice+video seamlessly), 6 anti-patterns to avoid (chatbot-for-everything, hiding limitations, no control, uncanny valley), real-world analysis of Cursor, Linear, Notion, Perplexity, v0, ChatGPT (what each does well and why), accessibility patterns (screen readers, keyboard nav), and measuring AI UX quality (task completion, time-to-value, trust calibration, user satisfaction). With wireframe descriptions, component patterns, and 100+ sources from 2025-2026 research.
+
+### Scaling AI Adoption Across Teams
+
+- **[Team AI Onboarding](docs/topics/team-ai-onboarding.md)** — How to get development teams aligned on AI tooling, productive quickly, and maintaining quality standards. The 85% adoption but 52% skepticism reality; 3-month phased rollout with specific Week 1-2 foundations, Weeks 3-4 workflow alignment, Month 2 advanced patterns. Includes: shared CLAUDE.md governance (who owns it, change process, versioning), code review standards for AI code (what to focus on, red flags checklist, multi-model review), training program (TDD, specs, Plan Mode, hands-on exercises, pairing), quality gates (pre-commit + CI/CD + AI-specific), cost management (per-dev budgeting, model selection, monitoring), security policies (tiered classification from AI-safe to human-only, escalation), measuring success (10 key metrics, NOT vanity metrics), 10 common pitfalls with prevention strategies, 5 production templates (team CLAUDE.md, TDD workflow, code review rubric, new hire checklist, weekly retro). 2025-2026 enterprise adoption research.
 
 ### Project Bootstrapping
 

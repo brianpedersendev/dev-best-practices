@@ -1,0 +1,58 @@
+{
+  "mcpServers": {
+    "sequential-thinking": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "@anthropic-ai/mcp-sequential-thinking"]
+    },
+    "context7": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "@upstreamapi/context7-mcp@latest"]
+    },
+    "sqlite": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "@anthropic-ai/mcp-sqlite", "--db-path", "./data/fishing_copilot.db"]
+    }
+  },
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cd C:/Users/brian/AIResearch/examples/fishing-copilot && uv run python -m pytest --tb=short -q 2>/dev/null || true"
+          },
+          {
+            "type": "command",
+            "command": "cd C:/Users/brian/AIResearch/examples/fishing-copilot && uv run ruff check --fix . 2>/dev/null && uv run ruff format . 2>/dev/null || true"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "grep -rn 'AKIA\\|sk-\\|ghp_\\|password\\s*=\\|TWILIO_AUTH_TOKEN\\s*=' \"$TOOL_INPUT_PATH\" 2>/dev/null && echo 'BLOCKED: Potential secret detected in file' && exit 2 || exit 0"
+          }
+        ]
+      }
+    ],
+    "PreCompact": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo '## CRITICAL CONTEXT — PRESERVE ACROSS COMPACTION\n- Project: Fishing Copilot | Stack: Python 3.12, Claude Haiku Batch, SQLite, Twilio, GitHub Actions\n- Test: uv run python -m pytest --tb=short -q\n- Lint: uv run ruff check --fix . && uv run ruff format .\n- Key: Two-pass LLM (extract→synthesize), LLM-as-resilience-layer, process-once-deliver-many\n- Pipeline: scrape→collect→extract→synthesize→deliver (cron 4AM MT)\n- Current task: check docs/TASKS.md for active work'"
+          }
+        ]
+      }
+    ]
+  }
+}
