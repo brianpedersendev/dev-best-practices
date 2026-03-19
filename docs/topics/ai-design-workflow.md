@@ -1337,3 +1337,11 @@ const MyComponent: React.FC<MyComponentProps> = ({
 - Choose one workflow template and pilot with a small project
 - Invest in design system consistency (highest leverage for AI)
 - Build accessibility review into your process (not guaranteed in AI-generated code)
+
+---
+
+## Related Topics
+
+- [AI-First UX Patterns](ai-first-ux-patterns.md) — Understanding design principles before building with AI
+- [AI-Powered Frontend Features](ai-powered-frontend-features.md) — Technical implementation of AI-designed interfaces
+- [Testing AI-Generated Code](testing-ai-generated-code.md) — Validating quality of AI-generated design code

@@ -1834,3 +1834,11 @@ You: Let's investigate the payment gateway status first.
 | Date | Change | Context |
 |------|--------|---------|
 | 2026-03-19 | Created guide | Comprehensive research on AI-assisted debugging across Claude Code, Cursor, Gemini; production incident patterns; AI-specific bugs; multi-agent swarm patterns; 15 debugging prompts; complete workflow. Research spans 2025-2026 techniques. |
+
+---
+
+## Related Topics
+
+- [Testing AI-Generated Code](testing-ai-generated-code.md) — Comprehensive testing strategies that catch bugs before debugging is needed
+- [Error Recovery Patterns](error-recovery-patterns.md) — Building resilience when bugs are discovered in production
+- [Tool Comparison Guide](tool-comparison-when-to-use.md) — Selecting the best AI tool for debugging different problem types

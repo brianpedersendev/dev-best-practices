@@ -1888,3 +1888,11 @@ Quality: Better (spec-driven, contract-tested)
 - [The 13 Best GraphQL Tools For 2026](https://hygraph.com/blog/graphql-tools)
 - [FastAPI - Generating Clients](https://fastapi.tiangolo.com/advanced/generate-clients/)
 - [Generating SDKs - liblab](https://liblab.com/docs/get-started/quickstart-generate-sdk)
+
+---
+
+## Related Topics
+
+- [Building Custom MCP Servers](building-custom-mcp-servers.md) — Turning APIs into AI-native MCP tools
+- [AI-Powered Frontend Features](ai-powered-frontend-features.md) — Building frontends that consume AI-designed APIs
+- [Testing AI-Generated Code](testing-ai-generated-code.md) — Contract testing for AI-designed APIs

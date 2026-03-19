@@ -16,7 +16,7 @@ AI-native architecture is a fundamental shift from bolting AI features onto trad
 
 This distinction matters because it changes everything: database design, API design, system topology, UX patterns, and observability requirements.
 
-**Key Finding:** Google Cloud's survey of 500 AI-native applications found 83% use hybrid architectures (AI + traditional systems). Pure AI architectures account for only 11% of production systems. The winning pattern is AI-augmented traditional architecture, not pure AI replacement.
+**Key Finding:** ⚠️ *[Unverified]* Google Cloud's survey of 500 AI-native applications reportedly found 83% use hybrid architectures (AI + traditional systems). Pure AI architectures account for only 11% of production systems. No primary source URL found — treat as directional, not definitive. The general pattern (AI-augmented traditional architecture wins over pure AI replacement) is well-supported across multiple sources.
 
 ---
 
@@ -206,12 +206,14 @@ The backend is no longer "compute business logic." It's "enforce governance."
 
 **The 2022-2025 Question:** "Should we use a specialist vector database (Pinecone, Weaviate) or PostgreSQL?"
 
-**The 2026 Answer:** PostgreSQL first; specialist databases only if you hit specific ceilings.
+**The 2026 Answer:** PostgreSQL first; specialist databases only if you hit specific ceilings. **Important caveat:** This assumes in-house PostgreSQL expertise and DBA capacity for tuning and maintenance. Teams without PostgreSQL experience may find managed vector DBs (Pinecone, Qdrant Cloud) more practical despite higher per-query costs, as they eliminate operational overhead.
 
-**Benchmark Data (50M vectors, 99% recall):**
-- PostgreSQL pgvector: 471 QPS
-- Qdrant: 41 QPS
+**Benchmark Data (50M Cohere 768-dim vectors, 99% recall, ANN-benchmarks, 1K test queries):**
+- PostgreSQL pgvector: 471 QPS — [Source: Tiger Data benchmark](https://www.tigerdata.com/blog/pgvector-vs-qdrant)
+- Qdrant: 41 QPS — Note: Qdrant's own benchmarks at different scales/recall targets show different results. This benchmark favors pgvector's architecture at high recall on this specific dataset.
 - Pinecone: Cloud latency varies; regional deployment needed
+
+⚠️ **Caveat:** Vector DB benchmarks are highly sensitive to dimensionality, recall target, dataset, and hardware. These numbers represent one specific configuration — evaluate on your own workload.
 
 **Decision Tree:**
 
@@ -356,7 +358,7 @@ Update episodic memory (record what I learned)
 Save state
 ```
 
-**Token efficiency:** This three-tier approach cuts token usage 84% vs. naive context-window expansion while improving performance 39% (research benchmark).
+**Token efficiency:** ⚠️ *[Unverified]* This three-tier approach reportedly cuts token usage 84% vs. naive context-window expansion while improving performance 39%. No primary source or methodology found — these may be system-level benchmarks conflated with application-level results. The context-memory-systems.md guide documents the 84% figure with more context (see that file for breakdown).
 
 ### Data Ingestion Pipeline for RAG
 
@@ -409,7 +411,7 @@ Monitor for staleness (flag if older than X days)
 
 **Team size:** How many engineers maintain this?
 - Solo: Claude Code + single-agent patterns
-- 2-5: LangGraph for control + Langfuse for visibility
+- 2-5: LangGraph for control + Langfuse for visibility (or CrewAI if you prefer simpler task-based orchestration with less state management)
 - 5+: LangGraph + CrewAI (specialized teams) + enterprise stack
 
 **Budget:** What's the cost ceiling for inference + infrastructure?
@@ -596,7 +598,7 @@ Batch (overnight): Same docs in batch API = $2
 ```
 
 **5. Token Optimization**
-- Shorter prompts (constraint definitions reduce errors 31%)
+- Shorter prompts (constraint definitions reportedly reduce errors ~31% — ⚠️ *[unverified]*)
 - Summarization of old context (memory consolidation)
 - max_tokens limits (prevent runaway generations)
 - Quantization for local SLMs (10-30x cheaper)
@@ -888,7 +890,7 @@ Final output: PR ready for human review + reasoning trace
 - **Observability:** Langfuse (track end-to-end cost, quality)
 - **Cost optimization:** Cache codebase embeddings; use Haiku for classification
 
-**Key Decision:** Multi-agent for quality, not speed. End-to-end latency: 2-5 minutes. Worth it because human review time drops 70%.
+**Key Decision:** Multi-agent for quality, not speed. End-to-end latency: 2-5 minutes. Worth it because human review time drops ~70% ([Qodo Merge user reports](https://www.qodo.ai/); Git AutoReview reports ~67%). Results vary significantly by codebase complexity and review standards.
 
 ---
 
@@ -1170,3 +1172,11 @@ Agent 4 (Progress Tracker):
 - [Fine-Tuning vs RAG vs Prompt Engineering: The Decision Framework | Luca Berton](https://lucaberton.com/blog/fine-tuning-vs-rag-vs-prompt-engineering/)
 - [Fine-Tuning vs RAG vs Prompt Engineering | Medium](https://medium.com/@atnoforgenai/fine-tuning-vs-rag-vs-prompt-engineering-when-to-use-what-8b4afcb674ee)
 - [RAG vs. Fine-tuning and more | Google Cloud Blog](https://cloud.google.com/blog/products/ai-machine-learning/to-tune-or-not-to-tune-a-guide-to-leveraging-your-data-with-llms)
+
+---
+
+## Related Topics
+
+- [Cost Optimization Playbook](cost-optimization-playbook.md) — Managing token costs and latency in large-scale agentic systems
+- [Error Recovery Patterns](error-recovery-patterns.md) — Handling failures and resilience in AI-native architectures
+- [Decision Trees](decision-trees.md) — Selecting between RAG, fine-tuning, and other AI patterns

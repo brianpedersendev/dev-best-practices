@@ -1,6 +1,6 @@
 # Best GitHub Repositories for Skills, Plugins, and MCP Servers (2025-2026)
 
-**Research Date:** 2026-03-18
+**Research Date:** 2026-03-19
 **Focus:** Production-ready repos for AI-augmented development with Claude Code, Cursor, and Gemini
 **Scope:** MCP servers, Claude skills, plugins, Cursor rules, agent orchestration, prompt libraries, and related tools
 
@@ -8,13 +8,13 @@
 
 ## Executive Summary
 
-The MCP ecosystem has exploded to 10,000+ servers and is now standard across Anthropic, OpenAI, and Google. Key findings:
+The MCP ecosystem has exploded to **21,000+ servers** and is now standard across Anthropic, OpenAI, and Google. Key findings:
 
 - **MCP officially donated to Linux Foundation** (December 2025) — validates production-readiness
 - **Enterprise adoption accelerating** — AWS, Docker, GitHub, MongoDB, Supabase all ship MCP servers
 - **Token efficiency breakthrough** (January 2026) — filesystem-based hierarchical routing reduces context by 98%
-- **Top performers:** GitHub MCP, Playwright, Context7, Supabase, Sequential Thinking
-- **Security focus needed** — Anthropic's Git MCP had three patched CVEs (January 2026)
+- **Top performers by installs:** Superpowers MCP (56K+), Playwright (27K+), Context7, GitHub MCP, Supabase, Sequential Thinking
+- **Security focus needed** — Anthropic's Git MCP had three patched CVEs (January 2026); OpenClaw supply chain attack (March 2026)
 
 ---
 
@@ -92,7 +92,8 @@ Critical for CI/CD and end-to-end workflows.
 
 | Name | Repository | What It Does | Key Stats | Why It Matters |
 |------|-----------|-------------|-----------|----------------|
-| **Playwright MCP (Microsoft)** | [microsoft/playwright-mcp](https://github.com/microsoft/playwright-mcp) | Browser automation, UI testing, accessibility checks | Ranked #2 in FastMCP usage (6K views) | AI-orchestrated testing; deterministic browser interactions with accessibility snapshots |
+| **Superpowers MCP** | [superpowers/mcp](https://github.com/superpowers/mcp) | Structured workflow from design → TDD implementation | **56K+ installs** (most-installed MCP, March 2026) | End-to-end dev workflow orchestration; design-to-code pipeline with built-in TDD |
+| **Playwright MCP (Microsoft)** | [microsoft/playwright-mcp](https://github.com/microsoft/playwright-mcp) | Browser automation, UI testing, accessibility checks | **27K+ installs** (#2 most-installed MCP) | AI-orchestrated testing; deterministic browser interactions with accessibility snapshots |
 | **Selenium MCP** | (MCP Registry) | WebDriver automation | Emerging alternative to Playwright | Mature, enterprise-familiar framework |
 | **Appium MCP** | [mcp-appium-gestures](https://github.com/mcp-appium-gestures) | Mobile gesture automation | Specialized for mobile AI | Complex interaction orchestration without manual scripting |
 | **Test Runner MCP** | (MCP Registry) | Unified interface for Bats, Pytest, Jest, Flutter, Go | Multi-framework support | Consistent test output across tech stacks |
@@ -160,7 +161,7 @@ Browser automation and data collection.
 | **awesome-mcp-servers (punkpeye)** | [punkpeye/awesome-mcp-servers](https://github.com/punkpeye/awesome-mcp-servers) | Comprehensive, categorized | ✅ Active 2025-2026 |
 | **awesome-mcp-servers (wong2)** | [wong2/awesome-mcp-servers](https://github.com/wong2/awesome-mcp-servers) | Curated list, MCP protocol | ✅ Active 2025-2026 |
 | **awesome-devops-mcp-servers** | [rohitg00/awesome-devops-mcp-servers](https://github.com/rohitg00/awesome-devops-mcp-servers) | DevOps-focused | ✅ Active 2025-2026 |
-| **Awesome-MCP-Servers-directory (habitoai)** | [habitoai/Awesome-MCP-Servers-directory](https://github.com/habitoai/Awesome-MCP-Servers-directory) | 7260+ servers (May 2025) | ✅ Comprehensive |
+| **Awesome-MCP-Servers-directory (habitoai)** | [habitoai/Awesome-MCP-Servers-directory](https://github.com/habitoai/Awesome-MCP-Servers-directory) | 21,000+ servers (March 2026) | ✅ Comprehensive |
 | **MCP Servers Official Registry** | [mcpservers.org](https://mcpservers.org) | Official source of truth | ✅ Definitive |
 
 ---
@@ -275,11 +276,20 @@ Tools that enable the above ecosystem.
    - Fix: Update to mcp-server-git 1.0.0-rc.1 or later (2025-12-18+)
    - Source: [The Register](https://www.theregister.com/2026/01/20/anthropic_prompt_injection_flaws/)
 
+### OpenClaw Supply Chain Attack — March 2026
+
+2. **OpenClaw Skill Ecosystem — March 2026**
+   - Malicious packages discovered in OpenClaw skill registry
+   - Impact: Credential exfiltration via compromised skills
+   - Fix: Audit all installed OpenClaw skills; verify checksums against official registry
+   - Source: [DailyBriefing 2026-03-19](../../DailyBriefing/03-19-2026.md)
+
 ### Best Practices
 
 - **Always update MCPs.** Use latest versions; pin in `claude_desktop_config.json`
 - **Self-hosted over SaaS MCPs** — credentials stay local; jailbreaks contained
 - **MCP donation to Linux Foundation** (Dec 2025) — industry legitimacy; security governance improving
+- **Audit agent skills/plugins** — supply chain attacks on skill registries are a real threat (OpenClaw March 2026)
 
 ---
 
@@ -336,6 +346,7 @@ Tools that enable the above ecosystem.
 | **Official marketplace listings** | Legitimacy | Docker Hub MCP catalog, MCP servers registry (mcpservers.org) |
 | **Billion-dollar companies shipping MCP** | Standardization | OpenAI Agents SDK, Google Genkit, Microsoft Copilot integration |
 | **Linux Foundation donation** | Industry consensus | MCP moved from Anthropic → Linux Foundation (Dec 2025) |
+| **21K+ servers (March 2026)** | Ecosystem doubled in 3 months | Up from ~10K in late 2025; Superpowers MCP leads with 56K+ installs |
 
 ---
 
@@ -346,6 +357,7 @@ Tools that enable the above ecosystem.
 - **Monolithic MCPs without context management** → Use filesystem routing for large responses
 - **Unpatched Git MCP** → Update to 2025-12-18+ versions
 - **RAG without semantic search** → Use Qdrant or Rag Memory MCP (2026)
+- **Unaudited OpenClaw skills** → Supply chain attack in March 2026; verify all installed skills
 
 ---
 
@@ -431,5 +443,13 @@ Create `.cursorrules` in project root (or `.mdc` for new format):
 
 ---
 
-**Last Updated:** 2026-03-18
+**Last Updated:** 2026-03-19
+
+---
+
+## Related Topics
+
+- [Best of Breed Directory](best-of-breed-directory.md) — Curated stacks and top tools by use case
+- [Building Custom MCP Servers](building-custom-mcp-servers.md) — Creating custom MCPs when no existing tool fits
+- [Claude Code Power User](claude-code-power-user.md) — Integrating skills and plugins into workflows
 **Maintenance:** Review quarterly for new MCP servers and security updates

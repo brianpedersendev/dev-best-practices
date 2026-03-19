@@ -1653,3 +1653,11 @@ def query_with_fallback(prompt: str, task_type: str) -> str:
 - [Prompt Design Strategies - Gemini API Documentation](https://ai.google.dev/gemini-api/docs/prompting-strategies)
 - [Gemini API Context Windows & Token Limits 2026](https://www.datastudios.org/post/google-gemini-context-window-token-limits-model-comparison-and-workflow-strategies-for-late-2025)
 
+---
+
+## Related Topics
+
+- [Claude Code Power User](claude-code-power-user.md) — Understanding Claude Code's agentic approach vs Gemini's AI Studio
+- [Tool Comparison Guide](tool-comparison-when-to-use.md) — Choosing Gemini for 2M context, multimodal, and cost efficiency
+- [Context Memory Systems](context-memory-systems.md) — Leveraging Gemini's massive context window for project management
+

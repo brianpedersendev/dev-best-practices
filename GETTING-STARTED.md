@@ -77,6 +77,10 @@
 
 - **[AI-Native Architecture Guide](docs/topics/ai-native-architecture.md)** — How to design and build applications where AI is the core, not a feature. Covers the distinction between AI-native and AI-augmented apps, agent-backend patterns, data architecture (RAG, vector storage, memory hierarchy), the 2026 tech stack (LangGraph vs CrewAI vs Claude Agent SDK), production patterns (evaluation, observability, cost, security), 4 real-world architecture examples, and decision trees. Start here if you're building a system around agents, not just adding an agent to an existing system.
 
+### RAG and Knowledge Management
+
+- **[RAG Staleness Detection Guide](docs/topics/rag-staleness-detection.md)** — How to detect when RAG knowledge is stale, version embeddings, and prevent confident answers from outdated sources. Essential for fast-moving domains (legal, medical, tech docs, pricing). Covers: staleness detection strategies (timestamp-based freshness scoring with exponential decay, source URL change detection, document hash comparison, semantic drift detection via re-embedding); knowledge versioning with full provenance chains and rollback strategies; freshness-aware retrieval (boosting recent documents, time-decay scoring); automated refresh pipelines (scheduled re-crawling, incremental re-indexing); monitoring and alerting (document age, embedding drift, unreachable sources); anti-patterns; and a 3-week implementation checklist. Includes 8 Python code examples (FreshnessScorer, SourceMonitor, DocumentVersioning, EmbeddingDriftMonitor) and production benchmarks showing 38% of RAG queries retrieve docs >30 days old. Start here before deploying RAG systems in production.
+
 ### Deployment and DevOps for AI Apps
 
 - **[Deployment & DevOps Guide](docs/topics/ai-app-deployment-devops.md)** — How to ship, scale, and operate AI-powered applications in production. Covers: what's fundamentally different about AI deployments (non-deterministic outputs, cost scaling, production evaluation), CI/CD patterns (prompt regression testing, LLM-as-a-judge, eval gates, GitHub Actions examples), containerization (Docker multi-stage builds, MCP servers, agents, Docker Compose), infrastructure choices (serverless vs containers vs VMs, GPU scaling, cold start mitigation), observability (Langfuse/LangSmith, OpenTelemetry for agents, quality dashboards, cost tracking), cost controls (token budgets, rate limiting, semantic caching, model fallback), security (prompt injection defense, PII handling, API key rotation, audit logging), rollback strategies (model versioning, blue-green/canary deployments), platform-specific deployment (Vercel, AWS Bedrock, GCP Vertex AI, Railway, Fly.io), and production readiness checklist with 50+ copy-paste examples. Start here before shipping any AI feature to production.
@@ -109,15 +113,47 @@
 
 - **[Team AI Onboarding](docs/topics/team-ai-onboarding.md)** — How to get development teams aligned on AI tooling, productive quickly, and maintaining quality standards. The 85% adoption but 52% skepticism reality; 3-month phased rollout with specific Week 1-2 foundations, Weeks 3-4 workflow alignment, Month 2 advanced patterns. Includes: shared CLAUDE.md governance (who owns it, change process, versioning), code review standards for AI code (what to focus on, red flags checklist, multi-model review), training program (TDD, specs, Plan Mode, hands-on exercises, pairing), quality gates (pre-commit + CI/CD + AI-specific), cost management (per-dev budgeting, model selection, monitoring), security policies (tiered classification from AI-safe to human-only, escalation), measuring success (10 key metrics, NOT vanity metrics), 10 common pitfalls with prevention strategies, 5 production templates (team CLAUDE.md, TDD workflow, code review rubric, new hire checklist, weekly retro). 2025-2026 enterprise adoption research.
 
+- **[Multi-Model AI Governance](docs/topics/multi-model-governance.md)** — How to keep codebases consistent when multiple AI tools (Claude Code + Cursor + Gemini, etc.) are working on the same code. Solves the "tool divergence" problem: different tools give conflicting advice, use different conventions, pull code in different directions. Covers: configuration versioning (CLAUDE.md as single source of truth, rulesync tool to keep .cursorrules and GEMINI.md in sync), shared enforcement (pre-commit hooks, linting rules that all tools respect), detecting when tools diverge (code review flags, automated scripts), team coordination (who owns tool configs, change process, disagreement resolution), output reconciliation (choosing between conflicting suggestions), practical 2-hour setup for 2-3 tools, step-by-step training script, and implementation checklist. Includes anti-patterns (configs not version controlled, too-strict rules, conflicting configs) and sources on governance frameworks and rule management tools. Start here if your team uses multiple AI coding tools simultaneously.
+
 ### Project Bootstrapping
 
 - **[Project Research Skill](project-research.skill)** — End-to-end skill for going from "I have an idea" to a validated, actionable plan. Runs a thorough idea interview, orchestrates multi-agent domain research, then produces an implementation plan with go/no-go checkpoints between each phase.
 
 - **[Project Scaffold Skill](project-scaffold.skill)** — Generates a complete AI tooling scaffold from a plan doc or description. Creates CLAUDE.md, hooks, MCP configs, Cursor rules, agent team definitions, and dev workflow skills — all tailored to your stack. Use after the research skill produces a plan.
 
+### Error Recovery & Production Resilience
+
+- **[Error Recovery & Fallback Patterns](docs/topics/error-recovery-patterns.md)** — What to do when your AI features fail in production. Covers: model API failures (timeouts, rate limits, 5xx), cascading fallback chains (Opus → Sonnet → Haiku), circuit breaker patterns for agents, retry with exponential backoff, token limit recovery, agent failure modes (infinite loops, stuck agents, hallucinated tools), graceful degradation (cached/stale responses, non-AI fallbacks), and production monitoring (error budgets, SLOs for non-deterministic systems). Includes Python/TypeScript code examples and a decision tree. Start here before shipping any AI feature to production.
+
+### When NOT to Use AI
+
+- **[When NOT to Use AI](docs/topics/when-not-to-use-ai.md)** — The critical counterbalance to everything else in this knowledge base. Identifies where traditional code, domain expertise, or formal methods beat AI: deterministic computations, security-critical paths, regulatory compliance, safety-critical systems. Includes a decision framework flowchart, red flags for AI misuse, the "good enough" trap, and cost-benefit reality checks. Read this to avoid force-fitting AI where it doesn't belong.
+
+### CI/CD Integration Safety
+
+- **[CI/CD AI Integration Safety](docs/topics/cicd-ai-integration-safety.md)** — How to safely add AI steps to existing CI/CD pipelines without breaking tests or introducing flaky builds. Covers safe entry points, flaky test prevention, cost control per pipeline run, rollback gates, security scanning, and complete GitHub Actions/GitLab CI examples. Start here if your team is hesitant to automate AI in CI.
+
+### Evaluation Beyond LLM-as-Judge
+
+- **[Evaluation Beyond LLM-as-Judge](docs/topics/evaluation-beyond-llm-judge.md)** — The full evaluation toolkit: statistical significance for small samples, domain-expert rubrics, automated metrics (pass@k, BERTScore), non-deterministic output testing, A/B testing for AI features, composite evaluation pipelines. Includes sample size tables and Python code. Start here if you need rigorous evaluation beyond "ask an LLM if the output is good."
+
+### RAG Knowledge Management
+
+- **[RAG Staleness Detection](docs/topics/rag-staleness-detection.md)** — How to detect when your RAG knowledge base is serving outdated information. Covers freshness scoring, embedding drift detection, knowledge versioning, automated refresh pipelines, and monitoring. Start here if you have a RAG system in production.
+
+### Surviving the AI Adoption Valley
+
+- **[The Death Valley of AI Integration](docs/topics/ai-integration-death-valley.md)** — The painful middle phase between "AI demos work great" and "AI delivers consistent value." Covers why productivity temporarily drops, typical timelines (4-40 weeks), warning signs, survival strategies, when to abandon, and what the other side looks like. Read this before your team loses faith.
+
+### Resolving Conflicting Advice
+
+- **[Unified Decision Trees](docs/topics/decision-trees.md)** — When different guides in this knowledge base give seemingly conflicting advice, this doc resolves it. Covers: when to use agents vs. simple functions, the correct optimization sequence, how three different caching mechanisms relate, and evaluation threshold statistical significance. Start here if you're confused by contradictions across guides.
+
 ### Full Research
 
 - **[Research Synthesis](docs/research/SYNTHESIS.md)** — The master document: 12 key insights, framework comparisons, opportunity rankings, risk analysis, and concrete recommendations. Start here for the full picture.
+
+- **[Knowledge Base Review](docs/research/REVIEW-2026-03-19.md)** — Full audit of the knowledge base: unsourced claims, contradictions, overconfident recommendations, missing topics, structural issues. All 7 recommended actions have been completed.
 
 ---
 

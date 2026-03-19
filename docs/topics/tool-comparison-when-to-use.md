@@ -725,3 +725,11 @@ Most experienced developers use 2-3 tools and switch based on task. That's not i
 |------|--------|--------|
 | 2026-03-18 | Added note: Claude now available as Copilot agent (Business/Pro); M365 Wave 3 Claude option | Daily briefing 03-18-2026 (Finding #6) |
 | 2026-03-19 | Updated SWE-bench score from 74.4% to ~80% (SWE-bench Verified); updated Claude Code IDE support (now available in VS Code, JetBrains, desktop app, browser IDE) | Daily briefing 03-19-2026 (Finding #4) |
+
+---
+
+## Related Topics
+
+- [Claude Code Power User](claude-code-power-user.md) — Advanced techniques for Claude Code workflows
+- [Cursor Power User](cursor-power-user.md) — Mastering Cursor-specific capabilities
+- [Gemini Dev Power User](gemini-dev-power-user.md) — Leveraging Gemini's multimodal and large context strengths

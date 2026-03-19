@@ -1476,3 +1476,11 @@ Before deploying AI to a legacy codebase, ensure you have:
 6. **Use section 10** (checklist) as your project tracking sheet
 
 The path to AI-powered legacy modernization is long, but each step reduces risk and increases confidence. Start small, measure everything, and expand gradually.
+
+---
+
+## Related Topics
+
+- [When Not to Use AI](when-not-to-use-ai.md) — Understanding where AI is risky in critical legacy systems
+- [Testing AI-Generated Code](testing-ai-generated-code.md) — Comprehensive testing requirements for legacy refactoring
+- [AI on Large Codebases](ai-on-large-codebases.md) — Techniques for managing large codebase context

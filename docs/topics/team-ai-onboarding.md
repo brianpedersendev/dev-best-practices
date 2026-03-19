@@ -2543,3 +2543,11 @@ npm test -- registerUser.test.js
 - [Cost Optimization Playbook](docs/topics/cost-optimization-playbook.md)
 - [Testing AI-Generated Code](docs/topics/testing-ai-generated-code.md)
 - [Prompt Engineering Patterns](docs/topics/prompt-engineering-patterns.md)
+
+---
+
+## Related Topics
+
+- [Hooks Enforcement Patterns](hooks-enforcement-patterns.md) — Technical mechanisms for enforcing team standards automatically
+- [When Not to Use AI](when-not-to-use-ai.md) — Teaching judgment calls about AI tool application
+- [Prompt Engineering Patterns](prompt-engineering-patterns.md) — Best practices for prompting that teams should follow

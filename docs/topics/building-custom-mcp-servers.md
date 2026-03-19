@@ -2052,3 +2052,11 @@ Use this checklist before deploying an MCP server to production:
 **Last Updated:** 2026-03-18
 **Confidence Level:** High (based on official docs, security research, production case studies, and 2025-2026 web research)
 **Next Review:** 2026-06-18 (security updates, new patterns, framework changes)
+
+---
+
+## Related Topics
+
+- [Best Repos, Skills, Plugins, MCPs](best-repos-skills-plugins-mcps.md) — Discovering and evaluating existing MCPs before building custom ones
+- [AI-Native Architecture](ai-native-architecture.md) — Using MCPs as building blocks in agent systems
+- [AI-Assisted API Design](ai-assisted-api-design.md) — Designing APIs that work well with AI agents via MCPs

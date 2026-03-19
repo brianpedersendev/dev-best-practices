@@ -10,7 +10,7 @@
 
 ## Executive Summary
 
-AI-generated code has **1.7x more issues** than human-written code. **87% of developers worry** about accuracy, **81% about security**, and **45% of AI PRs contain security flaws**. Yet **62% of teams now use AI to assist with testing**, and teams combining TDD + AI see **40-90% defect reduction** vs. AI-only development.
+AI-generated code has **1.7x more issues** than human-written code. **87% of developers worry** about accuracy, **81% about security**, and **45% of AI PRs contain security flaws** ([Veracode 2025 GenAI Code Security Report](https://www.veracode.com/resources/analyst-reports/2025-genai-code-security-report/)). Yet **62% of teams now use AI to assist with testing**, and teams combining TDD + AI see **40-90% defect reduction** vs. AI-only development.
 
 The problem isn't that AI code is bad—it's that **testing strategies designed for humans don't work for AI**. AI excels at happy paths but fails silently on edge cases, input validation, and error conditions. AI also produces code that _looks_ correct, making it dangerous to trust visual inspection alone.
 
@@ -108,7 +108,7 @@ TDD is the single highest-leverage practice for AI-generated code quality. Here'
 
 3. **Tight feedback loop.** Tests run immediately, showing the agent exactly what's wrong within seconds.
 
-4. **Defect reduction is dramatic:** 40-90% reduction in defects when TDD precedes AI code generation vs. AI-only development.
+4. **Defect reduction is dramatic:** 40-90% reduction in defects when TDD precedes AI code generation vs. AI-only development. (The low end—40%—reflects basic TDD on simple CRUD code; the high end—90%—reflects comprehensive TDD with property-based testing on complex logic and boundary conditions.)
 
 ### The TDD + AI Workflow (Step-by-Step)
 
@@ -1951,3 +1951,11 @@ Test-First (TDD)
 - [AI in CI/CD pipeline: Automate Testing and Deployment Smarter](https://www.hakunamatatatech.com/our-resources/blog/ai-in-software-development-driving-continuous-improvement)
 - [How To Set Up CI/CD For React.js With AI Code Quality Checks In 2026](https://fullstacktechies.com/how-to-set-up-ci-cd-for-react-js/)
 - [AI-Driven DevSecOps For Intelligent CI/CD Pipeline](https://www.aviator.co/blog/ai-driven-devsecops-building-intelligent-ci-cd-pipelines/)
+
+---
+
+## Related Topics
+
+- [When Not to Use AI](when-not-to-use-ai.md) — Understanding testing requirements before relying on AI-generated code
+- [Hooks Enforcement Patterns](hooks-enforcement-patterns.md) — Using git hooks to automatically validate AI-generated code quality
+- [AI-Assisted Debugging](ai-assisted-debugging.md) — Debugging failures in AI-generated code with AI support

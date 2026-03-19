@@ -1,6 +1,8 @@
 # AI-Augmented Development: Cost Optimization Playbook
 ## Cut Spending 50-70% Without Sacrificing Quality
 
+**Note:** This 50-70% reduction is best-case for teams with high volume and repeated queries (e.g., >500 daily requests with significant query overlap). Median teams typically see 20-40% cost reduction. Savings depend on current baseline waste (context bloat, model mismatches) and how consistently you apply the strategies below.
+
 **Last Updated:** 2026-03-18
 **Status:** Production-ready; validated across teams of 2-100+
 **Confidence Level:** High (real monthly data, production benchmarks, verified strategies)
@@ -15,7 +17,7 @@ AI tools have become indispensable, but spending spirals without discipline. Tea
 - Zero visibility into which tasks burn money
 - No ROI tracking per developer or per feature
 
-**Good news:** Applying the strategies in this guide cuts costs 50-70% while improving quality. You get faster responses, smarter model selection, and better outputs — not worse.
+**Good news:** Applying the strategies in this guide can cut costs 20-70% while improving quality (median team: ~30-40%; high-volume teams: 50-70%+). You get faster responses, smarter model selection, and better outputs — not worse.
 
 ---
 
@@ -122,6 +124,8 @@ AI tools have become indispensable, but spending spirals without discipline. Tea
 ---
 
 ## 2. Context Management Savings: 29-84% Token Reduction
+
+⚠️ *The 29-84% range depends on technique: 29% from basic context editing alone, up to 84% from full three-tier memory systems with aggressive summarization. Most teams see 40-60% with moderate effort. See [context-memory-systems.md](context-memory-systems.md) for the technique-by-technique breakdown.*
 
 The single biggest cost driver is context bloat. Every message includes:
 - Conversation history (accumulates)
@@ -1573,4 +1577,12 @@ Start with Week 1's foundation. By week 4, you'll have saved thousands while you
 **Version:** 1.0
 **Last Updated:** 2026-03-18
 **Tested:** Production teams of 2-50 developers
+
+---
+
+## Related Topics
+
+- [Context Memory Systems](context-memory-systems.md) — Managing context windows efficiently to reduce token consumption
+- [Decision Trees](decision-trees.md) — Selecting the right model and approach to balance cost and quality
+- [Tool Comparison Guide](tool-comparison-when-to-use.md) — Evaluating Claude, Cursor, Gemini for cost-effectiveness
 **Maintenance:** Quarterly (pricing updates, new strategies)

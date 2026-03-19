@@ -2435,3 +2435,11 @@ To bypass: `git commit --no-verify` (not recommended for security hooks).
 **Document version:** 1.0
 **Last verified:** March 18, 2026
 **Maintenance:** Check for new hook events quarterly; update recipes as tools evolve
+
+---
+
+## Related Topics
+
+- [Testing AI-Generated Code](testing-ai-generated-code.md) — Validating code quality at the gate level with hooks
+- [Team AI Onboarding](team-ai-onboarding.md) — Teaching teams to use hooks for consistency
+- [Claude Code Power User](claude-code-power-user.md) — Advanced techniques for integrating hooks into workflows

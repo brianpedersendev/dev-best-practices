@@ -2467,6 +2467,8 @@ A coordinator identifies tech debt. Multiple agents refactor different modules i
 
 **When to use:** Complex orchestration with conditional branching, parallel execution, persistence
 
+**⚠️ Consider simpler alternatives first:** For 2-agent systems or quick prototypes, CrewAI's task-based approach or simple async loops may be more practical than LangGraph's graph abstraction. LangGraph shines when you need persistent state, error recovery, and complex conditional routing. Don't default to it for every multi-agent task.
+
 **Key features for dev workflows:**
 - Graph-based execution with conditional nodes
 - Persistent state with checkpointing
@@ -2795,4 +2797,12 @@ What's your stack?
 - [Claude Agent SDK: Documentation](https://platform.claude.com/docs/en/agent-sdk/overview)
 - [Claude Agent SDK: MCP Integration](https://platform.claude.com/docs/en/agent-sdk/mcp)
 - [AG2 (AutoGen): GitHub](https://github.com/ag2ai/ag2)
+
+---
+
+## Related Topics
+
+- [AI-Native Architecture](ai-native-architecture.md) — Foundation patterns for building multi-agent systems
+- [Decision Trees](decision-trees.md) — Choosing between single-agent and multi-agent approaches
+- [Tool Comparison Guide](tool-comparison-when-to-use.md) — Evaluating frameworks for swarm implementations
 - [Mastra Framework](https://mastra.ai/)

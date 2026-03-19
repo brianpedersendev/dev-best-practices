@@ -1216,3 +1216,11 @@ coverage/
 - [Medium: TDD with Cursor](https://medium.com/@arun-gupta/test-driven-development-tdd-with-cursor-writing-a-palindrome-function-in-typescript-2cad37f8997f)
 - [Cursor Docs: Models & Pricing](https://cursor.com/docs/models)
 - [Medium: A Year with Cursor](https://subramanya.ai/2026/01/04/a-year-with-cursor-how-my-workflow-evolved-from-agent-to-architect/)
+
+---
+
+## Related Topics
+
+- [Claude Code Power User](claude-code-power-user.md) — Comparing Cursor's patterns with Claude Code's approach
+- [Tool Comparison Guide](tool-comparison-when-to-use.md) — Understanding Cursor's strengths and when to use it vs. alternatives
+- [Hooks Enforcement Patterns](hooks-enforcement-patterns.md) — Using .cursorrules and background agents for consistency

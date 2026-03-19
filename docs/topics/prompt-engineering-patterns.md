@@ -7,7 +7,7 @@
 
 ## Executive Summary
 
-Prompt engineering has evolved from an art ("jailbreak the model") to a discipline. Small prompt changes produce wildly different AI outputs. Teams that systematize prompts reduce AI errors by **up to 76%** while cutting costs by **up to 76%** compared to verbose, unstructured approaches.
+Prompt engineering has evolved from an art ("jailbreak the model") to a discipline. Small prompt changes produce wildly different AI outputs. Teams that systematize prompts report significant improvements in both error rates and costs compared to verbose, unstructured approaches. ⚠️ *[The commonly cited "76%" figure conflates error reduction and cost reduction across different studies — treat as directional.]*
 
 This guide covers:
 1. Why prompts matter for developer productivity
@@ -36,11 +36,11 @@ Research shows that **prompt structure matters more than length**. A well-struct
 
 Studies show consistent improvements when applying systematic techniques:
 
-- **Constraint definition:** 31% error reduction
+- **Constraint definition:** ~31% error reduction ⚠️ *[Unverified — no primary source found]*
 - **Few-shot prompting:** 30% improvement over zero-shot (few examples > no examples)
 - **Generated knowledge prompting:** 25% context improvement
 - **Task decomposition:** 28% error reduction in complex tasks
-- **Combined structured approach:** Up to 76% error reduction
+- **Combined structured approach:** Up to 76% error/cost reduction ⚠️ *[Source ambiguous — some references cite cost reduction, not error reduction. Treat as approximate.]*
 
 ### Why Consistency Matters
 
@@ -2226,3 +2226,11 @@ Do you want to test variations?
 7. **Version your prompts** like code; track effectiveness; iterate
 
 Prompt engineering is now a discipline. Small investments in structure yield large returns in quality and cost.
+
+---
+
+## Related Topics
+
+- [Claude Code Power User](claude-code-power-user.md) — Practical techniques for maximizing Claude's code capabilities
+- [Context Memory Systems](context-memory-systems.md) — Designing context to improve prompt consistency and reduce costs
+- [Testing AI-Generated Code](testing-ai-generated-code.md) — Validating code quality from well-engineered prompts

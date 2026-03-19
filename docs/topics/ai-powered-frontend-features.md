@@ -2638,3 +2638,11 @@ Before deploying AI-powered frontend features:
 - [From RAG to Context - A 2025 year-end review of RAG | RAGFlow](https://ragflow.io/blog/rag-review-2025-from-rag-to-context)
 - [RAG Infrastructure: Building Production Retrieval-Augmented Generation Systems | Introl Blog](https://introl.com/blog/rag-infrastructure-production-retrieval-augmented-generation-guide)
 - [How do I integrate semantic search with Retrieval-Augmented Generation (RAG)?](https://milvus.io/ai-quick-reference/how-do-i-integrate-semantic-search-with-retrievalaugmented-generation-rag)
+
+---
+
+## Related Topics
+
+- [AI-First UX Patterns](ai-first-ux-patterns.md) — Design principles and patterns for AI-powered interfaces
+- [AI-Assisted API Design](ai-assisted-api-design.md) — Designing APIs that support AI-powered frontend features
+- [Cost Optimization Playbook](cost-optimization-playbook.md) — Optimizing token usage and costs in frontend AI features

@@ -2147,3 +2147,11 @@ async def chat(message: str):
 **Last updated:** 2026-03-19
 
 For questions or contributions, open an issue or PR.
+
+---
+
+## Related Topics
+
+- [Error Recovery Patterns](error-recovery-patterns.md) — Handling failures gracefully in deployed AI systems
+- [Cost Optimization Playbook](cost-optimization-playbook.md) — Reducing operational costs in deployed applications
+- [Testing AI-Generated Code](testing-ai-generated-code.md) — Validating deployments through comprehensive testing

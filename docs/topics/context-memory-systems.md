@@ -1639,4 +1639,12 @@ Track your improvements:
 
 ---
 
+## Related Topics
+
+- [Cost Optimization Playbook](cost-optimization-playbook.md) — Applying context management to reduce token spending
+- [Prompt Engineering Patterns](prompt-engineering-patterns.md) — Using structured context to improve prompt consistency
+- [AI on Large Codebases](ai-on-large-codebases.md) — Managing context in enterprise-scale projects
+
+---
+
 **Questions or patterns to share?** File an issue or PR with your findings. This guide improves as the field learns more.

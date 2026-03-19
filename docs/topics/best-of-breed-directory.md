@@ -431,3 +431,11 @@ Use these to find and stay updated on new tools:
 |------|--------|--------|
 | 2026-03-18 | Added Google Colab MCP Server to Data Engineer stack (Tier 2) | Daily briefing 03-18-2026 (Quick Hit: Colab MCP) |
 | 2026-03-19 | Updated Playwright MCP installs (27K+); updated Superpowers installs (56K+) | Daily briefing 03-19-2026 (Finding #5) |
+
+---
+
+## Related Topics
+
+- [Best Repos, Skills, Plugins, MCPs](best-repos-skills-plugins-mcps.md) — Deep dive into specific tools by category
+- [Building Custom MCP Servers](building-custom-mcp-servers.md) — Creating MCPs when no existing option fits your needs
+- [Tool Comparison Guide](tool-comparison-when-to-use.md) — Understanding which tools work best for your workflow

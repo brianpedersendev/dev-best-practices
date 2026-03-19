@@ -1751,3 +1751,11 @@ When reviewing AI-generated code in a team:
 | Date | Update | Source |
 |------|--------|--------|
 | 2026-03-18 | Initial guide: Large codebase strategies, Gemini 2M context, multi-agent patterns, monorepo setup, refactoring safety, team coordination | Web research 2025-2026 |
+
+---
+
+## Related Topics
+
+- [Context Memory Systems](context-memory-systems.md) — Managing context for large projects with structured memory
+- [Prompt Engineering Patterns](prompt-engineering-patterns.md) — Designing prompts that work across large codebases
+- [AI in Legacy Codebases](ai-in-legacy-codebases.md) — Specific strategies for aging systems at scale

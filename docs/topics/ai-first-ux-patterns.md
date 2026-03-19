@@ -1383,3 +1383,11 @@ Total: 90s recovery time
 - [AI-Powered Accessibility](https://accessibe.com/artificial-intelligence) — accessiBe
 - [Zero UI in 2026: Voice, AI & Screenless Interface Design Trends](https://www.algoworks.com/blog/zero-ui-designing-screenless-interfaces-in-2025/) — Algoworks
 
+---
+
+## Related Topics
+
+- [AI-Powered Frontend Features](ai-powered-frontend-features.md) — Technical implementation of AI-first patterns
+- [AI Design Workflow](ai-design-workflow.md) — Using AI to accelerate the design process itself
+- [Prompt Engineering Patterns](prompt-engineering-patterns.md) — Crafting prompts for AI-driven user experiences
+

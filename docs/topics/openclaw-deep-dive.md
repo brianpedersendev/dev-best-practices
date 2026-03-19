@@ -366,3 +366,11 @@ OpenClaw represents a real shift: **agents moving from "answer my question" to "
 | Date | Change | Source |
 |------|--------|--------|
 | 2026-03-19 | Updated malicious skills count: Antiy CERT confirmed 1,184 malicious skills (up from 820+); >25% of 30K+ analyzed skills have vulnerabilities | Daily briefing 03-19-2026 (Finding #2) |
+
+---
+
+## Related Topics
+
+- [OpenClaw Skill Development](openclaw-skill-development.md) — Building secure OpenClaw skills from design to deployment
+- [Best Repos, Skills, Plugins, MCPs](best-repos-skills-plugins-mcps.md) — Evaluating third-party skills and MCPs
+- [Building Custom MCP Servers](building-custom-mcp-servers.md) — Alternative approach using MCP over OpenClaw for production

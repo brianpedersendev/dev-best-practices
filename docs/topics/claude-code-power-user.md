@@ -1161,3 +1161,11 @@ claude /reload-plugins              # Reconnect plugin MCPs
 | Date | Change | Source |
 |------|--------|--------|
 | 2026-03-18 | Added v2.1.77–2.1.79 features: /remote-control, plugin persistent state, StopFailure hook, allowRead, 64k default output tokens | Daily briefing 03-18-2026 (Finding #4) |
+
+---
+
+## Related Topics
+
+- [Prompt Engineering Patterns](prompt-engineering-patterns.md) — Advanced prompting techniques that amplify Claude Code's effectiveness
+- [Hooks Enforcement Patterns](hooks-enforcement-patterns.md) — Automating quality gates and standards in Claude Code workflows
+- [Tool Comparison Guide](tool-comparison-when-to-use.md) — Understanding Claude Code's strengths relative to Cursor and Gemini
