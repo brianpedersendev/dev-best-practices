@@ -12,6 +12,7 @@
 | 2026-03-18 | [docs/research/landscape.md](docs/research/landscape.md) | Multi-agent/swarm architectures — 5 frameworks compared, orchestration patterns |
 | 2026-03-18 | [docs/research/technical.md](docs/research/technical.md) | MCPs, plugins, skills — protocol details, servers, security, building patterns |
 | 2026-03-18 | [docs/research/emerging.md](docs/research/emerging.md) | Cutting-edge 2025-2026 — AI-native backends, context management, SLMs, observability |
+| 2026-03-19 | [docs/research/REVIEW-2026-03-19.md](docs/research/REVIEW-2026-03-19.md) | **Knowledge base review** — Audit of all 26 topics for unsourced claims, contradictions, overconfidence, missing topics, structural issues |
 
 ## Key Topics Covered
 - **Dev tools**: Claude Code, Cursor, Copilot, Aider, Windsurf, Devin
