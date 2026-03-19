@@ -48,7 +48,7 @@
 - Test generation: 60% reduction in invalid tests, 30% coverage improvement vs. baselines
 - Real deployments (PwC, IBM, Capgemini): 90% reduction in dev time for critical phases; 94% efficiency gains in back-office automation
 
-**Critical Robustness Issue:** Multi-agent code systems show "planner-coder gap"—agents fail to solve 7.9%-83.3% of problems they initially solved when inputs change semantically. **Not production-ready without explicit robustness validation.**
+**Critical Robustness Issue:** Multi-agent code systems show "planner-coder gap"—agents fail to solve 7.9%-83.3% of problems they initially solved when inputs change semantically. **Not production-ready without explicit robustness validation.** For mitigation strategies, see [Error Recovery & Fallback Patterns](../topics/error-recovery-patterns.md) and [AI-Native Architecture](../topics/ai-native-architecture.md) (multi-agent failure modes section).
 
 ---
 

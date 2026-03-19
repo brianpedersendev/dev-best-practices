@@ -12,6 +12,8 @@
 
 AI-generated code has **1.7x more issues** than human-written code. **87% of developers worry** about accuracy, **81% about security**, and **45% of AI PRs contain security flaws** ([Veracode 2025 GenAI Code Security Report](https://www.veracode.com/resources/analyst-reports/2025-genai-code-security-report/)). Yet **62% of teams now use AI to assist with testing**, and teams combining TDD + AI see **40-90% defect reduction** vs. AI-only development.
 
+> **Metric clarification:** The 1.7x figure measures *defect density* across all issue types ([CodeRabbit State of AI Code Gen Report](https://www.coderabbit.ai/blog/state-of-ai-vs-human-code-generation-report)). The 45% figure measures *percentage of PRs containing ≥1 security flaw* (Veracode). These are different studies with different methodologies — both are valid but not directly comparable.
+
 The problem isn't that AI code is bad—it's that **testing strategies designed for humans don't work for AI**. AI excels at happy paths but fails silently on edge cases, input validation, and error conditions. AI also produces code that _looks_ correct, making it dangerous to trust visual inspection alone.
 
 This guide covers the complete testing strategy for AI-generated code: from TDD foundations through security scanning, code review patterns, production readiness checklists, and tool-specific implementations for Claude Code, Cursor, and CI/CD pipelines.
@@ -1959,3 +1961,5 @@ Test-First (TDD)
 - [When Not to Use AI](when-not-to-use-ai.md) — Understanding testing requirements before relying on AI-generated code
 - [Hooks Enforcement Patterns](hooks-enforcement-patterns.md) — Using git hooks to automatically validate AI-generated code quality
 - [AI-Assisted Debugging](ai-assisted-debugging.md) — Debugging failures in AI-generated code with AI support
+- [Evaluation Beyond LLM-as-Judge](evaluation-beyond-llm-judge.md) — Statistical rigor for sample sizes and evaluation methodology
+- [Decision Trees](decision-trees.md) — When to use which testing/evaluation approach

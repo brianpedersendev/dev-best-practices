@@ -46,7 +46,7 @@ This distinction matters because it changes everything: database design, API des
 
 ### Why This Distinction Matters for Architecture
 
-1. **Scaling decisions change.** If AI is a feature, you scale the database to handle more humans. If AI is the core, you scale for agent-scale query volume (10x human queries). PostgreSQL pgvector hits limits; you move to Qdrant.
+1. **Scaling decisions change.** If AI is a feature, you scale the database to handle more humans. If AI is the core, you scale for agent-scale query volume (10x human queries). PostgreSQL pgvector hits limits; you move to Qdrant. See [Emerging Techniques research](../research/emerging.md) for detailed pgvector vs. specialist DB benchmarks and selection criteria.
 
 2. **Cost models change.** Feature-based: license per user. AI-native: cost per agent operation (LLM calls, vector searches, tool invocations). A single task might involve 50 LLM calls; token costs are the bottleneck.
 

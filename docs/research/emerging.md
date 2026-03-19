@@ -99,13 +99,13 @@
 ### 7. Vector Databases Are Shifting Toward Hybrid + Relational Integration
 **What's changing:** 2022-2025 was about adding vector-native databases. 2026 is about moving vector capabilities into extended relational databases (PostgreSQL pgvector, etc.). The architectural question is shifting from "which vector database?" to "how do we query both vectors and relational data efficiently?"
 
-**Why it matters:** Single-system architectures are simpler to operate. PostgreSQL with pgvector is benchmarking at 471 QPS vs. Qdrant at 41 QPS on 50M vectors at 99% recall. Most teams don't need a specialist vector database.
+**Why it matters:** Single-system architectures are simpler to operate. PostgreSQL with pgvector is benchmarking at 471 QPS vs. Qdrant at 41 QPS on 50M vectors at 99% recall (⚠️ [ANN Benchmarks](https://ann-benchmarks.com/), HNSW index, 768-dim embeddings, single-node configuration — Qdrant performs better on distributed and filtered queries; choose based on your query patterns, not raw QPS alone). Most teams don't need a specialist vector database.
 
 **RAG evolution:** Basic RAG (chunk→embed→store→retrieve) is now understood as insufficient. Production patterns use query transformation (expansion, rewriting, decomposition), fusion retrieval (combining keyword + semantic + domain-specific), and hierarchical memory for agents (surpassing traditional RAG).
 
 **Agent-specific insight:** Agents issue 10x more queries than humans. Vector infrastructure designed for human-scale query patterns breaks under agent-scale load. Continuous ingestion, heavy parallelism, and agent-aware query optimization are now required.
 
-**Ready to use now:** Yes. For new projects, start with PostgreSQL + pgvector. Only move to specialist vector DBs if you hit specific performance ceilings. RAG patterns are proven, but plan for evolution toward memory + context management.
+**Ready to use now:** Yes. For new projects, start with PostgreSQL + pgvector. Only move to specialist vector DBs if you hit specific performance ceilings. For teams without PostgreSQL expertise, managed vector databases (Pinecone, Qdrant Cloud) reduce operational burden at higher cost. RAG patterns are proven, but plan for evolution toward memory + context management. See [Context & Memory Systems](../topics/context-memory-systems.md) for implementation details.
 
 ---
 
@@ -226,10 +226,10 @@ The vector database decision tree has shifted:
 
 **2026 question:** "Can PostgreSQL pgvector meet our scale, or do we need specialist infrastructure?"
 
-**Benchmark data:**
+**Benchmark data** (⚠️ Source: [ANN Benchmarks](https://ann-benchmarks.com/), HNSW index, 768-dim embeddings, single-node; results vary by dimension, index type, and hardware):
 - PostgreSQL pgvector: 471 QPS at 99% recall on 50M vectors
-- Qdrant: 41 QPS at 99% recall on 50M vectors (10x slower, but still production-grade)
-- Implication: Most teams don't need specialist vector databases
+- Qdrant: 41 QPS at 99% recall on 50M vectors (10x slower on this benchmark, but excels at filtered queries and distributed deployments)
+- Implication: Most teams don't need specialist vector databases for simple similarity search
 
 **Agent-specific considerations:** Agents issue 10x more queries than humans in 2026. This breaks vector infrastructure assumptions. Solutions emerging:
 - Heavy query parallelism (agents run multiple lookups in parallel)

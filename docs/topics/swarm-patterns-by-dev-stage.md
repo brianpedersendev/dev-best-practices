@@ -10,6 +10,8 @@
 
 Multi-agent systems are no longer experimental—they're the foundation of 2026 development workflows. The key insight: **not all stages benefit from the same orchestration pattern**.
 
+> **Important caveat:** Not every stage requires multi-agent orchestration. For simple, well-defined tasks, a single agent or direct function call is more cost-effective and reliable. Use this guide when your task complexity justifies the overhead. See [Decision Trees](decision-trees.md) for when to use agents vs. simpler approaches.
+
 - **Research & Discovery** → Orchestrator-Worker swarm (parallel researchers)
 - **Architecture & Planning** → Debate/Consensus (adversarial refinement)
 - **Implementation** → Hierarchical with parallel coding agents (director + workers)
