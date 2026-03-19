@@ -15,7 +15,7 @@
 
 4. **MCP has three core primitives:** Tools (functions LLMs call), Resources (static/semi-static data), and Prompts (pre-written instruction templates). Most implementations focus on Tools; Resources and Prompts are underutilized.
 
-5. **10,000+ MCP servers exist (as of March 2026).** Official servers from GitHub, Google Cloud, Figma, Supabase, and Perplexity are in production. Community implementations are exploding—mcpservers.org lists thousands, and PulseMCP had 5,500+ as of late 2025.
+5. **21,000+ MCP servers exist (as of mid-March 2026).** Official servers from GitHub, Google Cloud, Figma, Supabase, and Perplexity are in production. Community implementations are exploding—mcpservers.org lists thousands, and PulseMCP had 5,500+ as of late 2025.
 
 6. **Production MCP deployments have serious security gaps.** 30+ CVEs filed in January–February 2026. 82% of MCP file operations are vulnerable to path traversal. 53% rely on static API keys. OAuth 2.1 is now the standard for HTTP-based MCP transports; static tokens are deprecated.
 
@@ -545,3 +545,9 @@ plugin-name/
 ---
 
 **End of Technical Research Report**
+
+---
+## Changelog
+| Date | Change | Source |
+|------|--------|--------|
+| 2026-03-19 | Updated MCP server count from 10,000+ to 21,000+ | Daily briefing 03-19-2026 (Finding #5) |

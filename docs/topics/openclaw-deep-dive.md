@@ -104,9 +104,10 @@ OpenClaw's explosion has come with **significant security risks**. This is not h
 
 #### Malicious Skills
 - **Koi Security analysis (Feb 2026):** 820+ of 10,700 analyzed ClawHub skills contained malicious code
-- **Prevalence:** ~7.7% of published skills
+- **Antiy CERT confirmation (Mar 2026):** 1,184 malicious skills confirmed across ClawHub — the largest supply chain attack targeting AI agent infrastructure to date. Analysis of 30,000+ skills found >25% contain at least one vulnerability.
+- **Prevalence:** ~7.7% malicious (Feb estimate) → confirmed higher at scale
 - **Attack types:** Credential theft, coin mining, botnet recruitment, data exfiltration
-- **Implication:** Blindly installing a "popular" skill from ClawHub is risky
+- **Implication:** Blindly installing a "popular" skill from ClawHub is risky; immediate audit recommended for production deployments
 
 #### Prompt Injection
 - **Giskard research:** Crafted prompts can extract API keys and environment variables from agent context
@@ -359,3 +360,9 @@ As NemoClaw matures and enterprise hardening improves (EOQ 2026), expand to high
 ## Key Takeaway
 
 OpenClaw represents a real shift: **agents moving from "answer my question" to "do my work."** Its growth (100K stars in 6 weeks) and industry signals (Jensen Huang, NVIDIA enterprise push, creator joining OpenAI) confirm this is not a blip. However, security is currently a gating factor for high-stakes use. For developers, the opportunity is clear: operational automation is increasingly agent-driven, and the skills to build and secure agents are becoming essential. Use OpenClaw today for low-risk automation; bet on NemoClaw or hardened derivatives for production.
+
+---
+## Changelog
+| Date | Change | Source |
+|------|--------|--------|
+| 2026-03-19 | Updated malicious skills count: Antiy CERT confirmed 1,184 malicious skills (up from 820+); >25% of 30K+ analyzed skills have vulnerabilities | Daily briefing 03-19-2026 (Finding #2) |

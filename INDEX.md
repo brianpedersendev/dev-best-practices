@@ -17,7 +17,7 @@
 - **Dev tools**: Claude Code, Cursor, Copilot, Aider, Windsurf, Devin
 - **Agent frameworks**: LangGraph, CrewAI, AG2, Claude Agent SDK, Mastra
 - **Orchestration patterns**: Sequential, parallel, hierarchical, swarm, debate/consensus
-- **MCP ecosystem**: Protocol spec, 10K+ servers, security concerns, building servers
+- **MCP ecosystem**: Protocol spec, 21K+ servers, security concerns, building servers
 - **Skills/Plugins/MCPs layering**: When to use each, how they compose
 - **Workflow patterns**: TDD-first, spec-driven dev, plan-execute-verify, session discipline
 - **Emerging**: AI-native backends, context management, SLMs, adversarial code review, observability
@@ -73,7 +73,7 @@
 | 2026-03-18 | SLM + Claude hybrid routing | Architecturally sound, few production examples |
 | 2026-03-18 | Planner-coder gap resolution | 7.9-83.3% robustness loss, unsolved |
 | 2026-03-18 | Agent-scale observability standards | OpenTelemetry working on conventions |
-| 2026-03-18 | OpenClaw + NemoClaw enterprise maturity | Security hardening in progress; NVIDIA partnership signals enterprise push but CVEs still emerging |
+| 2026-03-18 | OpenClaw + NemoClaw enterprise maturity | Security hardening in progress; NVIDIA partnership signals enterprise push but CVEs still emerging. **Mar 19 update:** Antiy CERT confirmed 1,184 malicious ClawHub skills — largest AI agent supply chain attack to date |
 | 2026-03-18 | Semantic caching for AI apps | 40-70% hit rate reported, but production patterns still crystallizing |
 | 2026-03-18 | Model routing (SLM/LLM hybrid) in production | 60% cost reduction potential, few verified production examples |
 | 2026-03-18 | AI-generated code security scanning | 87% of AI PRs introduce vulnerabilities (DryRun Security); OpenAI Codex Security, CrowdStrike patterns emerging |

@@ -51,13 +51,13 @@ Three tools dominate AI-augmented development in 2026:
 ### Claude Code
 
 **What It Does Best**
-1. **Autonomous reasoning at scale** — Opus 4.6 scores 74.4% on SWE-bench (real software engineering tasks), best-in-class reasoning. Excels at complex multi-step refactoring, architecture design, and tricky debugging.
+1. **Autonomous reasoning at scale** — Opus 4.6 scores ~80% on SWE-bench Verified (real software engineering tasks), best-in-class reasoning. Excels at complex multi-step refactoring, architecture design, and tricky debugging.
 2. **Full 1M context window (production-ready)** — 78.3% retrieval accuracy at 1M tokens on MRCR v2. Enables "feed entire codebase + context, reason globally" in a single session. Practical limit: 800K after context compaction.
 3. **Agent-first autonomy** — Can run for hours without user input. Writes specs, implements, tests, iterates. Subagents parallelize work (investigation, code review, testing in parallel). Hooks system for deterministic automation.
 
 **Where It Falls Short**
 1. **Expensive** — Opus 4.6: $15/$75 per 1M tokens (input/output). 7x more costly than Gemini. Claude Max ($100-200/mo) needed for heavy daily use.
-2. **Terminal-centric** — No IDE integration. No visual editor, no file tree, no inline syntax highlighting. Power users adapt; new users feel friction.
+2. **Terminal-first, now with IDE support** — Claude Code now runs in VS Code, JetBrains, a desktop app, and a browser-based IDE (claude.ai/code). Still strongest in terminal but IDE gap has closed significantly as of March 2026.
 3. **Slow first-response latency** — 1M context session: first message ~15-30s (cache cold), then ~2-4s per message (cache warm). If cache expires (5-minute TTL), latency spikes again.
 
 **Ideal Developer Profile**
@@ -724,3 +724,4 @@ Most experienced developers use 2-3 tools and switch based on task. That's not i
 | Date | Change | Source |
 |------|--------|--------|
 | 2026-03-18 | Added note: Claude now available as Copilot agent (Business/Pro); M365 Wave 3 Claude option | Daily briefing 03-18-2026 (Finding #6) |
+| 2026-03-19 | Updated SWE-bench score from 74.4% to ~80% (SWE-bench Verified); updated Claude Code IDE support (now available in VS Code, JetBrains, desktop app, browser IDE) | Daily briefing 03-19-2026 (Finding #4) |
