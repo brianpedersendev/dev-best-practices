@@ -1077,6 +1077,22 @@ claude --agent-teams
 # Teammates work in parallel with full context windows
 ```
 
+### v2.1.77–2.1.79 (March 17–18, 2026)
+
+Key updates shipping this week:
+
+- **`/remote-control`** (VSCode): Bridges VSCode sessions to claude.ai/code for browser/phone continuation — true cross-device development
+- **`${CLAUDE_PLUGIN_DATA}`**: New variable for plugin persistent state — plugins can now store data between runs
+- **`StopFailure` hook event**: Triggers on API errors (rate limits, auth failures) — enables graceful degradation in automated workflows
+- **Plugin agent frontmatter**: New `effort`, `maxTurns`, and `disallowedTools` fields for plugin-shipped agents — finer control over agent behavior
+- **Default max output tokens**: Opus 4.6 raised to 64k (upper bound 128k)
+- **`allowRead` sandbox setting**: Granular filesystem read permissions for sandboxed sessions
+- **`/copy N`**: Copy a specific response by index, not just the last one
+- **Security fix**: Silent sandbox disable now shows visible startup warning
+- **18MB startup memory reduction**: Faster session initialization
+
+Source: [Claude Code Changelog](https://code.claude.com/docs/en/changelog)
+
 ---
 
 ## Quick Reference: Command Cheatsheet
@@ -1139,3 +1155,9 @@ claude /reload-plugins              # Reconnect plugin MCPs
 - [Spec-Driven Development](https://github.com/Pimzino/claude-code-spec-workflow)
 - [Claude Code Hooks Mastery (GitHub)](https://github.com/disler/claude-code-hooks-mastery)
 - [MCP Registry](https://api.anthropic.com/mcp-registry/docs)
+
+---
+## Changelog
+| Date | Change | Source |
+|------|--------|--------|
+| 2026-03-18 | Added v2.1.77–2.1.79 features: /remote-control, plugin persistent state, StopFailure hook, allowRead, 64k default output tokens | Daily briefing 03-18-2026 (Finding #4) |

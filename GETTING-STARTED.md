@@ -41,9 +41,41 @@
 
 - **[Best GitHub Repos for Skills, Plugins, MCPs](docs/topics/best-repos-skills-plugins-mcps.md)** — 50+ production-ready repos with star counts, activity status, and what each does. The raw source list behind the curated directory.
 
+### Building Custom Tools
+
+- **[Building Custom MCP Servers](docs/topics/building-custom-mcp-servers.md)** — Complete guide to building your own MCP servers from scratch. Covers architecture, step-by-step tutorials for Python (FastMCP) and TypeScript, the three primitives (tools, resources, prompts), wrapping existing APIs, production security patterns, Docker deployment, testing, and real-world examples. Start here if you need custom integrations or internal tool access.
+
+- **[Building OpenClaw Skills](docs/topics/openclaw-skill-development.md)** — Complete practical guide to building, testing, and publishing OpenClaw skills from basics to production. Covers skill architecture, the Agent Communication Protocol (ACP), 5 skill types with examples, the critical "65% pattern" (wrapping MCP servers as skills), ClawHub publishing and security, testing workflows, 5 real-world examples with complete code (CI/CD monitor, email triage, competitor monitor, database queries, meeting→tasks), and production readiness. Start here if you're building automation agents or want to publish to ClawHub.
+
+### Prompt Engineering
+
+- **[Prompt Engineering Patterns for AI-Augmented Development](docs/topics/prompt-engineering-patterns.md)** — Complete guide to writing and managing prompts that produce better AI outputs. Covers: why prompts matter (76% error reduction), CLAUDE.md as system prompts, 5 core patterns (specification-driven, chain-of-thought, few-shot, constraint-based, role-based), phase-specific prompts for each stage of development, evaluation frameworks (LLM-as-judge), 15 production-ready templates for common tasks (feature implementation, bug fix, testing, code review, security audit, etc.), and prompt versioning/maintenance. Start here to systematize your prompts and reduce iteration cycles 30-50%.
+
+### How to Optimize Context & Memory
+
+- **[Context Management & Memory Systems Guide](docs/topics/context-memory-systems.md)** — Practical techniques to reduce token usage by 29-84% through context editing, persistent memory, hierarchical memory architecture, and observation masking. Includes tool-specific strategies for Claude Code, Cursor, and Gemini, with implementation checklist and production benchmarks. Start here to make your AI tools faster and cheaper.
+
 ### How to Research Before Building
 
 - **[AI Research Strategies Guide](docs/topics/ai-research-strategies.md)** — How to use AI tools for accurate, up-to-date research. Covers hallucination detection, triangulation, tool-specific techniques, research workflows, and staying current.
+
+### AI-Native Application Architecture
+
+- **[AI-Native Architecture Guide](docs/topics/ai-native-architecture.md)** — How to design and build applications where AI is the core, not a feature. Covers the distinction between AI-native and AI-augmented apps, agent-backend patterns, data architecture (RAG, vector storage, memory hierarchy), the 2026 tech stack (LangGraph vs CrewAI vs Claude Agent SDK), production patterns (evaluation, observability, cost, security), 4 real-world architecture examples, and decision trees. Start here if you're building a system around agents, not just adding an agent to an existing system.
+
+### Multi-Agent & Swarm Patterns
+
+- **[Swarm Patterns by Development Stage](docs/topics/swarm-patterns-by-dev-stage.md)** — The right multi-agent pattern for each phase of development: research, planning, coding, testing, review, debugging, docs, deployment, and maintenance. Includes agent team compositions, implementation guides for LangGraph/CrewAI/Claude SDK, code snippets, and cost analysis.
+
+### Hooks & Enforcement
+
+- **[Hooks & Enforcement Patterns](docs/topics/hooks-enforcement-patterns.md)** — The definitive guide to using hooks to enforce coding standards, security, testing, and workflow discipline. Covers why hooks (97-99% compliance) beat text rules (58-73%), hook architecture and exit codes, 18 production-ready patterns organized by purpose (testing, security, code quality, context, workflow), 5 complete recipes (TypeScript, FastAPI, Go, monorepo, security-first), advanced composition, testing and debugging, decision framework, and anti-patterns. Every pattern is copy-paste ready with complete settings.json examples.
+
+### Project Bootstrapping
+
+- **[Project Research Skill](project-research.skill)** — End-to-end skill for going from "I have an idea" to a validated, actionable plan. Runs a thorough idea interview, orchestrates multi-agent domain research, then produces an implementation plan with go/no-go checkpoints between each phase.
+
+- **[Project Scaffold Skill](project-scaffold.skill)** — Generates a complete AI tooling scaffold from a plan doc or description. Creates CLAUDE.md, hooks, MCP configs, Cursor rules, agent team definitions, and dev workflow skills — all tailored to your stack. Use after the research skill produces a plan.
 
 ### Full Research
 

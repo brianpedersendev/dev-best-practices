@@ -698,6 +698,8 @@ The best AI coding tool in 2026 is not the one with the most features. It's the 
 
 Most experienced developers use 2-3 tools and switch based on task. That's not indecision; it's optimization.
 
+> **Update (March 18, 2026):** Claude is now available as a coding agent inside GitHub Copilot for Business and Pro users (announced Feb 26). Microsoft's Wave 3 of M365 Copilot also lets enterprise users select Claude instead of GPT. This further blurs tool boundaries — developers in VS Code/GitHub workflows can now access Claude's agentic strengths without switching tools. Source: [GitHub Blog](https://github.blog/changelog/2026-02-26-claude-and-codex-now-available-for-copilot-business-pro-users/)
+
 ---
 
 ## Sources
@@ -716,3 +718,9 @@ Most experienced developers use 2-3 tools and switch based on task. That's not i
 - [NxCode: Best AI for Coding 2026](https://www.nxcode.io/resources/news/best-ai-for-coding-2026-complete-ranking)
 - [TLDL: AI Coding Tools Compared (2026)](https://www.tldl.io/resources/ai-coding-tools-2026)
 - [LaoZhang AI Blog: Claude Code vs Cursor (Complete Guide)](https://blog.laozhang.ai/en/posts/claude-code-vs-cursor)
+
+---
+## Changelog
+| Date | Change | Source |
+|------|--------|--------|
+| 2026-03-18 | Added note: Claude now available as Copilot agent (Business/Pro); M365 Wave 3 Claude option | Daily briefing 03-18-2026 (Finding #6) |

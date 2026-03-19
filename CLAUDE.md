@@ -7,7 +7,11 @@ A living knowledge base to help Brian ship top-of-the-line applications faster u
 ```
 AIResearch/
 ├── CLAUDE.md              # This file — project instructions
+├── GETTING-STARTED.md     # Entry point — top takeaways, guide links, quick start checklist
 ├── INDEX.md               # Master directory of all research (always keep updated)
+├── project-research.skill # Installable skill — idea vetting → research → plan pipeline
+├── project-scaffold.skill # Installable skill — generates AI tooling scaffold for new projects
+├── DailyBriefing/         # Auto-generated daily briefings on AI dev trends
 ├── docs/
 │   ├── research/          # Raw research outputs (SCOPE.md, SYNTHESIS.md, etc.)
 │   └── topics/            # Individual topic deep-dives as standalone .md files
@@ -39,3 +43,4 @@ AIResearch/
 - Check INDEX.md for what already exists before researching
 - After adding anything, update INDEX.md
 - Keep entries concise — link to detail files for depth
+- **Update GETTING-STARTED.md** whenever adding a new topic guide that would help someone getting started — add a link with a clear one-line description under the appropriate section

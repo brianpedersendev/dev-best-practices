@@ -55,6 +55,13 @@ These 10 tools form the base layer every developer should have. They're foundati
 |------|------|-------|-------|-------------|----------------|
 | **Playwright MCP** | [microsoft/playwright-mcp](https://github.com/microsoft/playwright-mcp) | 2.4K | Via npm | Browser automation, UI testing, accessibility checks | #2 on FastMCP (6,000+ views); 83% accuracy, 7 sec/run; deterministic interactions |
 
+### MCP Development & Debugging
+
+| Name | Repo | Setup | What It Does | Why It Matters |
+|------|------|-------|-------------|----------------|
+| **FastMCP** | [jlowin/fastmcp](https://github.com/jlowin/fastmcp) | `pip install fastmcp` | Simplified Python MCP framework with decorators | Powers 70% of MCP servers; get a working server in 15 minutes. The recommended way to build custom MCP servers. |
+| **MCP Inspector** | [@modelcontextprotocol/inspector](https://github.com/modelcontextprotocol/inspector) | `npx @modelcontextprotocol/inspector` | Interactive debugger for MCP servers — test tools, view schemas, inspect responses | Like Postman for MCP. Essential for developing and debugging any MCP server. |
+
 ### Essential Claude Code Skills
 
 | Name | Repo | Installation | What It Does | Why It Matters |
@@ -128,6 +135,7 @@ These 10 tools form the base layer every developer should have. They're foundati
 | **Vector Search** | MongoDB MCP | MCP Registry | Vector index support (2026 update); essential for RAG agents |
 | **Persistent Memory** | Rag Memory MCP | MCP Registry | Knowledge graph + vector search, event-sourced, git-based versioning |
 | **Local Semantics** | RAG Context MCP | MCP Registry | Local vector storage, semantic search, persistent memory for agents |
+| **Notebooks** | Google Colab MCP | [google/colab-mcp-server](https://developers.googleblog.com/announcing-the-colab-mcp-server-connect-any-ai-agent-to-google-colab/) | Open-source MCP server connecting any AI agent directly to Google Colab; launched March 2026 |
 
 ---
 
@@ -416,3 +424,9 @@ Use these to find and stay updated on new tools:
 - [Figma MCP Guide](https://github.com/figma/mcp-server-guide)
 - [Supabase MCP Docs](https://supabase.com/docs/guides/getting-started/mcp)
 - [Cursor Docs — Plugins](https://cursor.com/docs/plugins)
+
+---
+## Changelog
+| Date | Change | Source |
+|------|--------|--------|
+| 2026-03-18 | Added Google Colab MCP Server to Data Engineer stack (Tier 2) | Daily briefing 03-18-2026 (Quick Hit: Colab MCP) |
