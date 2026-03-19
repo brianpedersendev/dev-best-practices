@@ -12,9 +12,9 @@ You want Claude Code running remotely — a cloud VM, GitHub Codespace, CI runne
 
 **The core problem:** How do you get secrets from "nowhere" into a remote environment that starts with just a fresh `git clone`?
 
-**The answer:** Use a **remote secret store** that the remote session authenticates to at runtime. Your secrets live in Doppler, 1Password, Infisical, GitHub Secrets, or a cloud provider's secret manager — not in files, not in git, not on your laptop. The remote session pulls them when it needs them.
+**The answer:** Use **Doppler** (or another remote secret store) that the remote session authenticates to at runtime. Your secrets live in Doppler's cloud — not in files, not in git, not on your laptop. The remote session authenticates and pulls them when it needs them.
 
-This guide covers every pattern from simplest to most robust, with specific setup instructions for each.
+**Recommended approach:** Doppler (free tier covers most solo/small team needs). This guide leads with Doppler as the primary path and covers alternatives for specific situations.
 
 ---
 
@@ -37,22 +37,16 @@ The remote session has your code but not your secrets. You need a bridge — and
 ## 2. Decision Tree: Which Pattern to Use
 
 ```
-Do you use GitHub Codespaces?
-├── YES → Pattern 1: GitHub Codespaces Secrets (easiest)
-└── NO
-    ├── Is this a CI/CD pipeline (GitHub Actions, etc.)?
-    │   └── YES → Pattern 2: GitHub Actions Secrets
-    └── NO (cloud VM, remote dev server, etc.)
-        ├── Do you already use a secret manager (Doppler, 1Password, etc.)?
-        │   └── YES → Pattern 3: Cloud Secret Manager
-        └── NO
-            ├── Are you on AWS/GCP/Azure?
-            │   └── YES → Pattern 5: Cloud-Native Secrets (IAM roles)
-            └── NO
-                ├── Want minimal setup?
-                │   └── Pattern 4: dotenv-vault (encrypted .env in git)
-                └── Want the "right" long-term solution?
-                    └── Pattern 3: Set up Doppler or Infisical (free tier)
+Start here:
+│
+├── Default recommendation → Pattern 3A: Doppler (works everywhere, free tier)
+│
+├── Already in GitHub Codespaces? → Pattern 1: Codespaces Secrets (built-in, no CLI)
+├── CI/CD only (headless)? → Pattern 2: GitHub Actions Secrets
+├── On AWS/GCP/Azure infra? → Pattern 5: Cloud-Native Secrets (IAM, no tokens)
+├── Need to access local DB from remote? → Pattern 6: Reverse Tunnel (Tailscale)
+├── Testing only, no real APIs? → Pattern 7: Mock Everything
+└── Want encrypted .env in git (no cloud dependency)? → Pattern 4: dotenv-vault
 ```
 
 ---
@@ -195,53 +189,155 @@ Source: [GitHub Actions Secrets](https://docs.github.com/actions/security-guides
 
 ---
 
-## 5. Pattern 3: Cloud Secret Managers (Recommended for Teams)
+## 5. Pattern 3: Doppler (Recommended — Primary Path)
 
-**Best for:** Teams, multi-environment setups, or anyone who wants the "right" long-term solution.
+**Best for:** Everything. Solo devs, teams, CI/CD, cloud VMs, Codespaces. Free tier covers most needs.
 
-A cloud secret manager stores your secrets centrally. The remote session authenticates (via token, OIDC, or machine identity) and pulls secrets at runtime. No files, no copying, no encrypting.
+Doppler stores your secrets in the cloud. The remote session authenticates and pulls them at runtime. No files to copy, no encryption to manage, no `.env` to sync. You add secrets in Doppler's dashboard, and `doppler run --` injects them into any process.
 
-### Option A: Doppler (Simplest Setup)
+### Initial Setup (One-Time, ~15 Minutes)
 
+**Step 1: Create a Doppler account and project**
+1. Go to [doppler.com](https://www.doppler.com/) → Sign up (free)
+2. Create a project (e.g., `my-app`)
+3. Doppler auto-creates 3 environments: `dev`, `staging`, `prod`
+
+**Step 2: Add your secrets to Doppler**
+1. Open your project → `dev` environment
+2. Click "Add Secret" for each value from your local `.env`:
+   - `DATABASE_URL` = `postgresql://user:pass@host:5432/mydb`
+   - `STRIPE_SECRET_KEY` = `sk_test_abc123...`
+   - `OPENAI_API_KEY` = `sk-abc123...`
+   - `REDIS_URL` = `redis://localhost:6379`
+   - (everything from your `.env` file)
+
+**Step 3: Install Doppler CLI on the remote machine**
 ```bash
-# One-time: Install Doppler CLI on the remote machine
+# Linux / Codespaces / CI
 curl -sLf https://cli.doppler.com/install.sh | sh
 
-# One-time: Authenticate (interactive — do this once)
-doppler login
-
-# One-time: Link to your project
-doppler setup  # select project + environment (dev/staging/prod)
-
-# Every time: Run your app with secrets injected
-doppler run -- npm run dev
-doppler run -- npx prisma migrate dev
-doppler run -- claude  # Claude Code session with secrets available
+# macOS
+brew install dopplerhq/cli/doppler
 ```
 
-**For non-interactive remote sessions (CI, headless):**
+**Step 4: Authenticate**
+```bash
+# Interactive (for dev sessions — do once per machine)
+doppler login
+
+# Link to your project
+doppler setup  # select project: my-app, config: dev
+```
+
+### Daily Usage
 
 ```bash
-# Create a Service Token in Doppler dashboard (read-only, scoped to dev environment)
-# Set it as an env var on the remote machine
+# Run your app — Doppler injects all secrets as env vars
+doppler run -- npm run dev
+
+# Run migrations
+doppler run -- npx prisma migrate dev
+
+# Run Claude Code with secrets available to the app
+doppler run -- claude
+
+# Run tests
+doppler run -- npm test
+```
+
+That's it. `doppler run --` is the only command you need to remember. It wraps any command and injects your secrets into its environment.
+
+### For Headless/CI Sessions (No Interactive Login)
+
+```bash
+# In Doppler dashboard: project → Access → Service Tokens → Generate
+# Scope: read-only, dev environment only
+# Set it as env var on the remote machine (or in GitHub Actions secrets):
 export DOPPLER_TOKEN=dp.st.dev_abc123...
 
 # Now doppler run works without interactive login
 doppler run -- npm run dev
+doppler run -- claude -p "Run the test suite"
 ```
 
-**What your team commits to the repo:**
+### What to Commit to the Repo
 
-```bash
-# doppler.yaml (committed — tells Doppler CLI which project to use)
+```yaml
+# doppler.yaml (committed — tells Doppler CLI which project/config to use)
 setup:
   project: my-app
   config: dev
 ```
 
-Source: [Doppler CLI](https://docs.doppler.com/docs/cli)
+```bash
+# .env.example (committed — documents what secrets exist, no values)
+DATABASE_URL=
+STRIPE_SECRET_KEY=
+OPENAI_API_KEY=
+REDIS_URL=
+NEXTAUTH_SECRET=
+```
 
-### Option B: 1Password
+### Multi-Environment (Dev / Staging / Prod)
+
+Doppler handles this natively — each environment has its own secret set:
+
+```bash
+# Dev (default from doppler.yaml)
+doppler run -- npm run dev
+
+# Staging (override config)
+doppler run --config stg -- npm run dev
+
+# Production (you probably shouldn't do this from Claude Code)
+doppler run --config prd -- npm run start
+```
+
+### Doppler + GitHub Actions
+
+```yaml
+# .github/workflows/ci.yml
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Doppler CLI
+        run: curl -sLf https://cli.doppler.com/install.sh | sh
+      - name: Run tests with secrets
+        env:
+          DOPPLER_TOKEN: ${{ secrets.DOPPLER_TOKEN }}
+        run: doppler run -- npm test
+```
+
+Store only `DOPPLER_TOKEN` as a GitHub Actions secret — Doppler serves everything else.
+
+### Doppler + Docker Compose
+
+```bash
+# Option A: Wrap docker compose (secrets in app container's env)
+doppler run -- docker compose up
+
+# Option B: Generate .env for Docker (auto-deleted after use)
+doppler secrets download --no-file --format docker > .env
+docker compose up
+rm .env
+```
+
+### Why Doppler Over Alternatives
+
+| Feature | Doppler | .env files | dotenv-vault | GitHub Secrets |
+|---------|---------|-----------|-------------|---------------|
+| Works everywhere (CI, VMs, Codespaces, local) | ✅ | ❌ (local only) | ⚠️ (needs DOTENV_KEY) | ⚠️ (GitHub only) |
+| Multi-environment | ✅ (built-in) | Manual | Manual | Via environments |
+| Team sharing | ✅ (RBAC) | ❌ | ❌ | Org secrets |
+| Audit log | ✅ | ❌ | ❌ | ❌ |
+| Secret rotation | ✅ (instant) | Manual | Re-encrypt | Manual |
+| Free tier | ✅ (5 users, unlimited secrets) | N/A | Paid | Free |
+
+Source: [Doppler CLI](https://docs.doppler.com/docs/cli), [Doppler Setup Guide](https://securityboulevard.com/2025/09/how-to-set-up-doppler-for-secrets-management-step-by-step-guide/)
+
+### Alternative A: 1Password (If You Already Use It)
 
 ```bash
 # Install 1Password CLI
@@ -272,7 +368,7 @@ op run --env-file=.env.tpl -- npm run dev
 
 Source: [1Password Service Accounts](https://developer.1password.com/docs/service-accounts/get-started/)
 
-### Option C: Infisical (Open-Source)
+### Alternative B: Infisical (Open-Source, Self-Hostable)
 
 ```bash
 # Install
@@ -586,7 +682,7 @@ npm test
 |---------|-------------|---------------|-----------|--------------|----------|
 | **Codespaces Secrets** | 5 min | None | No | No | Codespaces users |
 | **GitHub Actions** | 10 min | None | Yes (environments) | No | CI/CD |
-| **Doppler** | 30 min | Low | Yes | No | Teams, multi-env |
+| **Doppler** ⭐ | 15 min | Low | Yes | No | **Default recommendation** |
 | **1Password** | 30 min | Low | Yes | No | 1Password users |
 | **Infisical** | 30 min | Low | Yes | Self-host option | Open-source preference |
 | **dotenv-vault** | 15 min | Low | Limited | Yes | Simple, quick |
@@ -596,20 +692,20 @@ npm test
 
 ---
 
-## 12. Recommended Setup: Step by Step
+## 12. Recommended Setup: Step by Step (Doppler)
 
-For most developers, here's what I'd recommend:
+The default path. ~15 minutes from zero to working remote sessions.
 
-### Step 1: Pick Your Secret Store
+### Step 1: Set Up Doppler
 
-- **Solo dev, simple project** → dotenv-vault or GitHub Codespaces Secrets
-- **Team or multi-environment** → Doppler (free tier covers most needs)
-- **Already on AWS/GCP/Azure** → Cloud-native secret manager
-- **CI/CD only** → GitHub Actions Secrets
+1. Sign up at [doppler.com](https://www.doppler.com/) (free)
+2. Create project → add all secrets from your local `.env`
+3. Install CLI: `curl -sLf https://cli.doppler.com/install.sh | sh`
+4. `doppler login` → `doppler setup` (select your project + dev config)
 
 ### Step 2: Create Your Secret Manifest
 
-Whatever pattern you chose, commit a file that documents what secrets are needed:
+Commit a file that documents what secrets are needed:
 
 ```bash
 # .env.example (always commit this)
@@ -668,14 +764,27 @@ volumes:
 ```markdown
 ## Dev Environment
 - Start services: `docker compose up -d`
-- Run app: `doppler run -- npm run dev` (or `op run --env-file=.env.tpl -- npm run dev`)
+- Run app: `doppler run -- npm run dev`
 - Run tests: `cp .env.test .env && npm test`
 - Never read .env files directly
 ```
 
-### Step 7: Done
+### Step 7: Run It
 
-The remote session clones the repo, installs the secret manager CLI, authenticates, and runs `doppler run -- npm run dev`. Secrets flow from the cloud, not from files.
+On the remote machine (fresh clone from GitHub):
+
+```bash
+git clone git@github.com:you/my-app.git && cd my-app
+curl -sLf https://cli.doppler.com/install.sh | sh    # install Doppler
+doppler login && doppler setup                         # authenticate (one-time)
+docker compose up -d                                   # start DB, Redis
+doppler run -- npm install                             # install deps
+doppler run -- npx prisma migrate dev                  # run migrations
+doppler run -- npm run dev                             # start app with secrets
+doppler run -- claude                                  # Claude Code with full access
+```
+
+Secrets flow from Doppler's cloud, not from files. Nothing sensitive ever touches the repo.
 
 ---
 

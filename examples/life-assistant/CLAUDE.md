@@ -58,20 +58,27 @@ packages/mcp-{domain}/
 - **Sonnet 4.6:** Career coaching conversations, goal decomposition, cross-domain reasoning, weekly reviews
 - **Rule:** If the task is "look up data" or "log something," use Haiku. If the task requires "think about this" or "coach me," use Sonnet.
 
+## Development Workflow (TDD — Non-Negotiable)
+
+Every feature, bug fix, and refactor follows this exact sequence:
+
+1. **Plan** — Use Plan Mode. Outline the approach, identify affected modules, list edge cases. Get approval before writing code.
+2. **Write failing tests FIRST** — Define expected behavior as tests. Run them. Confirm they fail. Do NOT write implementation code before tests exist.
+3. **Implement the minimum code to pass tests** — Write only what's needed to make tests green. Follow patterns in this file.
+4. **Verify** — Run full test suite (`npx vitest run`). Check for regressions. Review against requirements.
+5. **Refactor** — Clean up while tests stay green. Run prettier.
+
+When implementing from a plan document: each task follows steps 1-5 above. Do not batch-implement multiple tasks without tests.
+
+For MCP servers specifically: build and test server tools first, then build UI that calls them. Never build UI without the MCP layer tested.
+
 ## Testing
 - Framework: Vitest with React Testing Library
-- Write tests alongside implementation (not TDD-strict, but tests for every MCP tool)
+- Write tests FIRST, then implementation (TDD)
 - Mock MCP server responses in UI tests
 - Test MCP tools against in-memory SQLite
 - Coverage target: 80%+ on MCP servers, 60%+ on UI components
 - Tag integration tests: `describe.skip` for tests requiring live API calls
-
-## Workflow
-1. Plan in Plan Mode before implementing any feature
-2. Implement MCP server tools first, then UI
-3. Test MCP tools independently before wiring to UI
-4. Run full test suite + lint before committing
-5. Deploy to Vercel after each phase milestone
 
 ## Context Management
 - Use /clear between unrelated tasks

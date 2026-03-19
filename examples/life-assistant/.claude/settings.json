@@ -1,0 +1,58 @@
+{
+  "mcpServers": {
+    "sequential-thinking": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "@anthropic-ai/mcp-sequential-thinking"]
+    },
+    "context7": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "@upstreamapi/context7-mcp@latest"]
+    },
+    "playwright": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "@anthropic-ai/mcp-playwright"]
+    }
+  },
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "npx vitest run --reporter=verbose 2>&1 | tail -20 || true"
+          },
+          {
+            "type": "command",
+            "command": "npx prettier --write . 2>/dev/null || true"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "grep -rn 'AKIA\\|sk-\\|ghp_\\|password\\s*=' \"$TOOL_INPUT_PATH\" 2>/dev/null && echo 'BLOCKED: Potential secret detected in file' && exit 2 || exit 0"
+          }
+        ]
+      }
+    ],
+    "PreCompact": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo '## CRITICAL CONTEXT — PRESERVE ACROSS COMPACTION\n- Project: Life Assistant (LifeOS) | Stack: Next.js 15, Vercel AI SDK, MCP servers, SQLite, Turborepo\n- Test: npx vitest run\n- Lint: npx prettier --write .\n- Key: MCP-first dev (build server tools → test → then UI), one SQLite DB per domain\n- Model routing: Haiku for tools/CRUD, Sonnet for coaching/reasoning\n- TDD workflow: write failing tests FIRST, then implement\n- Current task: check docs/TASKS.md for active work'"
+          }
+        ]
+      }
+    ]
+  }
+}
