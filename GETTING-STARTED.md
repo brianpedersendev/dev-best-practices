@@ -35,6 +35,10 @@
 
 - **[Tool Comparison: When to Use Each](docs/topics/tool-comparison-when-to-use.md)** — Side-by-side decision matrix for 20 common tasks, head-to-head strengths/weaknesses, hybrid workflow patterns, and cost optimization strategies.
 
+### Remote Dev Environment & Secrets
+
+- **[Remote Dev Environment Setup](docs/topics/remote-dev-environment-setup.md)** — How to run Claude Code in remote sessions (SSH, Codespaces, devcontainers, cloud VMs) with secure secrets and full app access. The #1 problem is secrets: Claude auto-loads `.env` files without asking. This guide covers 4 patterns to prevent secret exposure (1Password/Doppler wrappers, SSH agent forwarding, deny rules, PreToolUse hooks), running your full stack via Docker Compose, and complete step-by-step setup walkthroughs. Start here if you're using Claude Code remotely or worried about secret leakage.
+
 ### What to Install
 
 - **[Best of Breed Directory](docs/topics/best-of-breed-directory.md)** — Curated, tiered directory of the most impactful MCP servers, skills, plugins, and tools. Tier 1 (essential for everyone), Tier 2 (stack-specific), Tier 3 (specialized). Includes setup commands.
