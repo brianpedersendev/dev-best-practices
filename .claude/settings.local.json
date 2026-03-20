@@ -5,7 +5,9 @@
       "Bash(unzip -p project-research.skill project-research/SKILL.md)",
       "Bash(curl:*)",
       "Bash(gh search:*)",
-      "WebSearch"
+      "WebSearch",
+      "Bash(unzip -o project-research.skill -d /tmp/pr-skill)",
+      "Read(//tmp/pr-skill/**)"
     ]
   }
 }

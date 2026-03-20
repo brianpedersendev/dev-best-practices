@@ -1,0 +1,38 @@
+---
+description: Life Assistant (LifeOS) coding standards
+globs: ["**/*.{ts,tsx}"]
+alwaysApply: true
+---
+
+# Life Assistant — Cursor Rules
+
+## Stack
+- Next.js 15 (App Router), Vercel AI SDK 4.x, TypeScript strict
+- MCP servers per domain (career, finance, fitness, hobbies)
+- SQLite via better-sqlite3, Tailwind + shadcn/ui, Auth.js v5
+- Turborepo monorepo, Vitest + React Testing Library
+
+## TDD Workflow
+- Write failing tests BEFORE implementation code
+- MCP server tools first, then UI
+- Run vitest after every change
+
+## Conventions
+- TypeScript strict mode — no `any` types
+- Zod for all external input validation
+- nanoid for all primary keys
+- Parameterized SQL only — never template literal SQL
+- Functions under 50 lines, files under 300 lines
+- Immutable patterns: return new objects, never mutate arguments
+- Structured logging via pino — no console.log
+- Store prompt templates in prompts/ within each MCP server
+
+## Model Routing
+- Haiku 4.5: CRUD, tool calls, nudges, classification
+- Sonnet 4.6: coaching, goal decomposition, cross-domain reasoning
+
+## File Patterns
+- apps/web/ — Next.js app (MCP host + UI)
+- packages/mcp-{domain}/ — One MCP server per life domain
+- packages/shared/ — Shared types, memory utils, privacy helpers
+- Tests alongside source in each package
