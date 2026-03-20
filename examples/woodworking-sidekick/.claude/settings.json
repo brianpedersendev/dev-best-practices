@@ -1,0 +1,67 @@
+{
+  "mcpServers": {
+    "sequential-thinking": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "@anthropic-ai/mcp-sequential-thinking"]
+    },
+    "context7": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "@upstreamapi/context7-mcp@latest"]
+    },
+    "supabase": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "@supabase/mcp-server-supabase@latest", "--project-ref", "<YOUR_SUPABASE_PROJECT_REF>"]
+    },
+    "playwright": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "@anthropic-ai/mcp-playwright"]
+    }
+  },
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "npm test -- --passWithNoTests --reporter=verbose 2>&1 | tail -20 || true"
+          },
+          {
+            "type": "command",
+            "command": "npx prettier --write . 2>/dev/null && npx eslint --fix . 2>/dev/null || true"
+          },
+          {
+            "type": "command",
+            "command": "npx tsc --noEmit 2>&1 | head -20 || true"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "grep -rn 'AKIA\\|sk-\\|ghp_\\|password\\s*=\\|SUPABASE_SERVICE_ROLE_KEY\\s*=\\|GOOGLE_AI_API_KEY\\s*=' \"$TOOL_INPUT_PATH\" 2>/dev/null && echo 'BLOCKED: Potential secret detected in file' && exit 2 || exit 0"
+          }
+        ]
+      }
+    ],
+    "PreCompact": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo '## CRITICAL CONTEXT — PRESERVE ACROSS COMPACTION\n- Project: Woodworking Sidekick | Stack: Next.js 15, TypeScript, Vercel AI SDK, Gemini, Supabase, Tailwind + shadcn/ui\n- Test: npm test | Lint: npx prettier --write . && npx eslint --fix . | Types: npx tsc --noEmit\n- Key: Structured JSON plans (WoodworkingPlan schema), multi-layer validation (Zod + woodworking rules), tool profile adaptation, wood movement awareness\n- Architecture: App Router → Server Actions → Vercel AI SDK → Gemini | Supabase (Auth + Postgres + RLS)\n- Current task: check docs/TASKS.md for active work'"
+          }
+        ]
+      }
+    ]
+  }
+}
