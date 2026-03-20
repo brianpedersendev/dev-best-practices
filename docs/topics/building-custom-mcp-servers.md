@@ -1916,6 +1916,8 @@ Use this checklist before deploying an MCP server to production:
 - [ ] HTTP servers require authentication (never bind to 0.0.0.0 without auth)
 - [ ] Error messages don't leak sensitive info
 - [ ] Dependencies scanned for vulnerabilities (`pip audit`, `npm audit`)
+- [ ] MCP governance policy in place (inventory of servers, security team visibility — Qualys warns of MCP as "shadow IT")
+- [ ] Consider MCP Policy Controls (e.g., SurePath AI) for enterprise environments to restrict which servers/tools agents can access
 
 ### Reliability
 - [ ] Timeouts configured (10-30 seconds typical)
@@ -2059,4 +2061,11 @@ Use this checklist before deploying an MCP server to production:
 
 - [Best Repos, Skills, Plugins, MCPs](best-repos-skills-plugins-mcps.md) — Discovering and evaluating existing MCPs before building custom ones
 - [AI-Native Architecture](ai-native-architecture.md) — Using MCPs as building blocks in agent systems
+
+---
+
+## Changelog
+| Date | Change | Source |
+|------|--------|--------|
+| 2026-03-20 | Added MCP 2026 roadmap details (Tasks primitive, Streamable HTTP scaling, enterprise readiness with audit trails/SSO, registry metadata format). Added MCP governance note: Qualys TotalAI labels MCP servers as "shadow IT" for AI; SurePath AI launched MCP Policy Controls (March 12) for real-time server/tool access control. Added Perplexity CTO's MCP context consumption critique (40-50% of context window). Updated security checklist with governance policy item. | Daily briefing 2026-03-20 findings #1 and #2 |
 - [AI-Assisted API Design](ai-assisted-api-design.md) — Designing APIs that work well with AI agents via MCPs

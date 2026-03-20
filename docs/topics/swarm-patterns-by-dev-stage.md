@@ -2767,7 +2767,7 @@ What's your stack?
 
 3. **Framework choice matters less than pattern choice.** LangGraph, CrewAI, AG2, and Claude Agent SDK can all implement most patterns. Choose based on ecosystem fit and learning curve.
 
-4. **Multi-agent is not always better.** Start single-agent for simple tasks. Move to multi-agent when complexity justifies it (cost < benefit).
+4. **Multi-agent is not always better.** Start single-agent for simple tasks. Move to multi-agent when complexity justifies it (cost < benefit). Google/MIT research (March 2026) formalizes this with three scaling effects: **tool-coordination trade-off** (many-tool tasks suffer from multi-agent overhead), **capability saturation** (adding agents has diminishing returns past an optimal point), and **topology-dependent error amplification** (centralized orchestration reduces error propagation vs decentralized topologies).
 
 5. **Observability is non-negotiable.** Multi-agent systems fail in non-obvious ways. Trace everything from day one.
 
@@ -2799,6 +2799,7 @@ What's your stack?
 - [Claude Agent SDK: Documentation](https://platform.claude.com/docs/en/agent-sdk/overview)
 - [Claude Agent SDK: MCP Integration](https://platform.claude.com/docs/en/agent-sdk/mcp)
 - [AG2 (AutoGen): GitHub](https://github.com/ag2ai/ag2)
+- [Google/MIT Multi-Agent Scaling Principles (InfoQ, March 2026)](https://www.infoq.com/news/2026/03/google-multi-agent/)
 
 ---
 
@@ -2808,3 +2809,10 @@ What's your stack?
 - [Decision Trees](decision-trees.md) — Choosing between single-agent and multi-agent approaches
 - [Tool Comparison Guide](tool-comparison-when-to-use.md) — Evaluating frameworks for swarm implementations
 - [Mastra Framework](https://mastra.ai/)
+
+---
+
+## Changelog
+| Date | Change | Source |
+|------|--------|--------|
+| 2026-03-20 | Added Google/MIT multi-agent scaling research findings: three dominant effects — (1) tool-coordination trade-off (tasks requiring many tools perform worse with multi-agent overhead), (2) capability saturation (diminishing returns past optimal agent count), (3) topology-dependent error amplification (centralized orchestration reduces errors vs decentralized). Added source to Sources section. | Daily briefing 2026-03-20 finding #3 |

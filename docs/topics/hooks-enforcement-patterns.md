@@ -120,6 +120,7 @@ Claude Code, Cursor, and Gemini CLI support hooks at these lifecycle points:
 | `PermissionRequest` | Permission prompt appears | Auto-approve safe tools, deny dangerous ones |
 | `PostToolUse` | After a tool succeeds | Auto-format, lint, test, verify |
 | `Stop` | Claude finishes responding | Force retries, verify work, final checks |
+| `StopFailure` | Turn ends due to API error (v2.1.78+, March 2026) | Automated error recovery, retry logic, fallback behavior |
 | `PreCompact` | Before context compaction | Backup transcripts, preserve critical context |
 | `PostCompact` | After context compaction | Restore critical context, re-inject rules |
 | `SubagentStart` / `SubagentStop` | Subagent begins/ends | Setup/cleanup, scope restrictions |
@@ -2443,3 +2444,10 @@ To bypass: `git commit --no-verify` (not recommended for security hooks).
 - [Testing AI-Generated Code](testing-ai-generated-code.md) — Validating code quality at the gate level with hooks
 - [Team AI Onboarding](team-ai-onboarding.md) — Teaching teams to use hooks for consistency
 - [Claude Code Power User](claude-code-power-user.md) — Advanced techniques for integrating hooks into workflows
+
+---
+
+## Changelog
+| Date | Change | Source |
+|------|--------|--------|
+| 2026-03-20 | Added `StopFailure` hook event (v2.1.78, March 17 2026) to the hook events table — fires when turn ends due to API error, enabling automated error recovery and retry logic. | Daily briefing 2026-03-20 finding #4 |

@@ -1963,3 +1963,10 @@ Test-First (TDD)
 - [AI-Assisted Debugging](ai-assisted-debugging.md) — Debugging failures in AI-generated code with AI support
 - [Evaluation Beyond LLM-as-Judge](evaluation-beyond-llm-judge.md) — Statistical rigor for sample sizes and evaluation methodology
 - [Decision Trees](decision-trees.md) — When to use which testing/evaluation approach
+
+---
+
+## Changelog
+| Date | Change | Source |
+|------|--------|--------|
+| 2026-03-20 | Added Stanford/MIT March 2026 study data: 14.3% of AI-generated code contains security vulnerabilities vs 9.1% for human-written code (57% higher rate, 2M+ snippets analyzed). Added Aikido finding: only 29% of organizations prepared to secure agentic AI deployments. These complement existing Veracode (45% flawed PRs) and CodeRabbit (1.7x issues) data points. | Daily briefing 2026-03-20 finding #5 |
