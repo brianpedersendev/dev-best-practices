@@ -1,0 +1,45 @@
+---
+description: Woodworking Sidekick coding standards
+globs: ["**/*.{ts,tsx}"]
+alwaysApply: true
+---
+
+# Woodworking Sidekick — Cursor Rules
+
+## Stack
+Next.js 15 (App Router), TypeScript strict, Vercel AI SDK, Gemini, Supabase (Postgres + Auth + RLS), Tailwind CSS, shadcn/ui, Zod, Vitest, Playwright
+
+## Conventions
+- Use App Router (app/ directory, page.tsx, layout.tsx)
+- Server Components by default, "use client" only when interactive
+- TypeScript strict mode, no `any` without justification
+- Zod for all external data validation (API inputs, LLM outputs)
+- Tailwind for styling, shadcn/ui for components
+- Store LLM prompt templates in `lib/prompts/` as constants
+- Use Vercel AI SDK (`streamText`, `useChat`) — never raw Gemini API calls
+- Supabase RLS for data access — never bypass with service key client-side
+- Validate every generated plan through `lib/validation/` rules
+- Handle errors with error.tsx boundaries
+
+## File Patterns
+- Pages and layouts: `app/`
+- API route handlers: `app/api/`
+- Reusable UI components: `components/`
+- Utilities, clients, AI config: `lib/`
+- LLM prompt templates: `lib/prompts/`
+- Woodworking validation rules: `lib/validation/`
+- Shared TypeScript types: `types/`
+- Tests mirror source: `tests/`
+
+## Testing
+- Framework: Vitest + React Testing Library (unit), Playwright (e2e)
+- Write tests FIRST, then implementation
+- Mock Gemini API and Supabase in unit tests
+- Never mock Zod validation or woodworking dimension logic
+- Coverage target: 80%+
+
+## Key Patterns
+- Structured JSON plans (WoodworkingPlan schema) — not free text
+- Multi-layer validation: Zod → woodworking rules → re-generation on failure
+- Tool profile adaptation: plans match user's declared tools
+- Wood movement: panels >6" require movement notes
