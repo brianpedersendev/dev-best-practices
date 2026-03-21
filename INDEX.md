@@ -13,6 +13,8 @@
 | 2026-03-18 | [docs/research/technical.md](docs/research/technical.md) | MCPs, plugins, skills — protocol details, servers, security, building patterns |
 | 2026-03-18 | [docs/research/emerging.md](docs/research/emerging.md) | Cutting-edge 2025-2026 — AI-native backends, context management, SLMs, observability |
 | 2026-03-19 | [docs/research/REVIEW-2026-03-19.md](docs/research/REVIEW-2026-03-19.md) | **Knowledge base review** — Audit of all 26 topics for unsourced claims, contradictions, overconfidence, missing topics, structural issues |
+| 2026-03-21 | [docs/research/telegram-calorie-bot-market-research.md](docs/research/telegram-calorie-bot-market-research.md) | **Market research** — AI photo-based calorie tracking via Telegram bot: demand signals, market size, accuracy sentiment, competitive landscape, validation signals |
+| 2026-03-21 | [docs/research/calbot-competitive-landscape.md](docs/research/calbot-competitive-landscape.md) | **Competitive landscape** — CalBot (Telegram calorie bot): direct AI photo competitors (Cal AI, SnapCalorie, Foodvisor, NutriScan), traditional trackers (MFP, Cronometer, Lose It), existing Telegram bots (6+ identified), gap analysis, positioning strategy |
 
 ## Key Topics Covered
 - **Dev tools**: Claude Code, Cursor, Copilot, Aider, Windsurf, Devin
