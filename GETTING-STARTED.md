@@ -167,6 +167,8 @@
 
 - **[Life Assistant (LifeOS)](examples/life-assistant/)** — Modular AI life assistant with plug-and-play domain modules for career coaching, personal finance, fitness, and hobbies. MCP server per domain, Next.js + Vercel AI SDK, 3-tier memory, cross-domain intelligence. Full project-research pipeline output: 3-round interview brief, 4-domain competitive analysis, architecture research, GO recommendation, phased implementation plan.
 
+- **[Investment MCP Servers](examples/investment-mcps/)** — Two FastMCP servers for long-term investing: a stock/fund screener with proven strategy presets (Piotroski, Buffett, dividend growth) and composite scoring, plus a portfolio evaluator with full risk analytics (Sharpe, Sortino, drawdown, VaR) via QuantStats. Free data via yfinance, optional FMP upgrade. GO recommendation — clear gap in existing MCP ecosystem (9 finance MCPs exist, all thin API wrappers with no analysis layer).
+
 ### Full Research
 
 - **[Research Synthesis](docs/research/SYNTHESIS.md)** — The master document: 12 key insights, framework comparisons, opportunity rankings, risk analysis, and concrete recommendations. Start here for the full picture.
