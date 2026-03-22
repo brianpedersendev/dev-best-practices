@@ -1,7 +1,7 @@
 # Getting Started: AI-Augmented Development
 
 > Ship top-of-the-line apps faster using AI tools, agents, and modern dev patterns.
-> Last updated: 2026-03-19
+> Last updated: 2026-03-22
 
 ---
 
@@ -124,6 +124,14 @@
 - **[Project Research Skill](project-research.skill)** — End-to-end skill for going from "I have an idea" to a validated, actionable plan. Runs a thorough idea interview, orchestrates multi-agent domain research, then produces an implementation plan with go/no-go checkpoints between each phase.
 
 - **[Project Scaffold Skill](project-scaffold.skill)** — Generates a complete AI tooling scaffold from a plan doc or description. Creates CLAUDE.md, hooks, MCP configs, Cursor rules, agent team definitions, and dev workflow skills — all tailored to your stack. Use after the research skill produces a plan.
+
+### Knowledge Base Maintenance
+
+- **[Daily Briefing Skill](daily-briefing.skill)** — Generates daily AI dev briefings by scanning for news across tools, security advisories, benchmarks, and ecosystem shifts. Produces structured briefings in `DailyBriefing/` and automatically cross-references findings against existing knowledge base entries, updating topic files when guidance materially changes. Use daily or whenever you want to catch up on what's new.
+
+- **[Knowledge Review Skill](knowledge-review.skill)** — Systematic 5-phase quality audit of the entire knowledge base: structural integrity, content freshness, source integrity, cross-document consistency, and gap analysis. Produces an actionable review report and optionally fixes issues found. Run every 2 weeks or after bulk additions to catch staleness, broken links, unsourced claims, and contradictions.
+
+- **[Topic Deep Dive Skill](topic-deep-dive.skill)** — Research and write a new comprehensive topic guide following the knowledge base's quality standards. Includes mandatory duplicate checking against INDEX.md, structured 4-step research process with source triangulation, two user checkpoints (scope approval + research review), and automatic integration (INDEX.md, GETTING-STARTED.md, cross-references). Use whenever a new topic needs covering — whether identified by the knowledge-review skill, a daily briefing finding, or a direct request.
 
 ### Error Recovery & Production Resilience
 
