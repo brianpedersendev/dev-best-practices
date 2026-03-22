@@ -1,7 +1,7 @@
 # Research Index
 
 > Master directory of all research in this knowledge base. Check here before adding anything new.
-> Last updated: 2026-03-19
+> Last updated: 2026-03-22
 
 ## Research Outputs
 | Date | File | Description |
@@ -69,6 +69,9 @@
 |------|------|-------------|
 | 2026-03-18 | [project-scaffold.skill](project-scaffold.skill) | **Project Scaffold Skill** — Generates complete AI tooling scaffold (CLAUDE.md, hooks, MCP configs, Cursor rules, agents.md, skills) from a plan doc or project description |
 | 2026-03-18 | [project-research.skill](project-research.skill) | **Project Research Skill** — End-to-end idea vetting → domain research → implementation plan. Orchestrates agent-research and agent-plan with interview phase and checkpoints |
+| 2026-03-22 | [daily-briefing.skill](daily-briefing.skill) | **Daily Briefing Skill** — Generates daily AI dev briefings by researching latest news across tools, security, benchmarks, and ecosystem. Produces structured briefings in DailyBriefing/ and cross-references findings against the knowledge base, updating topic files when guidance changes |
+| 2026-03-22 | [knowledge-review.skill](knowledge-review.skill) | **Knowledge Review Skill** — Systematic 5-phase quality audit: structural integrity, content freshness, source integrity, cross-document consistency, and gap analysis. Produces actionable review reports and optionally fixes issues found |
+| 2026-03-22 | [topic-deep-dive.skill](topic-deep-dive.skill) | **Topic Deep Dive Skill** — Research and write comprehensive topic guides following the knowledge base's quality bar. 4-step research process (landscape survey, deep research, verification, practical validation), mandatory duplicate check, two user checkpoints, and automatic INDEX.md/GETTING-STARTED.md integration |
 
 ## References
 | Date | File | Description |
