@@ -1,6 +1,6 @@
-# Investment MCP Servers — Project Brief
+# Investment Tools MCP Server — Project Brief
 
-> Two MCP servers that give AI assistants professional-grade investment analysis: one for discovering long-term stock/fund picks, one for evaluating existing portfolio holdings.
+> A single MCP server that gives AI assistants professional-grade investment analysis: screening for long-term stock/fund picks AND evaluating existing portfolio holdings.
 
 **Research Date:** 2026-03-22
 
@@ -35,7 +35,7 @@ By wrapping financial data APIs and analysis logic into MCP servers, you get a p
 ## MVP Scope
 
 ### In Scope (v1)
-- **MCP 1: Stock/Fund Screener**
+- **Stock/Fund Screening**
   - Screen S&P 500 + popular ETFs/mutual funds
   - Value metrics: P/E, P/B, PEG, EV/EBITDA, FCF Yield
   - Quality metrics: ROE, ROCE, operating margin, Piotroski F-Score
@@ -45,7 +45,7 @@ By wrapping financial data APIs and analysis logic into MCP servers, you get a p
   - Sector/industry filtering
   - Return top N candidates with explanations
 
-- **MCP 2: Portfolio Evaluator**
+- **Portfolio Evaluation**
   - Accept holdings as ticker + shares (or ticker + weight)
   - Performance: total return, CAGR, vs SPY/benchmark
   - Risk: Sharpe ratio, Sortino ratio, max drawdown, beta, VaR
@@ -92,26 +92,26 @@ Several financial MCP servers already exist on GitHub:
 
 ## Architecture Direction
 
-Two separate MCP servers (can be used independently or together):
+Single MCP server with both screening and portfolio analysis tools. Split later only if tool count exceeds ~15 or domains genuinely diverge.
 
 ```
-┌─────────────────────┐     ┌──────────────────────┐
-│  Stock Screener MCP  │     │  Portfolio Eval MCP   │
-│                     │     │                      │
-│  Tools:             │     │  Tools:              │
-│  - screen_stocks    │     │  - evaluate_portfolio│
-│  - get_stock_detail │     │  - analyze_holding   │
-│  - compare_stocks   │     │  - suggest_rebalance │
-│  - screen_funds     │     │  - risk_report       │
-│                     │     │                      │
-│  Resources:         │     │  Resources:          │
-│  - screening_criteria│    │  - risk_metrics_guide│
-│  - sector_list      │     │  - benchmark_list    │
-│                     │     │                      │
-│  Data: yfinance +   │     │  Data: yfinance +    │
-│  FMP (optional)     │     │  quantstats          │
-└─────────────────────┘     └──────────────────────┘
+┌──────────────────────────────────────────┐
+│         investment-tools MCP              │
+│                                          │
+│  Screening:          Portfolio:          │
+│  - screen_stocks     - evaluate_portfolio│
+│  - screen_funds      - analyze_holding   │
+│  - get_stock_detail  - risk_report       │
+│  - compare_stocks    - sector_breakdown  │
+│  - list_strategies   - suggest_rebalance │
+│                                          │
+│  Data: yfinance + FMP (optional)         │
+│  Analytics: QuantStats                   │
+│  Cache: SQLite (24hr TTL)                │
+└──────────────────────────────────────────┘
 ```
+
+**Why MCP (vs alternatives):** The primary interface is conversational (ask Claude questions, get data-backed answers). MCP's tool discovery and composability make this seamless. The core analysis logic lives in plain Python modules — MCP is just the transport layer, so there's no lock-in. See PLAN.md for the full alternatives analysis.
 
 ---
 
@@ -119,7 +119,7 @@ Two separate MCP servers (can be used independently or together):
 
 1. Can ask Claude "Find me 10 quality value stocks under $100 with strong cash flow" and get a scored, ranked table
 2. Can paste portfolio holdings and get a professional-grade tear sheet summary (Sharpe, drawdown, sector breakdown)
-3. Both servers install and run with `uvx` or `pip install` + simple Claude Desktop config
+3. Server installs and runs with `uvx investment-tools` + simple Claude Desktop config
 4. Response time < 30 seconds for a full screen of S&P 500
 5. Works with zero API keys (yfinance only mode)
 
@@ -127,8 +127,6 @@ Two separate MCP servers (can be used independently or together):
 
 ## Open Questions
 
-1. **One repo or two?** — Could be a monorepo with two servers, or two separate packages. Monorepo is simpler for shared utilities.
-2. **Mutual fund coverage depth** — yfinance has limited mutual fund fundamental data. May need FMP or a dedicated fund data source.
-3. **Caching strategy** — Financial data doesn't change intraday for our use case. Cache aggressively (daily refresh for fundamentals, hourly for prices)?
-4. **Should the screener support custom strategies?** — e.g., "Buffett style" vs "dividend growth" vs "quality momentum" as presets?
-5. **Should we add a third MCP for watchlist/tracking?** — Or fold it into the portfolio evaluator?
+1. **Mutual fund coverage depth** — yfinance has limited mutual fund fundamental data. May need FMP or a dedicated fund data source.
+2. **Watchlist/tracking** — Should we add watchlist persistence, or keep the server stateless (holdings passed per request)?
+3. **Finnhub alternative data** — Worth adding insider transactions, ESG scores, congressional trading as supplemental data? (Free tier: 60 req/min)

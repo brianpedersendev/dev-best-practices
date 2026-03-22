@@ -1,41 +1,80 @@
-# Investment MCP Servers — Implementation Plan
+# Investment MCP Server — Implementation Plan
 
-**Date:** 2026-03-22
+**Date:** 2026-03-22 | **Revised:** 2026-03-22
 
 ---
 
-## Architecture Overview
+## Why MCP (and Why Not Something Else)
+
+Before diving into the plan, it's worth documenting the architecture decision since MCP is one of several valid approaches.
+
+### Alternatives Considered
+
+| Approach | Pros | Cons | Best When |
+|----------|------|------|-----------|
+| **Python library** | Simplest, no protocol overhead, works in scripts/notebooks | No AI tool discovery, must manually call functions | Personal scripting, Jupyter workflows |
+| **CLI tool** | Claude can call via bash, also usable standalone | Less structured than MCP, no schema negotiation | Quick one-off queries, shell pipelines |
+| **REST API + web UI** | Visual dashboard, sharable with non-AI users | More infrastructure (server, hosting, auth) | Team/public-facing product |
+| **MCP server** | AI-first, tool discovery, composable, growing ecosystem | Protocol overhead, newer ecosystem | AI assistant is the primary interface |
+
+### Why MCP Wins for This Use Case
+
+1. **The primary interface is conversational.** You ask Claude "screen for quality value stocks in tech" — Claude discovers the tool, calls it, and presents results. MCP's self-describing tool schemas make this seamless.
+2. **Composability.** Claude can chain screening → detail lookup → comparison → portfolio analysis in a single conversation without you orchestrating the calls.
+3. **Multi-client support.** Same server works in Claude Desktop, Claude Code, and any MCP-compatible client. No code changes.
+4. **Ecosystem momentum.** MCP is Linux Foundation-backed, 21K+ servers, with multiple finance MCP servers already proving the pattern works.
+5. **Distribution story.** `uvx investment-tools` is a one-liner install. Users add a JSON block to Claude Desktop config and they're done.
+
+### When MCP Would Be Wrong
+
+- If you wanted a visual dashboard with charts → build a web app instead
+- If you only used this in Jupyter notebooks → build a Python library
+- If you needed real-time streaming alerts → build an event-driven system
+- If non-AI users needed access → build a REST API (or add one later alongside MCP)
+
+### The Escape Hatch
+
+The analysis logic (scoring, screening, portfolio metrics) lives in plain Python modules. MCP is just the transport layer on top. If MCP doesn't work out, you can:
+- Import the same modules as a Python library
+- Wrap them in a CLI with `click` or `typer`
+- Expose them via FastAPI as a REST service
+
+The MCP server is a thin layer (~100 lines) over the real logic. You're not locked in.
+
+---
+
+## Architecture Overview (Single Server)
+
+The previous plan split this into two servers (screener + evaluator). That's premature — **start with one server, split later only if it gets unwieldy.**
 
 ```
 ┌───────────────────────────────────────────────────────────────┐
 │                     Claude Desktop / AI Client                 │
 │                                                               │
 │  "Find me quality value stocks"    "Evaluate my portfolio"    │
-└──────────────┬─────────────────────────────┬──────────────────┘
-               │ MCP (stdio)                 │ MCP (stdio)
-               ▼                             ▼
-┌──────────────────────────┐  ┌──────────────────────────────┐
-│   investment-screener    │  │   portfolio-evaluator        │
-│   MCP Server             │  │   MCP Server                 │
-│                          │  │                              │
-│  Tools:                  │  │  Tools:                      │
-│  ├─ screen_stocks        │  │  ├─ evaluate_portfolio       │
-│  ├─ screen_funds         │  │  ├─ analyze_holding          │
-│  ├─ get_stock_detail     │  │  ├─ risk_report              │
-│  ├─ compare_stocks       │  │  ├─ sector_breakdown         │
-│  └─ list_strategies      │  │  └─ suggest_rebalance        │
-│                          │  │                              │
-│  Resources:              │  │  Resources:                  │
-│  ├─ strategies://list    │  │  ├─ metrics://guide          │
-│  └─ sectors://list       │  │  └─ benchmarks://list        │
-│                          │  │                              │
-│  Prompts:                │  │  Prompts:                    │
-│  └─ stock-analysis       │  │  └─ portfolio-review         │
-└──────────┬───────────────┘  └──────────┬───────────────────┘
-           │                             │
-           ▼                             ▼
+└──────────────────────────────┬────────────────────────────────┘
+                               │ MCP (stdio)
+                               ▼
 ┌──────────────────────────────────────────────────────────────┐
-│                    Shared Data Layer                          │
+│                    investment-tools                            │
+│                    MCP Server (FastMCP)                        │
+│                                                              │
+│  Screening Tools:              Portfolio Tools:               │
+│  ├─ screen_stocks              ├─ evaluate_portfolio          │
+│  ├─ screen_funds               ├─ analyze_holding             │
+│  ├─ get_stock_detail           ├─ risk_report                 │
+│  ├─ compare_stocks             ├─ sector_breakdown            │
+│  └─ list_strategies            └─ suggest_rebalance           │
+│                                                              │
+│  Resources:                    Prompts:                       │
+│  ├─ strategies://list          ├─ stock-analysis              │
+│  ├─ sectors://list             └─ portfolio-review            │
+│  ├─ metrics://guide                                          │
+│  └─ benchmarks://list                                        │
+└──────────────────────────────┬───────────────────────────────┘
+                               │
+┌──────────────────────────────┴───────────────────────────────┐
+│                       Core Library                            │
 │                                                              │
 │  ┌─────────────┐  ┌─────────────┐  ┌──────────────────┐    │
 │  │  yfinance    │  │  FMP API    │  │  Cache (SQLite)  │    │
@@ -50,6 +89,8 @@
 │  └─────────────┘  └──────────────────┘                      │
 └──────────────────────────────────────────────────────────────┘
 ```
+
+**Why one server:** The screener and portfolio evaluator share the same data layer, models, and caching. They're conceptually related (investment analysis). A single server means one install, one config block, one package to maintain. Split when (if) the tool count exceeds ~15 or the domains genuinely diverge.
 
 ---
 
@@ -71,48 +112,52 @@
 ## Project Structure
 
 ```
-investment-mcps/
-├── pyproject.toml              # Monorepo with two entry points
+investment-tools/
+├── pyproject.toml              # Single package
 ├── README.md
 ├── src/
-│   ├── shared/
-│   │   ├── __init__.py
-│   │   ├── data.py             # Unified data fetching (yfinance + FMP)
-│   │   ├── cache.py            # SQLite caching layer (24hr TTL)
-│   │   ├── models.py           # Pydantic models for stock data, holdings
-│   │   └── disclaimer.py       # Standard disclaimer text appended to outputs
-│   │
-│   ├── screener/
-│   │   ├── __init__.py
-│   │   ├── server.py           # FastMCP server definition
-│   │   ├── scoring.py          # Composite scoring engine
-│   │   ├── strategies.py       # Preset strategies (Buffett, quality, dividend, etc.)
-│   │   ├── filters.py          # Metric filters and thresholds
-│   │   └── formatters.py       # Output formatting (tables, summaries)
-│   │
-│   └── evaluator/
+│   └── investment_tools/
 │       ├── __init__.py
-│       ├── server.py           # FastMCP server definition
-│       ├── portfolio.py        # Portfolio construction from holdings
-│       ├── risk.py             # Risk metrics (wraps QuantStats)
-│       ├── diversification.py  # Sector/correlation analysis
-│       └── rebalance.py        # Rebalancing suggestions
+│       ├── server.py           # FastMCP server definition — all tools registered here
+│       │
+│       ├── data/
+│       │   ├── __init__.py
+│       │   ├── fetcher.py      # Unified data fetching (yfinance + FMP)
+│       │   ├── cache.py        # SQLite caching layer (24hr TTL)
+│       │   └── models.py       # Pydantic models for stock data, holdings
+│       │
+│       ├── screening/
+│       │   ├── __init__.py
+│       │   ├── scoring.py      # Composite scoring engine
+│       │   ├── strategies.py   # Preset strategies (Buffett, quality, dividend, etc.)
+│       │   └── filters.py      # Metric filters and thresholds
+│       │
+│       ├── portfolio/
+│       │   ├── __init__.py
+│       │   ├── analysis.py     # Portfolio construction + QuantStats wrapper
+│       │   ├── risk.py         # Risk metrics (Sharpe, Sortino, VaR, drawdown)
+│       │   └── rebalance.py    # Rebalancing suggestions
+│       │
+│       ├── formatters.py       # Output formatting (tables, summaries)
+│       └── disclaimer.py       # Standard disclaimer text appended to outputs
 │
 ├── tests/
-│   ├── test_screener.py
-│   ├── test_evaluator.py
+│   ├── test_screening.py
+│   ├── test_portfolio.py
 │   ├── test_data.py
 │   └── fixtures/               # Cached API responses for testing
 │
 └── claude_desktop_config.json  # Example Claude Desktop configuration
 ```
 
+Key difference from previous plan: flat single-package structure. The MCP server (`server.py`) is a thin layer that imports from `screening/` and `portfolio/` — the real logic is in plain Python modules that could be used without MCP.
+
 ---
 
 ## Data Models
 
 ```python
-# Core models (src/shared/models.py)
+# Core models (src/investment_tools/data/models.py)
 
 class StockFundamentals(BaseModel):
     ticker: str
@@ -198,7 +243,9 @@ class PortfolioAnalysis(BaseModel):
 
 ## Tool Definitions
 
-### MCP 1: Investment Screener
+All tools live in a single FastMCP server instance.
+
+### Screening Tools
 
 ```python
 @mcp.tool()
@@ -246,7 +293,7 @@ async def list_strategies() -> str:
     """List all available screening strategies with descriptions and the metrics each uses."""
 ```
 
-### MCP 2: Portfolio Evaluator
+### Portfolio Tools
 
 ```python
 @mcp.tool()
@@ -338,27 +385,26 @@ QUALITY_VALUE = Strategy(
 ## Implementation Roadmap
 
 ### Phase 1: Foundation (Week 1)
-- [ ] Set up monorepo with `uv` and `pyproject.toml`
-- [ ] Implement shared data layer (`yfinance` wrapper with caching)
+- [ ] Set up project with `uv` and `pyproject.toml`
+- [ ] Implement data fetching layer (`yfinance` wrapper with caching)
 - [ ] Build Pydantic models for stock fundamentals
 - [ ] Implement SQLite cache with 24hr TTL
 - [ ] Add disclaimer module
+- [ ] Wire up basic FastMCP server with one working tool (`get_stock_detail`)
 
-### Phase 2: Screener MCP (Week 2)
-- [ ] Implement `screen_stocks` with quality_value strategy
+### Phase 2: Screening (Week 2)
 - [ ] Build composite scoring engine
+- [ ] Implement `screen_stocks` with quality_value strategy
 - [ ] Add all 4 strategy presets
-- [ ] Implement `get_stock_detail` and `compare_stocks`
+- [ ] Implement `compare_stocks`
 - [ ] Add `screen_funds` for ETFs
-- [ ] Wire up FastMCP server with Stdio transport
 - [ ] Test with Claude Desktop
 
-### Phase 3: Portfolio Evaluator MCP (Week 3)
+### Phase 3: Portfolio Analysis (Week 3)
 - [ ] Implement `evaluate_portfolio` using QuantStats
 - [ ] Build `risk_report` with Sharpe, Sortino, drawdown, VaR
 - [ ] Add `sector_breakdown` with concentration warnings
 - [ ] Implement `suggest_rebalance` logic
-- [ ] Wire up FastMCP server
 - [ ] Test with Claude Desktop
 
 ### Phase 4: Polish & Ship (Week 4)
@@ -376,17 +422,12 @@ QUALITY_VALUE = Strategy(
 ```json
 {
   "mcpServers": {
-    "investment-screener": {
+    "investment-tools": {
       "command": "uvx",
-      "args": ["investment-screener"],
+      "args": ["investment-tools"],
       "env": {
         "FMP_API_KEY": ""
       }
-    },
-    "portfolio-evaluator": {
-      "command": "uvx",
-      "args": ["portfolio-evaluator"],
-      "env": {}
     }
   }
 }
@@ -398,12 +439,13 @@ QUALITY_VALUE = Strategy(
 
 | Decision | Choice | Alternative Considered | Why |
 |----------|--------|----------------------|-----|
-| Two servers vs one | Two separate servers | Single server with all tools | Separation of concerns; user may want only one |
-| Monorepo vs two repos | Monorepo | Separate repos | Shared data layer, easier to maintain |
+| MCP vs other architecture | MCP server | Python lib, CLI, REST API | AI-first interface, tool discovery, composability (see rationale above) |
+| One server vs two | Single server | Separate screener + evaluator | Shared data layer, simpler install, split later if needed |
 | yfinance vs FMP-only | yfinance default, FMP optional | FMP as sole source | Zero-config MVP; no API key barrier |
 | SQLite cache vs Redis | SQLite | Redis, in-memory | Zero dependencies, persists across restarts |
 | QuantStats vs pyfolio | QuantStats | pyfolio, custom math | More actively maintained, same author as yfinance |
 | Piotroski as quality signal | Include | Altman Z-score, custom quality | Well-known, easy to compute, proven |
+| Logic in plain modules | Core logic is importable Python | Logic inside MCP handlers | No lock-in — reusable as library, CLI, or API |
 
 ---
 
@@ -416,14 +458,15 @@ QUALITY_VALUE = Strategy(
 | Incorrect financial data | Low | High | Cross-validate with multiple sources, display data timestamps |
 | Scope creep | High | Medium | Strict MVP checklist, resist adding features before shipping |
 | User trusts outputs as financial advice | Medium | High | Prominent disclaimers on every tool response |
+| MCP ecosystem changes | Low | Medium | Core logic in plain Python modules; MCP is just the transport layer |
 
 ---
 
 ## First Week Milestones
 
-1. **Day 1-2:** Monorepo setup, shared data layer with yfinance, caching
-2. **Day 3-4:** Screener scoring engine + quality_value strategy working
-3. **Day 5:** `screen_stocks` tool callable from Claude Desktop
-4. **Day 6-7:** Remaining strategies + `get_stock_detail` + `compare_stocks`
+1. **Day 1-2:** Project setup, data layer with yfinance, caching
+2. **Day 3-4:** Scoring engine + quality_value strategy working
+3. **Day 5:** `screen_stocks` and `get_stock_detail` callable from Claude Desktop
+4. **Day 6-7:** Remaining strategies + `compare_stocks`
 
 After Week 1, you should be able to ask Claude: *"Screen for quality value stocks in the tech sector"* and get a scored, ranked table.

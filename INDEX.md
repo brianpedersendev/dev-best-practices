@@ -13,6 +13,9 @@
 | 2026-03-18 | [docs/research/technical.md](docs/research/technical.md) | MCPs, plugins, skills — protocol details, servers, security, building patterns |
 | 2026-03-18 | [docs/research/emerging.md](docs/research/emerging.md) | Cutting-edge 2025-2026 — AI-native backends, context management, SLMs, observability |
 | 2026-03-19 | [docs/research/REVIEW-2026-03-19.md](docs/research/REVIEW-2026-03-19.md) | **Knowledge base review** — Audit of all 26 topics for unsourced claims, contradictions, overconfidence, missing topics, structural issues |
+| 2026-03-22 | [examples/investment-mcps/PROJECT-BRIEF.md](examples/investment-mcps/PROJECT-BRIEF.md) | **Investment Tools MCP** — Project brief for a single MCP server providing stock screening (Piotroski, Buffett, dividend growth strategies) and portfolio evaluation (Sharpe, Sortino, drawdown, rebalancing) |
+| 2026-03-22 | [examples/investment-mcps/SYNTHESIS.md](examples/investment-mcps/SYNTHESIS.md) | **Investment MCP Research** — Data API comparison (yfinance, FMP, Finnhub), portfolio libraries (QuantStats), competitor analysis (9 existing servers), regulatory considerations, architecture alternatives (MCP vs library vs CLI vs REST) |
+| 2026-03-22 | [examples/investment-mcps/PLAN.md](examples/investment-mcps/PLAN.md) | **Investment MCP Implementation Plan** — Single-server architecture, FastMCP + yfinance + QuantStats, 10 tool definitions, 4-week roadmap, MCP justification with escape hatches |
 
 ## Key Topics Covered
 - **Dev tools**: Claude Code, Cursor, Copilot, Aider, Windsurf, Devin

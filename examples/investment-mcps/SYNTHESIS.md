@@ -99,6 +99,18 @@ Per this knowledge base's [Building Custom MCP Servers](../../docs/topics/buildi
 - Same author ecosystem as yfinance and QuantStats (Ran Aroussi)
 - Stdio transport for local Claude Desktop, HTTP/SSE for production
 
+### 7. MCP Is the Right Architecture (With Caveats)
+
+We evaluated four approaches: Python library, CLI tool, REST API + web UI, and MCP server.
+
+**MCP wins because the primary interface is conversational** — you ask Claude questions about investments and it discovers/calls the right tools. This is fundamentally different from a dashboard or script workflow.
+
+**Key insight: MCP is just the transport layer.** The core analysis logic (scoring, screening, portfolio metrics) lives in plain Python modules. If MCP doesn't work out, the same code can be wrapped as a CLI (`typer`), REST API (`FastAPI`), or imported as a library. No lock-in.
+
+**When MCP would be wrong:** If you wanted a visual dashboard (build a web app), only used this in Jupyter (build a library), or needed real-time streaming alerts (build an event-driven system).
+
+**Revised from two servers to one:** The original plan split screening and portfolio analysis into separate MCP servers. This is premature — both share the same data layer, models, and caching. Ship one `investment-tools` server, split later only if it gets unwieldy.
+
 ---
 
 ## Go/No-Go Recommendation
@@ -122,8 +134,8 @@ Per this knowledge base's [Building Custom MCP Servers](../../docs/topics/buildi
 
 ## Suggested Approach
 
-1. **Start with the Screener MCP** — Higher immediate value, more interesting technically
-2. **Use a monorepo** — Shared data fetching layer between both servers
+1. **Single MCP server** — One `investment-tools` package with both screening and portfolio tools
+2. **Core logic in plain Python modules** — MCP is the transport layer, not the architecture
 3. **Ship with yfinance-only first** — Zero API keys needed, lower barrier
 4. **Add FMP integration as a follow-up** — For users who want deeper data
 5. **Cache aggressively** — Fundamentals don't change intraday; cache for 24 hours minimum
