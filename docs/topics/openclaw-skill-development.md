@@ -3360,8 +3360,8 @@ Result: "[Output]"
 
 1. **Skills are simple:** A SKILL.md file with instructions + optional helper scripts/MCPs
 2. **65% of skills wrap MCPs:** If you have an MCP server, wrapping it as a skill takes ~5 minutes
-3. **Security is critical:** 36% of ClawHub skills have flaws; validate inputs, scope permissions, never log secrets
-4. **ClawHub is where users find skills:** Publish with clear documentation, examples, and an open GitHub repo
+3. **Security is critical:** As of March 2026, **1,184 malicious skills confirmed** on ClawHub in the largest supply chain attack targeting AI agent infrastructure. Over 25% of 30,000+ analyzed skills contained at least one vulnerability. Validate inputs, scope permissions, never log secrets, and vet all third-party skills before installation.
+4. **ClawHub is where users find skills:** Publish with clear documentation, examples, and an open GitHub repo. Be aware of the ongoing supply chain risk — pin skill versions and verify publisher identity.
 5. **Testing matters:** Test locally with mocks, then against staging APIs before publishing
 6. **NemoClaw is coming:** Enterprise hardening with sandboxing and PII protection; design skills that'll work in both environments
 7. **Combine with Claude Code:** Use Claude Code for service development, OpenClaw skills for automation orchestration
@@ -3376,3 +3376,8 @@ Result: "[Output]"
 - [Best Repos, Skills, Plugins, MCPs](best-repos-skills-plugins-mcps.md) — Finding and evaluating published skills before building
 
 ---
+
+## Changelog
+| Date | Change | Source |
+|------|--------|--------|
+| 2026-03-21 | Updated security section: 1,184 malicious skills confirmed on ClawHub (largest AI agent supply chain attack). Updated vulnerability rate from 36% to 25%+ of 30K analyzed skills. Added supply chain risk warning to ClawHub publishing guidance. | Daily briefing 03-21-2026 (Finding #2) |

@@ -68,7 +68,7 @@ These 10 tools form the base layer every developer should have. They're foundati
 |------|------|--------------|-------------|----------------|
 | **Official Skills** | [anthropics/skills](https://github.com/anthropics/skills) | `/plugin marketplace add anthropics/skills` | Official, Anthropic-managed skills directory | Source of truth; skills are model-invoked, auto-discovered |
 | **Frontend Design** | [anthropics/skills](https://github.com/anthropics/skills) | Via official marketplace | Design system + philosophy before code | 277,000+ installs (Mar 2026); ensures aesthetic intent, not default AI choices |
-| **Superpowers** | [obra/superpowers](https://github.com/obra/superpowers) | Via Cursor Marketplace (Feb 2026+) | TDD, debugging, collaboration patterns | 56K+ installs (Mar 2026); accepted into Anthropic marketplace Jan 2026; enforces Red-Green-Refactor cycle |
+| **Superpowers** | [obra/superpowers](https://github.com/obra/superpowers) | Via Cursor Marketplace (Feb 2026+) | TDD, debugging, collaboration patterns | 92K+ stars, #1 GitHub trending (Mar 2026); accepted into Anthropic marketplace Jan 2026; enforces Red-Green-Refactor cycle |
 
 ### Cursor Integration
 
@@ -431,6 +431,7 @@ Use these to find and stay updated on new tools:
 |------|--------|--------|
 | 2026-03-18 | Added Google Colab MCP Server to Data Engineer stack (Tier 2) | Daily briefing 03-18-2026 (Quick Hit: Colab MCP) |
 | 2026-03-19 | Updated Playwright MCP installs (27K+); updated Superpowers installs (56K+) | Daily briefing 03-19-2026 (Finding #5) |
+| 2026-03-21 | Updated Superpowers to 92K+ stars (#1 GitHub trending) | Daily briefing 03-21-2026 (Finding #3) |
 
 ---
 

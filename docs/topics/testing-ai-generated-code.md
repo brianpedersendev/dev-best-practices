@@ -1970,3 +1970,4 @@ Test-First (TDD)
 | Date | Change | Source |
 |------|--------|--------|
 | 2026-03-20 | Added Stanford/MIT March 2026 study data: 14.3% of AI-generated code contains security vulnerabilities vs 9.1% for human-written code (57% higher rate, 2M+ snippets analyzed). Added Aikido finding: only 29% of organizations prepared to secure agentic AI deployments. These complement existing Veracode (45% flawed PRs) and CodeRabbit (1.7x issues) data points. | Daily briefing 2026-03-20 finding #5 |
+| 2026-03-21 | Veracode 2026 report updates insecure AI code rate from 45% to 48%. Vulnerabilities now being created faster than fixed. | Daily briefing 03-21-2026 (Finding #1) |
