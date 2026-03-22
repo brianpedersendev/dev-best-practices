@@ -187,7 +187,7 @@ Three tools dominate AI-augmented development in 2026:
 |---------|-------------|--------|--------|
 | **IDE Integration** | None (terminal) | Deep (Cmd+K/L/I) | VS Code extension (basic) |
 | **Context Window** | 1M | 200K (70-120K usable) | 2M |
-| **SWE-bench Score** | 74.4% (Opus 4.6) | ~72% (Composer) | 80.6% |
+| **SWE-bench Score** | ~80% (Opus 4.6, Verified) | 52% (Mar 2026 benchmark) | 80.6% |
 | **Agent Mode** | Native (session-based) | Cloud agents + Composer | CLI agent (Gemini CLI) |
 | **TDD Workflow** | Native (test-first prompts) | Manual (you write tests first) | CLI hooks (Gemini CLI) |
 | **Multi-file Editing** | Yes (coordinated diffs) | Yes (Composer with SVFS) | Yes (via CLI) |
@@ -725,6 +725,7 @@ Most experienced developers use 2-3 tools and switch based on task. That's not i
 |------|--------|--------|
 | 2026-03-18 | Added note: Claude now available as Copilot agent (Business/Pro); M365 Wave 3 Claude option | Daily briefing 03-18-2026 (Finding #6) |
 | 2026-03-19 | Updated SWE-bench score from 74.4% to ~80% (SWE-bench Verified); updated Claude Code IDE support (now available in VS Code, JetBrains, desktop app, browser IDE) | Daily briefing 03-19-2026 (Finding #4) |
+| 2026-03-22 | Updated SWE-bench comparison: Copilot now 56%, Cursor 52% (Mar 16 benchmark). Copilot Pro now offers Claude Sonnet 4.6 + Gemini 2.5 Pro; Pro+ ($39/mo) unlocks Opus 4 + o3. Cursor Pro adds GPT-5.4, Gemini 3 Pro, Grok Code with per-task model routing. Multi-model selection is now table stakes across all three platforms. | Daily briefing 03-22-2026 (Finding #3) |
 
 ---
 

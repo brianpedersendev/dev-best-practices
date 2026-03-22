@@ -1,7 +1,7 @@
 # Research Index
 
 > Master directory of all research in this knowledge base. Check here before adding anything new.
-> Last updated: 2026-03-20
+> Last updated: 2026-03-22
 
 ## Research Outputs
 | Date | File | Description |
@@ -80,6 +80,7 @@
 ## Example Projects
 | Date | File | Description |
 |------|------|-------------|
+| 2026-03-21 | [docs/stock-mcp-plan/](docs/stock-mcp-plan/) | **Stock Analyst MCP** — Python MCP server for long-term stock analysis + personal investment knowledge base. Complete project-research pipeline: brief, research (15+ finance MCPs surveyed, yfinance+Finnhub free API stack, SQLite+FTS5 KB), implementation plan (FastMCP 3.0, 11 tools, 4-wave 10-day build). GO — knowledge base is unique differentiator. |
 | 2026-03-19 | [examples/fishing-copilot/](examples/fishing-copilot/) | **Fishing Copilot** — AI-powered daily fishing briefing app. Complete project-research pipeline output: brief, research (5 state data sources, competitive landscape, cost modeling), implementation plan (Python pipeline, Claude Haiku Batch API, Twilio SMS, GitHub Actions cron), CLAUDE.md, agents.md |
 | 2026-03-19 | [examples/life-assistant/](examples/life-assistant/) | **Life Assistant (LifeOS)** — Modular AI life assistant with plug-and-play domain modules (career, finance, fitness, hobbies). Complete project-research pipeline output: brief (3-round interview), research (competitive landscape across 4 domains, MCP-per-domain architecture, 3-tier memory, hybrid privacy, cost modeling), implementation plan (Next.js + Vercel AI SDK, MCP servers per domain, Turborepo monorepo, domain-by-domain MVP rollout), CLAUDE.md, agents.md. GO recommendation — career coaching is the most underserved domain, ~$2.50/mo to run personally. |
 | 2026-03-19 | [examples/woodworking-sidekick/](examples/woodworking-sidekick/) | **AI Woodworking Sidekick** — AI-powered web app for hobbyist woodworkers. Complete project-research pipeline output: brief (targeted interview), research (competitive landscape — no direct AI competitor exists, technical feasibility — Gemini+validation, domain/market — 15-20M US hobbyists), implementation plan (Next.js + Supabase + Gemini via Vercel AI SDK, structured JSON plans with programmatic validation, 5-phase 10-week build). GO recommendation — genuine whitespace, strong founder-market fit, $0-45/mo infrastructure. Refined 3x: added tool profiles, plan versioning, wood movement, grain direction, validation rules, system prompt skeleton, onboarding flow, cost estimation. |
@@ -104,3 +105,5 @@
 | 2026-03-18 | Model routing (SLM/LLM hybrid) in production | 60% cost reduction potential, few verified production examples |
 | 2026-03-18 | AI-generated code security scanning | 87% of AI PRs introduce vulnerabilities (DryRun Security); OpenAI Codex Security, CrowdStrike patterns emerging. **Mar 21 update:** Anthropic launched Claude Code Security (research preview). OpenAI renamed Aardvark → Codex Security. Snyk DeepCode AI, GitHub Advanced Security + Copilot Autofix all production-ready. **Ready for deep-dive.** |
 | 2026-03-18 | Google A2A protocol + MCP convergence | Peer-to-peer agent collaboration standard complementing MCP; adoption accelerating. **Mar 21 update:** A2A v0.3 released. Donated to Linux Foundation with 150+ org backing (AWS, Google, MS, Salesforce, SAP). Native support in Copilot Studio and Amazon Bedrock AgentCore. CrewAI has native A2A. **Ready for deep-dive.** |
+| 2026-03-22 | OpenAI acquires Astral (Ruff/uv) | Signals deeper toolchain ownership play for Codex ecosystem. Could affect Python developer workflow integration with AI tools. Watch for lock-in concerns. |
+| 2026-03-22 | Multi-model selection as standard | Copilot, Cursor, and Claude Code all now offer multi-model routing. Table stakes, not differentiator. Watch for model-agnostic workflow patterns. |

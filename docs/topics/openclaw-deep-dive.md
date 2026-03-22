@@ -18,6 +18,7 @@ OpenClaw is a free, open-source autonomous AI agent platform created by Peter St
 
 - **Launched:** January 2026
 - **100K GitHub stars:** Reached by February 2026 (~6 weeks)
+- **263K GitHub stars:** As of March 2026 — growth continues accelerating
 - **Downloads in 3 weeks** eclipsed Linux's 30-year reach (comparison via Jensen Huang)
 - **Creator momentum:** Peter Steinberger joined OpenAI on Feb 14, 2026; project moved to open-source foundation to avoid perceptions of conflict
 
@@ -366,6 +367,7 @@ OpenClaw represents a real shift: **agents moving from "answer my question" to "
 | Date | Change | Source |
 |------|--------|--------|
 | 2026-03-19 | Updated malicious skills count: Antiy CERT confirmed 1,184 malicious skills (up from 820+); >25% of 30K+ analyzed skills have vulnerabilities | Daily briefing 03-19-2026 (Finding #2) |
+| 2026-03-22 | Updated star count to 263K (from 100K). Supply chain concerns persist despite NemoClaw OpenShell sandbox. | Daily briefing 03-22-2026 (Finding #5) |
 
 ---
 
