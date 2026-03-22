@@ -37,6 +37,7 @@ AI tools have become indispensable, but spending spirals without discipline. Tea
 - Batch API: 50% off (most batches complete in <1 hour)
 - Prompt caching: 90% discount on cached input tokens (0.1x base rate)
 - Cache writes: 1.25x base input cost (worth it if reused 2+ times)
+- **Long-context surcharge removed (March 2026):** Opus 4.6 and Sonnet 4.6 now charge standard per-token rates for all context lengths, including 1M token windows. No more premium for >200K tokens. This makes large-codebase analysis and full-repo context significantly cheaper.
 
 #### Cursor (Monthly Subscriptions)
 
@@ -1586,3 +1587,9 @@ Start with Week 1's foundation. By week 4, you'll have saved thousands while you
 - [Decision Trees](decision-trees.md) — Selecting the right model and approach to balance cost and quality
 - [Tool Comparison Guide](tool-comparison-when-to-use.md) — Evaluating Claude, Cursor, Gemini for cost-effectiveness
 **Maintenance:** Quarterly (pricing updates, new strategies)
+
+---
+
+## Changelog
+
+- **2026-03-21:** Added Anthropic long-context surcharge removal (March 2026) — Opus 4.6 and Sonnet 4.6 now charge flat rates for all context lengths including 1M tokens. Source: [Anthropic pricing page](https://platform.claude.com/docs/en/about-claude/pricing), [The New Stack coverage](https://thenewstack.io/claude-million-token-pricing/). (Weekly audit auto-update)
