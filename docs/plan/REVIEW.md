@@ -143,23 +143,125 @@ The agent may skip `store_finding` calls. Add post-processing to extract and sto
 
 ## Part 2: Future-Proofing & Technology Risk Review
 
-*(Pending — technology risk research in progress)*
+### Critical Technology Risks
+
+#### 22. `output_format` is Deprecated — Use `output_config.format`
+**Severity: CRITICAL**
+
+The plan's Phase 3 code samples use `client.messages.parse()` with `output_format`. Anthropic has migrated structured outputs to `output_config.format`. The old parameter still works in the SDK (translated internally) but will be removed in a future API version. The beta header `structured-outputs-2025-11-13` is also no longer required.
+
+**Fix:** Use `output_config.format` in all code. Pin `anthropic>=0.50.0` to ensure support. Note: with 4 strict tools having 6 optional params each, you can hit the 24-parameter ceiling for constrained decoding.
+
+#### 23. `budget_tokens` Deprecated — Use `effort` Parameter
+**Severity: HIGH**
+
+The old `thinking: {type: "enabled", budget_tokens: N}` API is deprecated on Opus 4.6 and Sonnet 4.6. The replacement is adaptive thinking: `thinking: {type: "adaptive", effort: "high"|"medium"|"low"|"max"}`. Anthropic recommends `effort: "medium"` as default for Sonnet 4.6.
+
+**Fix:** Add `effort` parameter to agent config. Use `"medium"` for standard iterations, `"high"` for final synthesis. Note: Opus 4.6 does not support assistant message prefilling.
+
+#### 24. Tavily Acquired by Nebius — Vendor Risk
+**Severity: HIGH**
+
+Tavily was acquired by Nebius for $275-400M in February 2026. While Tavily says it will continue operating, acquisitions historically change pricing and product direction. Nebius plans to integrate Tavily into its "unified agentic stack." Key concerns:
+- Standalone API may become secondary to the bundled platform
+- Research API costs 4-250 credits per request with unpredictable final costs
+- Credits expire monthly, no rollover
+- Brave Search now **outperforms Tavily** in independent agentic benchmarks (AIMultiple: 14.89 vs ~13.9)
+
+**Fix:** Abstract search behind a `SearchProvider` protocol from day one. Tavily is the default; Brave Search is the backup. This also addresses Finding #5 (search fallback).
+
+**Sources:** [Nebius acquires Tavily](https://nebius.com/newsroom/nebius-announces-agreement-to-acquire-tavily-to-add-agentic-search-to-its-ai-cloud-platform), [Tavily Pricing](https://www.firecrawl.dev/blog/tavily-pricing), [Agentic Search Benchmark](https://aimultiple.com/agentic-search)
 
 ---
 
-## Summary
+### High-Value Opportunities
+
+#### 25. Build Tools as MCP Servers (Future Phase)
+**Importance: HIGH**
+
+MCP has become the dominant standard for AI tool integration — 10,000+ public servers, backed by Anthropic, OpenAI, Google, and the Linux Foundation. If the research tools (search, page reader, vector store, SEC filings) were exposed as MCP servers, they'd be immediately reusable in Claude Code, Cursor, Windsurf, and any MCP-compatible client.
+
+Existing MCP servers for Exa search, Brave Search, Firecrawl, and Qdrant could be **consumed** rather than building from scratch.
+
+**Recommendation:** Phase 1-5 stays as-is (direct function calls). Add a Phase 6 goal: "Expose tools as MCP servers." Also consider consuming existing MCP servers instead of building all integrations from scratch.
+
+**Sources:** [MCP Servers Guide 2026](https://skillsindex.dev/blog/complete-guide-mcp-servers-2026/), [Best MCP Servers](https://www.firecrawl.dev/blog/best-mcp-servers-for-developers)
+
+#### 26. Claude Agent SDK for Multi-Agent (Future Phase)
+**Importance: MEDIUM**
+
+The Claude Agent SDK now offers subagents with context isolation, parallel execution, and specialization — exactly the multi-agent pattern deferred in the plan. The Agent SDK spawns Claude Code CLI as a subprocess with built-in tools, MCP support, and CLAUDE.md configuration.
+
+**Recommendation:** Keep Phases 1-4 on raw SDK (learning value is real). When expanding to multi-agent, evaluate Agent SDK for orchestrating specialized sub-agents (search-specialist, synthesis-specialist running in parallel).
+
+**Sources:** [Agent SDK overview](https://platform.claude.com/docs/en/agent-sdk/overview), [Agent SDK subagents](https://platform.claude.com/docs/en/agent-sdk/subagents)
+
+#### 27. Better Embedding Models Available
+**Importance: MEDIUM**
+
+Nomic-embed-text-v2 remains solid, but newer options exist:
+- **Qwen3-Embedding-8B** — tops MTEB multilingual leaderboard (70.58), user-defined output dimensions (32-1024)
+- **EmbeddingGemma-300M** (Google) — best sub-500M model, faster inference
+- **E5-small** — 14x faster than large models with 100% Top-5 accuracy in retrieval
+
+**Recommendation:** Stick with nomic for Phase 2. Make embedding model configurable. If retrieval quality is insufficient during evals (Phase 4), benchmark alternatives as drop-in replacements.
+
+**Sources:** [Best Open-Source Embedding Models 2026](https://www.bentoml.com/blog/a-guide-to-open-source-embedding-models), [Embedding Models Benchmarked](https://supermemory.ai/blog/best-open-source-embedding-models-benchmarked-and-ranked/)
+
+---
+
+### Medium Technology Risks
+
+#### 28. Model Deprecation Cadence is Aggressive
+Claude 3.5 Sonnet was retired January 2026 (less than 6 months after deprecation notice). The plan hardcodes `claude-sonnet-4-6`.
+
+**Fix:** Model name must be a config value (plan already has `config.model`). Ensure all code uses it, never hardcoded. Add startup validation that warns if model is deprecated.
+
+#### 29. ChromaDB Production Limitations
+Appropriate for MVP scope but documented issues: no HA, concurrency problems, memory bloat in-process, performance degrades beyond ~10M vectors.
+
+**Fix:** Correct for learning/MVP. Document migration path: ChromaDB → Qdrant (production-grade) or LanceDB (embedded alternative with fewer issues).
+
+**Sources:** [ChromaDB in RAG: Pros and Cons](https://edana.ch/en/2026/02/08/pros-and-cons-of-chromadb-for-retrieval-augmented-generation-great-for-getting-started-but-risky/), [Best Vector Databases 2026](https://encore.dev/articles/best-vector-databases)
+
+---
+
+### Key Abstraction Layers to Add
+
+The three highest-risk external dependencies should be behind interfaces from day one:
+
+```python
+# 1. Search provider — swap Tavily/Brave/Exa without touching agent
+class SearchProvider(Protocol):
+    async def search(self, query: str, max_results: int) -> list[SearchResult]: ...
+
+# 2. Embedding model — swap nomic/qwen3/e5 without touching RAG
+class EmbeddingProvider(Protocol):
+    def embed(self, texts: list[str]) -> list[list[float]]: ...
+
+# 3. Vector store — swap ChromaDB/Qdrant/LanceDB without touching agent
+class VectorStore(Protocol):
+    def add(self, texts: list[str], metadatas: list[dict]) -> None: ...
+    def query(self, query: str, n_results: int) -> list[dict]: ...
+```
+
+---
+
+## Combined Summary
 
 | Severity | Count | Key Themes |
 |----------|-------|------------|
-| **Critical** | 2 | Context window management, prompt injection |
-| **High** | 6 | Error recovery, fallbacks, rate limiting, cost tracking, retries, loop detection |
-| **Medium** | 9 | Domain config, RAG flexibility, caching, logging, model routing |
+| **Critical** | 3 | Context window management, prompt injection, deprecated `output_format` |
+| **High** | 8 | Error recovery, fallbacks, Tavily vendor risk, cost tracking, retries, loop detection, `effort` param, MCP opportunity |
+| **Medium** | 11 | Domain config, RAG flexibility, caching, logging, model routing, model deprecation, ChromaDB limits, embedding options, Agent SDK |
 | **Low** | 4 | Orchestration, batching, checkpointing, auto-store findings |
 
-### Top 5 Actions Before Building
+### Top 7 Actions Before Building
 
 1. **Context window management** — Without this, the agent hits token limits or degrades on any non-trivial query
 2. **Prompt injection protection** — Security fundamental for any agent ingesting untrusted web content
-3. **Tool error handling + API retry** — Turns a fragile demo into something that completes research runs reliably
-4. **Token budget tracking** — Prevents surprise bills, makes cost optimization measurable
-5. **Loop detection** — Prevents stuck agents from burning API credits silently
+3. **Abstract external dependencies** — `SearchProvider`, `EmbeddingProvider`, `VectorStore` protocols protect against vendor changes (Tavily acquisition is a real risk)
+4. **Tool error handling + API retry with backoff** — Turns a fragile demo into something that completes research runs reliably
+5. **Token budget tracking from Phase 1** — Prevents surprise bills, makes cost optimization measurable
+6. **Loop detection** — Prevents stuck agents from burning API credits silently
+7. **Update API patterns** — Use `output_config.format` (not `output_format`), add `effort` parameter support
