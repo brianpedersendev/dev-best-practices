@@ -125,6 +125,10 @@
 
 - **[Project Scaffold Skill](project-scaffold.skill)** — Generates a complete AI tooling scaffold from a plan doc or description. Creates CLAUDE.md, hooks, MCP configs, Cursor rules, agent team definitions, and dev workflow skills — all tailored to your stack. Use after the research skill produces a plan.
 
+### Example: Agentic Research App (Learn All AI-Native Patterns)
+
+- **[Agentic Research App](agentic-research-app/)** — A fully scaffolded CLI-based AI research agent built with Python + Claude SDK + ChromaDB. Produced by running the project-research skill (idea → research → plan) followed by the project-scaffold skill. Exercises all 6 key AI-native patterns in one project: tool calling, RAG, ReAct, structured outputs, streaming, and evals. Targets finance research as the first vertical, repurposable to real estate and AI dev. Includes [project brief](docs/PROJECT-BRIEF.md), [competitive research](docs/research/agentic-research-app/SYNTHESIS.md), [implementation plan](docs/plan/PLAN.md) (revised after architecture + future-proofing review), and complete dev tooling scaffold.
+
 ### Knowledge Base Maintenance
 
 - **[Daily Briefing Skill](daily-briefing.skill)** — Generates daily AI dev briefings by scanning for news across tools, security advisories, benchmarks, and ecosystem shifts. Produces structured briefings in `DailyBriefing/` and automatically cross-references findings against existing knowledge base entries, updating topic files when guidance materially changes. Use daily or whenever you want to catch up on what's new.

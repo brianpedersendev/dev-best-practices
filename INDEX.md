@@ -1,7 +1,25 @@
 # Research Index
 
 > Master directory of all research in this knowledge base. Check here before adding anything new.
-> Last updated: 2026-03-20
+> Last updated: 2026-03-28
+
+## Example Projects
+| Date | Directory | Description |
+|------|-----------|-------------|
+| 2026-03-28 | [agentic-research-app/](agentic-research-app/) | **Agentic Research App** — CLI-based AI research agent (Python + Claude SDK + ChromaDB). Full scaffold with CLAUDE.md, hooks, skills, agents, architecture docs. Covers tool calling, RAG, ReAct, structured outputs, streaming, evals. Finance vertical first, repurposable to other domains. |
+
+## Project Research: Agentic Research App
+| Date | File | Description |
+|------|------|-------------|
+| 2026-03-28 | [docs/PROJECT-BRIEF.md](docs/PROJECT-BRIEF.md) | Project brief — problem, users, scope, constraints, success criteria |
+| 2026-03-28 | [docs/research/agentic-research-app/SCOPE.md](docs/research/agentic-research-app/SCOPE.md) | Research scope — 5 key questions to answer |
+| 2026-03-28 | [docs/research/agentic-research-app/landscape.md](docs/research/agentic-research-app/landscape.md) | Competitive landscape — ChatGPT/Perplexity/Gemini/GPT Researcher, gaps, opportunities |
+| 2026-03-28 | [docs/research/agentic-research-app/technical.md](docs/research/agentic-research-app/technical.md) | Technical feasibility — Claude SDK, Tavily, ChromaDB, evals, all green |
+| 2026-03-28 | [docs/research/agentic-research-app/domain.md](docs/research/agentic-research-app/domain.md) | Niche profitability — stocks (8/10) > real estate (7/10) > AI dev (5/10) |
+| 2026-03-28 | [docs/research/agentic-research-app/SYNTHESIS.md](docs/research/agentic-research-app/SYNTHESIS.md) | Research synthesis + GO recommendation |
+| 2026-03-28 | [docs/plan/INPUTS.md](docs/plan/INPUTS.md) | Planning inputs from brief and research |
+| 2026-03-28 | [docs/plan/PLAN.md](docs/plan/PLAN.md) | Implementation plan — 6-phase build order, architecture, data models, revised after review |
+| 2026-03-28 | [docs/plan/REVIEW.md](docs/plan/REVIEW.md) | Plan review — 26 findings (architecture + future-proofing), all addressed |
 
 ## Research Outputs
 | Date | File | Description |
