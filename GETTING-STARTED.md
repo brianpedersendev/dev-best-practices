@@ -1,7 +1,7 @@
 # Getting Started: AI-Augmented Development
 
 > Ship top-of-the-line apps faster using AI tools, agents, and modern dev patterns.
-> Last updated: 2026-03-22
+> Last updated: 2026-03-28
 
 ---
 
@@ -89,6 +89,14 @@
 
 - **[Deployment & DevOps Guide](docs/topics/ai-app-deployment-devops.md)** — How to ship, scale, and operate AI-powered applications in production. Covers: what's fundamentally different about AI deployments (non-deterministic outputs, cost scaling, production evaluation), CI/CD patterns (prompt regression testing, LLM-as-a-judge, eval gates, GitHub Actions examples), containerization (Docker multi-stage builds, MCP servers, agents, Docker Compose), infrastructure choices (serverless vs containers vs VMs, GPU scaling, cold start mitigation), observability (Langfuse/LangSmith, OpenTelemetry for agents, quality dashboards, cost tracking), cost controls (token budgets, rate limiting, semantic caching, model fallback), security (prompt injection defense, PII handling, API key rotation, audit logging), rollback strategies (model versioning, blue-green/canary deployments), platform-specific deployment (Vercel, AWS Bedrock, GCP Vertex AI, Railway, Fly.io), and production readiness checklist with 50+ copy-paste examples. Start here before shipping any AI feature to production.
 
+### Agent-to-Agent Protocol (A2A)
+
+- **[A2A Protocol + MCP Convergence](docs/topics/a2a-protocol-mcp-convergence.md)** — How Google's A2A protocol enables agent-to-agent collaboration alongside MCP's agent-to-tool access. Covers protocol details (Agent Cards, task streams, gRPC), A2A+MCP architecture patterns, Python/TypeScript SDKs, framework integration (CrewAI, LangGraph, Bedrock), security model, and decision trees for when to use each. Start here if you're building multi-agent systems that need to communicate across boundaries.
+
+### Agent Observability
+
+- **[Agent-Scale Observability with OTel GenAI](docs/topics/agent-observability-otel.md)** — How to instrument AI agents for production monitoring using OpenTelemetry GenAI Semantic Conventions. Covers the OTel observability stack, platform comparison (Langfuse, LangSmith, Datadog, Elastic), cost tracking, quality monitoring, distributed tracing for multi-agent systems, alerting/dashboards, and production patterns. Start here before shipping agents to production.
+
 ### Multi-Agent & Swarm Patterns
 
 - **[Swarm Patterns by Development Stage](docs/topics/swarm-patterns-by-dev-stage.md)** — The right multi-agent pattern for each phase of development: research, planning, coding, testing, review, debugging, docs, deployment, and maintenance. Includes agent team compositions, implementation guides for LangGraph/CrewAI/Claude SDK, code snippets, and cost analysis.
@@ -96,6 +104,14 @@
 ### Debugging Your Code Faster with AI
 
 - **[AI-Assisted Debugging Guide](docs/topics/ai-assisted-debugging.md)** — How to use Claude Code, Cursor, and Gemini to find and fix bugs 3-4x faster than traditional debugging. Covers: why AI changes debugging (hypothesis generation, codebase-wide analysis, parallel investigation), tool-specific workflows (Claude Plan Mode to understand before fixing, Cursor in-editor debugging, Gemini for 100K+ LOC analysis), the multi-agent hypothesis-generating swarm pattern (11 min vs 45+ min traditional), production incident debugging (log analysis, root cause reconstruction, Meta/DoorDash case studies), debugging AI-generated code (hallucinated APIs, missing edge cases, security vulnerabilities), rubber duck debugging with AI, what AI catches well (off-by-one, null handling, race conditions) vs misses (business logic, timing-dependent bugs), 15 copy-paste debugging prompts for common scenarios (crash analysis, memory leaks, race conditions, performance issues), complete 6-phase debugging workflow, MCP observability servers (Datadog, Splunk), and anti-patterns to avoid. Start here to debug faster and smarter.
+
+### Security Scanning for AI-Generated Code
+
+- **[AI-Generated Code Security Scanning](docs/topics/ai-code-security-scanning.md)** — Complete guide to security scanning tools and patterns for AI-generated code. Covers 9 major tools (Claude Code Security, Snyk, Semgrep, GitHub Advanced Security, etc.), AI-specific vulnerabilities (hallucinated packages, missing validation, tool poisoning), implementation patterns (pre-commit hooks, PR gates, nightly deep scans), MCP server security, and decision frameworks by team size. Start here to set up a security pipeline for AI-assisted development.
+
+### Adversarial Code Review
+
+- **[Adversarial Code Review](docs/topics/adversarial-code-review.md)** — How to deploy independent AI reviewers that catch bugs the builder agent misses. Covers the self-review echo chamber problem, 5 implementation patterns (manual, hooks, CI/CD, multi-model, specialist swarms), autonomous remediation, Claude Code Review, measuring effectiveness, and copy-paste configurations. Essential reading if your team generates significant code with AI.
 
 ### Testing AI-Generated Code
 
