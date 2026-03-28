@@ -42,10 +42,12 @@ A CLI-based AI research agent that takes a question, autonomously searches the w
 - Use Protocol classes for external dependencies (search, embeddings, vector store)
 - Use `output_config.format` for structured outputs (not deprecated `output_format`)
 - Use `effort` parameter for extended thinking (not deprecated `budget_tokens`)
-- Keep model names configurable via env vars — never hardcode model IDs
+- Keep model names configurable via env vars — use config.model everywhere
 - Wrap all external API calls with retry + exponential backoff + jitter
-- Return structured error results to Claude on tool failures (never crash the loop)
+- Return structured error results to Claude on tool failures (keep the loop running)
 - Wrap web content in `<retrieved_content>` XML tags to prevent prompt injection
+- Handle all stop_reason values: `end_turn` (done), `tool_use` (process tools), `max_tokens` (re-prompt to continue)
+- Rate-limit page reads: 1 request/second/domain, max 5 concurrent requests
 - Use async for I/O-bound operations (httpx, API calls)
 - Structure imports: stdlib → third-party → local
 
@@ -84,7 +86,6 @@ Every feature, bug fix, and refactor follows this exact sequence:
 - Batch embeddings after agent loop (not one-at-a-time during)
 
 ## Security
-- Never commit `.env` — config.py warns at startup if `.env` is git-tracked
-- Sanitize web content before including in messages (prompt injection protection)
-- Financial research disclaimers in report output ("Not financial advice")
-- `chroma_data/` stores findings as plaintext — do not store truly sensitive data
+- Keep `.env` out of git — config.py warns at startup if `.env` is git-tracked
+- Include "Not financial advice" disclaimer in finance domain report output
+- `chroma_data/` stores findings as plaintext — avoid storing truly sensitive data

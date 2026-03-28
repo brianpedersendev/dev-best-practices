@@ -18,7 +18,8 @@
 - **Role:** Reviews code independently of the coder
 - **When to use:** After implementation, before committing
 - **Scope:** Security (prompt injection, API key exposure), error handling (tool failures, loop detection), cost efficiency (token usage, unnecessary API calls), architecture conformance (protocols used correctly, domain config pattern followed)
-- **Key rule:** Reviewer has NO knowledge of coder's decisions — adversarial by design
+- **Key rule:** Reviewer has NO knowledge of coder's decisions — adversarial by design. Run in a separate Claude Code session, sharing only changed files, not the implementation conversation
+- **Model:** Use Sonnet or Haiku (code review doesn't need Opus-level reasoning)
 
 ### Integration Agent (Subagent)
 - **Role:** External API integrations — Tavily, Brave, SEC EDGAR, Yahoo Finance

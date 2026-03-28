@@ -2,9 +2,12 @@
 
 Quick links to research and best practices that inform how this project is set up. These guides explain the reasoning behind the CLAUDE.md rules, hook configurations, and architecture decisions.
 
+All paths are relative to the knowledge base root (`/home/user/dev-best-practices/`).
+
 ## Workflow & Tools
 - **Claude Code Power User Guide** (`docs/topics/claude-code-power-user.md`) — TDD workflows, Plan Mode, hooks, session discipline. Why CLAUDE.md is structured the way it is.
 - **Tool Comparison: When to Use Each** (`docs/topics/tool-comparison-when-to-use.md`) — Decision matrix for 20 common tasks across Claude Code, Cursor, Gemini.
+- **Prompt Engineering Patterns** (`docs/topics/prompt-engineering-patterns.md`) — Why CLAUDE.md uses positive rules, structured prompting techniques, 15 production-ready templates.
 
 ## Architecture & Patterns
 - **AI-Native Architecture** (`docs/topics/ai-native-architecture.md`) — Agent backends, RAG, AI-first UX, vector storage, evaluation, cost management. Core reference for this project's architecture.

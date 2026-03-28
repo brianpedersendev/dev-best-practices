@@ -16,6 +16,7 @@ Single ReAct agent loop with tool calling, backed by provider abstractions for s
 | Evals | DeepEval + pytest | pytest-native, agent-specific metrics, no vendor lock-in |
 | Domain system | DomainConfig Pydantic model | New domain = new config, not new agent. Tools + prompt + RAG config per domain |
 | External deps | Protocol abstractions | Swap search/embedding/vectordb via config, not rewrite |
+| Extended thinking | effort parameter (adaptive) | Replaces deprecated budget_tokens; "medium" default, "high" for synthesis |
 
 ## System Diagram
 ```
@@ -24,6 +25,7 @@ User → CLI → Session → Agent Loop ←→ Tools (via registry)
            Cost tracker            SearchProvider (Tavily/Brave)
            Loop guard              PageReader (httpx/trafilatura)
            Context mgr             VectorStore (ChromaDB)
+                ↓                  EmbeddingProvider (nomic/qwen3)
                 ↓                  DomainTools (SEC EDGAR, yfinance)
          ResearchContext
                 ↓

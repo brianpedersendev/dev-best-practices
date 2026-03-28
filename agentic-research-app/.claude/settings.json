@@ -30,11 +30,11 @@
         "hooks": [
           {
             "type": "command",
-            "command": "cd /home/user/dev-best-practices/agentic-research-app && python -m pytest evals/ --tb=short -q --no-header 2>&1 | tail -10 || true"
+            "command": "python -m pytest evals/ -m 'not slow' --tb=short -q --no-header 2>&1 | tail -10 || true"
           },
           {
             "type": "command",
-            "command": "cd /home/user/dev-best-practices/agentic-research-app && black . --quiet 2>/dev/null || true"
+            "command": "black . --quiet 2>/dev/null || true"
           }
         ]
       }
@@ -45,7 +45,16 @@
         "hooks": [
           {
             "type": "command",
-            "command": "grep -rn 'sk-ant-\\|AKIA\\|ghp_\\|password\\s*=' \"$TOOL_INPUT_PATH\" 2>/dev/null && echo 'BLOCKED: Potential secret detected' && exit 2 || exit 0"
+            "command": ".claude/hooks/block-secrets.sh"
+          }
+        ]
+      },
+      {
+        "matcher": "Bash(git commit*)",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python -m pytest evals/ --tb=short -q 2>&1 | tail -10; if [ $? -ne 0 ]; then echo 'Tests failed. Fix before committing.' >&2; exit 2; fi"
           }
         ]
       }
@@ -56,7 +65,18 @@
         "hooks": [
           {
             "type": "command",
-            "command": "echo '## CRITICAL CONTEXT — PRESERVE ACROSS COMPACTION\n- Project: Agentic Research App | Stack: Python + Claude SDK + ChromaDB + Tavily\n- Test command: python -m pytest evals/ --tb=short -q\n- Key patterns: ReAct loop, Provider protocols, Content sandboxing, Context budget, Loop guard\n- API: Use output_config.format (NOT output_format), effort param (NOT budget_tokens)\n- Current task: check docs/TASKS.md for active work'"
+            "command": "echo '## CRITICAL CONTEXT — PRESERVE ACROSS COMPACTION\n- Project: Agentic Research App | Stack: Python + Claude SDK + ChromaDB + Tavily\n- Test command: python -m pytest evals/ --tb=short -q\n- Key patterns: ReAct loop, Provider protocols, Content sandboxing, Context budget, Loop guard\n- API: Use output_config.format (NOT output_format), effort param (NOT budget_tokens)\n- Handle all stop_reason values: end_turn, tool_use, max_tokens\n- Current task: check docs/TASKS.md for active work'"
+          }
+        ]
+      }
+    ],
+    "PostCompact": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo 'RESTORED CONTEXT: TDD workflow is non-negotiable. Test: python -m pytest evals/ --tb=short -q. Read CLAUDE.md and docs/TASKS.md for current work.'"
           }
         ]
       }
