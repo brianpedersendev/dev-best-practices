@@ -183,7 +183,9 @@ These 10 tools form the base layer every developer should have. They're foundati
 | **LangGraph** | [langchain-ai/langgraph](https://github.com/langchain-ai/langgraph) | Framework agnostic | Complex agent workflows | State graphs, interruption, streaming; works with Claude, OpenAI, Gemini |
 | **CrewAI** | [joaomdmoura/crewai](https://github.com/joaomdmoura/crewai) | Agent framework | Rapid prototyping | Task-focused agents, delegable workflows, memory integration |
 
-**Important Note:** OpenAI deprecated Swarm (Feb 2026) in favor of OpenAI Agents SDK. For Claude-native stacks, prefer Ruflo or LangGraph.
+| **Squad** | [bradygaster/squad](https://github.com/bradygaster/squad) | GitHub Copilot | Repo-native multi-agent teams | Two commands spin up coordinator + specialists (frontend, backend, tester) with independent 200K contexts; agent memory in `.squad/` (git-versioned) |
+
+**Important Note:** OpenAI deprecated Swarm (Feb 2026) in favor of OpenAI Agents SDK. For Claude-native stacks, prefer Ruflo or LangGraph. For GitHub Copilot-native teams, Squad provides a turnkey multi-agent setup.
 
 ### Observability & Monitoring
 
@@ -432,6 +434,7 @@ Use these to find and stay updated on new tools:
 | 2026-03-18 | Added Google Colab MCP Server to Data Engineer stack (Tier 2) | Daily briefing 03-18-2026 (Quick Hit: Colab MCP) |
 | 2026-03-19 | Updated Playwright MCP installs (27K+); updated Superpowers installs (56K+) | Daily briefing 03-19-2026 (Finding #5) |
 | 2026-03-21 | Updated Superpowers to 92K+ stars (#1 GitHub trending) | Daily briefing 03-21-2026 (Finding #3) |
+| 2026-03-28 | Added GitHub Squad to Agent Orchestration table. Both everything-claude-code and superpowers now past 100K stars. | Daily briefing 03-28-2026 (Findings #2, #3) |
 
 ---
 

@@ -1,7 +1,7 @@
 # Research Index
 
 > Master directory of all research in this knowledge base. Check here before adding anything new.
-> Last updated: 2026-03-22
+> Last updated: 2026-03-28
 
 ## Research Outputs
 | Date | File | Description |

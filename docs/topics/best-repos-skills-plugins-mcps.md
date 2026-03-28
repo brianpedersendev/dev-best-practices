@@ -8,7 +8,7 @@
 
 ## Executive Summary
 
-The MCP ecosystem has exploded to **21,000+ servers** and is now standard across Anthropic, OpenAI, and Google. Key findings:
+The MCP ecosystem has exploded to **21,000+ servers** (with the public registry alone doubling to 10K+ in March 2026) and is now standard across Anthropic, OpenAI, and Google. Key findings:
 
 - **MCP officially donated to Linux Foundation** (December 2025) — validates production-readiness
 - **Enterprise adoption accelerating** — AWS, Docker, GitHub, MongoDB, Supabase all ship MCP servers
@@ -453,3 +453,9 @@ Create `.cursorrules` in project root (or `.mdc` for new format):
 - [Building Custom MCP Servers](building-custom-mcp-servers.md) — Creating custom MCPs when no existing tool fits
 - [Claude Code Power User](claude-code-power-user.md) — Integrating skills and plugins into workflows
 **Maintenance:** Review quarterly for new MCP servers and security updates
+
+---
+## Changelog
+| Date | Change | Source |
+|------|--------|--------|
+| 2026-03-28 | Skills ecosystem explosion: 5 of top 10 trending GitHub repos (week of Mar 25) are skills-related after Anthropic opened the standard. Agent harness race: everything-claude-code (+21,490 stars/week, 100K+ total) and superpowers (+19,621 stars/week, 100K+ total). MCP registry doubled to 10K+ servers. | Daily briefing 03-28-2026 (Findings #3, #4) |

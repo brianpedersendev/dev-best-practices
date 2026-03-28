@@ -108,7 +108,10 @@ OpenClaw's explosion has come with **significant security risks**. This is not h
 - **Antiy CERT confirmation (Mar 2026):** 1,184 malicious skills confirmed across ClawHub — the largest supply chain attack targeting AI agent infrastructure to date. Analysis of 30,000+ skills found >25% contain at least one vulnerability.
 - **Prevalence:** ~7.7% malicious (Feb estimate) → confirmed higher at scale
 - **Attack types:** Credential theft, coin mining, botnet recruitment, data exfiltration
-- **Implication:** Blindly installing a "popular" skill from ClawHub is risky; immediate audit recommended for production deployments
+- **OpenClawd response (Mar 26, 2026):** Shipped "Verified Skill Screening" — automated malware scanning for all ClawHub submissions. However, 12% of existing skills already confirmed malware as of late March 2026.
+- **Exposure scale (Mar 2026):** SecurityScorecard identified 135K+ publicly exposed OpenClaw instances across 82 countries; 50K+ exploitable via CVE-2026-25253 RCE; 53K+ correlated with prior breach activity.
+- **macOS targeting:** Atomic macOS Stealer payloads confirmed via counterfeit installation packages — harvests browser credentials, keychains, SSH keys, and crypto wallets.
+- **Implication:** Blindly installing a "popular" skill from ClawHub is risky; immediate audit recommended for production deployments. Use only Verified skills post-screening rollout.
 
 #### Prompt Injection
 - **Giskard research:** Crafted prompts can extract API keys and environment variables from agent context
@@ -368,6 +371,7 @@ OpenClaw represents a real shift: **agents moving from "answer my question" to "
 |------|--------|--------|
 | 2026-03-19 | Updated malicious skills count: Antiy CERT confirmed 1,184 malicious skills (up from 820+); >25% of 30K+ analyzed skills have vulnerabilities | Daily briefing 03-19-2026 (Finding #2) |
 | 2026-03-22 | Updated star count to 263K (from 100K). Supply chain concerns persist despite NemoClaw OpenShell sandbox. | Daily briefing 03-22-2026 (Finding #5) |
+| 2026-03-28 | Security crisis escalation: 12% of all ClawHub skills now confirmed malware (up from ~7.7% estimate). OpenClawd shipped "Verified Skill Screening" as mitigation. SecurityScorecard: 135K+ exposed instances across 82 countries, 50K+ exploitable via RCE. Atomic macOS Stealer payloads confirmed harvesting keychains, SSH keys, and crypto wallets. | Daily briefing 03-28-2026 (Finding #1) |
 
 ---
 
