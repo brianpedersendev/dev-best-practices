@@ -1,0 +1,65 @@
+{
+  "permissions": {
+    "allow": [
+      "Read",
+      "Edit",
+      "Write",
+      "Glob",
+      "Grep",
+      "Bash(python -m pytest*)",
+      "Bash(black *)",
+      "Bash(pip install*)",
+      "Bash(python -m src*)",
+      "Bash(git *)"
+    ]
+  },
+  "mcpServers": {
+    "sequential-thinking": {
+      "command": "npx",
+      "args": ["-y", "@anthropic-ai/mcp-sequential-thinking"]
+    },
+    "context7": {
+      "command": "npx",
+      "args": ["-y", "@context7/mcp"]
+    }
+  },
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cd /home/user/dev-best-practices/agentic-research-app && python -m pytest evals/ --tb=short -q --no-header 2>&1 | tail -10 || true"
+          },
+          {
+            "type": "command",
+            "command": "cd /home/user/dev-best-practices/agentic-research-app && black . --quiet 2>/dev/null || true"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "grep -rn 'sk-ant-\\|AKIA\\|ghp_\\|password\\s*=' \"$TOOL_INPUT_PATH\" 2>/dev/null && echo 'BLOCKED: Potential secret detected' && exit 2 || exit 0"
+          }
+        ]
+      }
+    ],
+    "PreCompact": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo '## CRITICAL CONTEXT — PRESERVE ACROSS COMPACTION\n- Project: Agentic Research App | Stack: Python + Claude SDK + ChromaDB + Tavily\n- Test command: python -m pytest evals/ --tb=short -q\n- Key patterns: ReAct loop, Provider protocols, Content sandboxing, Context budget, Loop guard\n- API: Use output_config.format (NOT output_format), effort param (NOT budget_tokens)\n- Current task: check docs/TASKS.md for active work'"
+          }
+        ]
+      }
+    ]
+  }
+}
