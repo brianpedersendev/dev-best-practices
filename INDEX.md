@@ -1,7 +1,7 @@
 # Research Index
 
 > Master directory of all research in this knowledge base. Check here before adding anything new.
-> Last updated: 2026-03-28
+> Last updated: 2026-03-28 (weekly audit)
 
 ## Research Outputs
 | Date | File | Description |
@@ -93,15 +93,15 @@
 ## Watching
 | Date Added | Topic | Why |
 |------------|-------|-----|
-| 2026-03-18 | Adversarial autonomous code review | Pattern proven, industrial tooling expected Q3-Q4 2026 |
+| 2026-03-18 | Adversarial autonomous code review | Pattern proven, industrial tooling expected Q3-Q4 2026. **Mar 28 update:** Anthropic launched Code Review in Claude Code (enterprise, multi-agent). ASDLC.io published formal pattern. Autonomous remediation emerging. **Ready for deep-dive.** |
 | 2026-03-18 | Multi-agent consensus/disagreement handling | No standardized patterns yet |
 | 2026-03-18 | Enterprise MCP governance (auth, audit, SSO) | Promised for 2026, limited visibility |
-| 2026-03-18 | Contextual memory replacing RAG | Research clear, production adoption unclear |
-| 2026-03-18 | SLM + Claude hybrid routing | Architecturally sound, few production examples |
+| 2026-03-18 | Contextual memory replacing RAG | Research clear, production adoption unclear. **Mar 28 update:** Claude Opus 4.6 contextual memory, "observational memory" cutting costs 10x (VentureBeat). RAG declining for agentic use but still useful for static data. Production patterns still crystallizing. Keep watching. |
+| 2026-03-18 | SLM + Claude hybrid routing | Architecturally sound, few production examples. **Mar 28 update:** Router pattern now standard — 80/20 SLM/LLM split common, 75% cost reduction documented. Multiple production guides available. Approaching ready for deep-dive. |
 | 2026-03-18 | Planner-coder gap resolution | 7.9-83.3% robustness loss, unsolved |
-| 2026-03-18 | Agent-scale observability standards | OpenTelemetry working on conventions |
+| 2026-03-18 | Agent-scale observability standards | OpenTelemetry working on conventions. **Mar 28 update:** OTel GenAI Semantic Conventions finalized. 70%+ enterprise agent deployments using OTel. Datadog, Elastic, VictoriaMetrics supporting natively. CrewAI, Pydantic AI emit OTel. **Ready for deep-dive.** |
 | 2026-03-18 | OpenClaw + NemoClaw enterprise maturity | Security hardening in progress; NVIDIA partnership signals enterprise push but CVEs still emerging. **Mar 19 update:** Antiy CERT confirmed 1,184 malicious ClawHub skills — largest AI agent supply chain attack to date. **Mar 21 update:** NemoClaw launched at GTC (Mar 16). OpenShell runtime adds kernel-level sandbox, policy engine, privacy router. Adobe/Salesforce/SAP/CrowdStrike/Dell as launch partners. Still alpha-stage with performance issues. |
-| 2026-03-18 | Semantic caching for AI apps | 40-70% hit rate reported, but production patterns still crystallizing |
+| 2026-03-18 | Semantic caching for AI apps | 40-70% hit rate reported, but production patterns still crystallizing. **Mar 28 update:** Production-ready tools: Bifrost, GPTCache, Upstash Semantic Cache. 40-68% cost reduction in production. False positive mitigation patterns emerging. Near ready for deep-dive. |
 | 2026-03-18 | Model routing (SLM/LLM hybrid) in production | 60% cost reduction potential, few verified production examples |
 | 2026-03-18 | AI-generated code security scanning | 87% of AI PRs introduce vulnerabilities (DryRun Security); OpenAI Codex Security, CrowdStrike patterns emerging. **Mar 21 update:** Anthropic launched Claude Code Security (research preview). OpenAI renamed Aardvark → Codex Security. Snyk DeepCode AI, GitHub Advanced Security + Copilot Autofix all production-ready. **Ready for deep-dive.** |
 | 2026-03-18 | Google A2A protocol + MCP convergence | Peer-to-peer agent collaboration standard complementing MCP; adoption accelerating. **Mar 21 update:** A2A v0.3 released. Donated to Linux Foundation with 150+ org backing (AWS, Google, MS, Salesforce, SAP). Native support in Copilot Studio and Amazon Bedrock AgentCore. CrewAI has native A2A. **Ready for deep-dive.** |
