@@ -1,0 +1,63 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python -m pytest*)",
+      "Bash(black *)",
+      "Bash(isort *)",
+      "Bash(pip install*)"
+    ]
+  },
+  "mcpServers": {
+    "sequential-thinking": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-sequential-thinking"]
+    },
+    "context7": {
+      "command": "npx",
+      "args": ["-y", "@upstash/context7-mcp@latest"]
+    },
+    "sqlite": {
+      "command": "npx",
+      "args": ["-y", "@anthropic/mcp-server-sqlite", "--db-path", "~/.stock_analyst/knowledge.db"]
+    }
+  },
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python -m pytest --tb=short -q 2>&1 | tail -10 || true"
+          },
+          {
+            "type": "command",
+            "command": "black . --quiet 2>/dev/null && isort . --quiet 2>/dev/null || true"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "grep -rn 'AKIA\\|sk-\\|ghp_\\|password\\s*=' \"$TOOL_INPUT_PATH\" 2>/dev/null && echo 'BLOCKED: Potential secret detected' && exit 2 || exit 0"
+          }
+        ]
+      }
+    ],
+    "PreCompact": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo '## CRITICAL CONTEXT — PRESERVE ACROSS COMPACTION\n- Project: Stock Analyst MCP | Stack: Python 3.10+ / FastMCP 3.0 / yfinance / Finnhub / SQLite\n- Test command: python -m pytest --tb=short -q\n- Key patterns: @mcp.tool() decorators, @cached_tool(ttl) for API caching, SQLite FTS5 for knowledge base\n- Data dir: ~/.stock_analyst/ (knowledge.db, portfolio.json, cache/)\n- Current task: check docs/TASKS.md for active work'"
+          }
+        ]
+      }
+    ]
+  }
+}
