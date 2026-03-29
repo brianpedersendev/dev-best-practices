@@ -27,6 +27,8 @@ Identify and demonstrate the highest-impact AI use cases for ski ticket ecommerc
   - **Smart bundling** — AI-generated package deals (lift + rental + lesson) optimized for conversion
   - **Content generation** — AI-written condition reports, marketing copy, trail descriptions
   - **Search & discovery** — natural language search ("best beginner package for a family of 4")
+  - **Agentic AI booking readiness** — optimize site for machine-to-machine commerce so AI agents (Google Gemini, ChatGPT plugins) can discover, evaluate, and book tickets on behalf of users via structured data and clean APIs
+  - **Group trip coordination engine** — AI-powered shared link that collects preferences/skill levels from all group members and generates an optimized group package (tickets, lessons, rentals, split payments)
 
 ### Explicitly Out of Scope (v1)
 - Production-ready deployment
@@ -69,6 +71,8 @@ Identify and demonstrate the highest-impact AI use cases for ski ticket ecommerc
 3. How do existing platforms (Liftopia, Inntopia) use AI today?
 4. What's the best architecture for adding AI to NopCommerce headless?
 5. Which AI features can be built with synthetic/mock data vs. needing real resort data?
+7. How are AI agents (Gemini, ChatGPT) currently discovering and booking travel inventory? What structured data/APIs do they need?
+8. What does the group ski trip booking flow look like today, and where are the biggest drop-off points?
 6. Are there ski-industry-specific datasets or APIs available (weather, snow conditions, etc.)?
 
 ## Risk Factors
