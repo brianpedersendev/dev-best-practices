@@ -616,10 +616,16 @@ Start: "I need to code something"
 - **Agent Teams:** Coordinate multiple sessions with shared task queue (experimental)
 - **Improved MCP tool search:** Dynamically loads tools on-demand; saves ~55K tokens with 5+ MCPs
 
+### GitHub Copilot (March 2026)
+- **Agentic code review GA (VS Code + JetBrains):** Full project-context code review that can auto-generate fix PRs via the coding agent. Agent Mode now GA on both platforms.
+- **Copilot Cowork (March 9):** Delegated, multi-step task execution — Microsoft's answer to Claude Cowork.
+- **Agent 365 announced:** Dedicated control layer for governing and securing agents across M365 organizations. GA expected May 2026.
+
 ### Cursor (March 2026)
 - **MCP plugin marketplace (March 11):** 30+ plugins (Linear, Figma, Stripe, Datadog, etc.)
 - **MCP Apps:** Interactive UIs in agent chat (charts, diagrams, color swatches)
 - **Team plugin marketplaces:** Share private plugins internally
+- **1 million paying developers milestone:** Cursor crossed 1M paying devs in March 2026.
 - **JetBrains support (coming Q2 2026):** Full IDE support for IntelliJ, PyCharm, GoLand
 
 ### Gemini (March 2026)
@@ -726,6 +732,7 @@ Most experienced developers use 2-3 tools and switch based on task. That's not i
 | 2026-03-18 | Added note: Claude now available as Copilot agent (Business/Pro); M365 Wave 3 Claude option | Daily briefing 03-18-2026 (Finding #6) |
 | 2026-03-19 | Updated SWE-bench score from 74.4% to ~80% (SWE-bench Verified); updated Claude Code IDE support (now available in VS Code, JetBrains, desktop app, browser IDE) | Daily briefing 03-19-2026 (Finding #4) |
 | 2026-03-22 | Updated SWE-bench comparison: Copilot now 56%, Cursor 52% (Mar 16 benchmark). Copilot Pro now offers Claude Sonnet 4.6 + Gemini 2.5 Pro; Pro+ ($39/mo) unlocks Opus 4 + o3. Cursor Pro adds GPT-5.4, Gemini 3 Pro, Grok Code with per-task model routing. Multi-model selection is now table stakes across all three platforms. | Daily briefing 03-22-2026 (Finding #3) |
+| 2026-03-29 | Added GitHub Copilot March 2026 section: agentic code review GA on VS Code + JetBrains, Copilot Cowork for multi-step tasks, Agent 365 governance layer (GA May 2026). Added Cursor 1M paying developers milestone. | Daily briefing 03-29-2026 (Findings #1, #3) |
 
 ---
 

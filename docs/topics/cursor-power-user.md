@@ -1159,6 +1159,7 @@ coverage/
 ## 15. Staying Current: Cursor Roadmap & What's Next
 
 **March 2026 (Cursor 2.6)**
+- 1 million paying developers milestone crossed
 - MCP plugin marketplace with 30+ partners (Linear, Stripe, Figma, AWS, etc.)
 - Team plugin marketplaces (share internal plugins)
 - Interactive MCP UIs in agent chat
@@ -1216,6 +1217,12 @@ coverage/
 - [Medium: TDD with Cursor](https://medium.com/@arun-gupta/test-driven-development-tdd-with-cursor-writing-a-palindrome-function-in-typescript-2cad37f8997f)
 - [Cursor Docs: Models & Pricing](https://cursor.com/docs/models)
 - [Medium: A Year with Cursor](https://subramanya.ai/2026/01/04/a-year-with-cursor-how-my-workflow-evolved-from-agent-to-architect/)
+
+---
+## Changelog
+| Date | Change | Source |
+|------|--------|--------|
+| 2026-03-29 | Added 1M paying developers milestone to roadmap section | Daily briefing 03-29-2026 (Finding #1) |
 
 ---
 
