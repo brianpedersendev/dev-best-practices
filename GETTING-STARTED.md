@@ -1,7 +1,7 @@
 # Getting Started: AI-Augmented Development
 
 > Ship top-of-the-line apps faster using AI tools, agents, and modern dev patterns.
-> Last updated: 2026-03-22
+> Last updated: 2026-03-29
 
 ---
 
@@ -68,6 +68,10 @@
 ### How to Cut AI Tool Costs 50-70%
 
 - **[Cost Optimization Playbook](docs/topics/cost-optimization-playbook.md)** — Comprehensive strategy guide to reduce AI spending dramatically while maintaining quality. Covers: where money goes (pricing breakdown, activity costs, monthly budgets by developer profile), context management savings (29-84%), model routing (60% reduction via intelligent distribution), caching strategies (90% off with prompt caching, 40-70% hit rate with semantic caching), tool selection optimization (when Cursor beats Claude, when Gemini wins), subscription strategies (Pro vs Max vs API), team cost management (2-5 person teams to 50+ developers), the hybrid multi-tool approach, token budgeting and monitoring, real team examples, and implementation checklist. Start here to make intelligent cost/quality trade-offs.
+
+### Project Research: AI for Ski Ecommerce (Case Study)
+
+- **[AI-Enhanced Ski Ticket Ecommerce Plan](docs/ski-ecommerce-research/plan/PLAN.md)** — Complete project research output: from idea interview through domain research to implementation plan. A 4-phase POC exploring AI for ski resort ecommerce on NopCommerce headless — agentic AI booking readiness, conversational chatbot, group trip coordinator, and dynamic pricing engine. Includes competitive landscape analysis, technical feasibility assessment, and architecture diagrams. Good reference for how to use the `project-research` skill end-to-end.
 
 ### How to Research Before Building
 

@@ -1,7 +1,7 @@
 # Research Index
 
 > Master directory of all research in this knowledge base. Check here before adding anything new.
-> Last updated: 2026-03-20
+> Last updated: 2026-03-29
 
 ## Research Outputs
 | Date | File | Description |
@@ -69,6 +69,18 @@
 |------|------|-------------|
 | 2026-03-18 | [project-scaffold.skill](project-scaffold.skill) | **Project Scaffold Skill** — Generates complete AI tooling scaffold (CLAUDE.md, hooks, MCP configs, Cursor rules, agents.md, skills) from a plan doc or project description |
 | 2026-03-18 | [project-research.skill](project-research.skill) | **Project Research Skill** — End-to-end idea vetting → domain research → implementation plan. Orchestrates agent-research and agent-plan with interview phase and checkpoints |
+
+## Project Research: AI-Enhanced Ski Ticket Ecommerce
+| Date | File | Description |
+|------|------|-------------|
+| 2026-03-29 | [docs/PROJECT-BRIEF.md](docs/PROJECT-BRIEF.md) | **Project Brief** — AI-enhanced ski ticket ecommerce POC on NopCommerce headless. Validated idea: 9 AI feature areas for resort operators |
+| 2026-03-29 | [docs/ski-ecommerce-research/SCOPE.md](docs/ski-ecommerce-research/SCOPE.md) | Research scope — AI applications for ski ticket ecommerce |
+| 2026-03-29 | [docs/ski-ecommerce-research/landscape.md](docs/ski-ecommerce-research/landscape.md) | Competitive landscape — Inntopia, Liftopia, Disney, airlines, agentic AI travel, group booking tools |
+| 2026-03-29 | [docs/ski-ecommerce-research/technical.md](docs/ski-ecommerce-research/technical.md) | Technical feasibility — NopCommerce headless, AI service integration, ML models, data requirements |
+| 2026-03-29 | [docs/ski-ecommerce-research/domain.md](docs/ski-ecommerce-research/domain.md) | Domain analysis — ski ecommerce funnel, revenue models, buyer behavior, industry trends |
+| 2026-03-29 | [docs/ski-ecommerce-research/SYNTHESIS.md](docs/ski-ecommerce-research/SYNTHESIS.md) | **Research synthesis** — GO recommendation, 4 prioritized AI features, competitive gaps |
+| 2026-03-29 | [docs/ski-ecommerce-research/plan/PLAN.md](docs/ski-ecommerce-research/plan/PLAN.md) | **Implementation plan** — 4-phase POC: agentic readiness, chatbot, group coordinator, dynamic pricing |
+| 2026-03-29 | [docs/ski-ecommerce-research/plan/INPUTS.md](docs/ski-ecommerce-research/plan/INPUTS.md) | Planning inputs and key decisions |
 
 ## References
 | Date | File | Description |
